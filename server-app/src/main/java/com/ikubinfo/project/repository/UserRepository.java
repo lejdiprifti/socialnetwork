@@ -8,19 +8,32 @@ import com.ikubinfo.project.model.UserModel;
 import com.ikubinfo.project.util.PersistenceSingleton;
 
 public class UserRepository {
-	private EntityManager entityManager;
+	private EntityManager em;
 
 	public UserRepository() {
-		this.entityManager = PersistenceSingleton.INSTANCE.getEntityManagerFactory().createEntityManager();
+		this.em = PersistenceSingleton.INSTANCE.getEntityManagerFactory().createEntityManager();
 	}
 	
-	public User getUser(int id) {
-		return entityManager.find(User.class, id);
-	}
-
-	public User getUserByUsername(String username) {
-		TypedQuery<User> query=entityManager.createQuery("From User where username=?1",User.class);
-		query.setParameter(1,username);
+	public User getUserById(long id) {
+		TypedQuery<User> query=em.createNamedQuery("User.getById",User.class);
+		query.setParameter(1, id);
+		query.setParameter(2, true);
 		return query.getSingleResult();
 	}
+
+	public User getUserByEmail(String email) {
+		TypedQuery<User> query=em.createNamedQuery("User.getByEmail",User.class);
+		query.setParameter(1,email);
+		query.setParameter(2,true);
+		return query.getSingleResult();
+	}
+
+	public User register(User user) {
+		em.getTransaction().begin();
+		em.persist(user);
+		em.getTransaction().commit();
+		return user;
+	}
+
+	
 }
