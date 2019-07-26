@@ -14,10 +14,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="role",schema="socialnetwork")
-@Access (AccessType.FIELD)
-public class RoleEntity implements Serializable{
-	
+@Table(name = "role", schema = "socialnetwork")
+@Access(AccessType.FIELD)
+public class RoleEntity implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -25,17 +25,15 @@ public class RoleEntity implements Serializable{
 
 	@Id
 	private int id;
-	
-	@Column(name="role_name")
+
+	@Column(name = "role_name")
 	private String name;
-	
-	@Column(name="role_description")
+
+	@Column(name = "role_description")
 	private String description;
-	
-	
-	
+
 	public RoleEntity() {
-		
+
 	}
 
 	public int getId() {
@@ -62,11 +60,9 @@ public class RoleEntity implements Serializable{
 		this.description = description;
 	}
 
-	
-
 	@Override
 	public String toString() {
 		return "RoleEntity [id=" + id + ", name=" + name + ", description=" + description + "]";
 	}
-	
+
 }

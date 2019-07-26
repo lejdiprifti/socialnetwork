@@ -7,7 +7,7 @@ import { BASE_URL } from '@env/environment';
 
 @Injectable()
 export class ApiService {
-
+  
   private options = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
 
   constructor(private httpClient: HttpClient) {
