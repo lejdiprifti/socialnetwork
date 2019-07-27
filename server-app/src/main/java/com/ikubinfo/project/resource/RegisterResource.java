@@ -1,5 +1,8 @@
 package com.ikubinfo.project.resource;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -22,7 +25,7 @@ public class RegisterResource {
 	}
 
 	@POST
-	public Response register(UserModel user) {
-		return Response.ok(userService.register(user)).build();
+	public Response register(UserModel user) throws URISyntaxException {
+		return Response.created(new URI("/users/"+userService.register(user).getEmail())).build();
 	}
 }

@@ -1,6 +1,10 @@
 package com.ikubinfo.project.converter;
 
 import com.ikubinfo.project.model.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import com.ikubinfo.project.base.BaseConverter;
 import com.ikubinfo.project.entity.User;
 
@@ -38,6 +42,14 @@ public class UserConverter implements BaseConverter<UserModel, User> {
 		entity.setBirthdate(model.getBirthdate());
 		entity.setJob(model.getJob());
 		return entity;
+	}
+	
+	public List<UserModel> toModel(List<User> userList){
+		List<UserModel> modelList=new ArrayList<UserModel>();
+		for (User user: userList) {
+			modelList.add(toModel(user));
+		}
+		return modelList;
 	}
 
 }

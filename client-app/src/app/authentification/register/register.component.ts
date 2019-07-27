@@ -91,7 +91,7 @@ export class RegisterComponent implements OnInit {
       this.logger.success("Success","You registered successfully.");
       this.router.navigate(['/login']);
     },err=>{
-      this.logger.error("Error","Email is already taken.");
+      this.logger.error("Error","Email is already in use.");
     });
   }
 
