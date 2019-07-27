@@ -1,15 +1,9 @@
 <div class="row">
-  <div class="col col-xl-6 col-lg-12">
-    <ikubinfo-panel header="Data 1">
+  <div class="col col-xl-6 col-lg-12" *ngFor="let post of posts">
+    <ikubinfo-panel header="{{post.user.firstName}}">
       <div panel-content>
-        <h1>Content here</h1>
-      </div>
-    </ikubinfo-panel>
-  </div>
-  <div class="col col-xl-6 col-lg-12">
-    <ikubinfo-panel header="Data 2">
-      <div panel-content>
-        <h1>Content here</h1>
+        <h1>{{post.title}}</h1>
+        <p>{{post.description}}</p>
       </div>
     </ikubinfo-panel>
   </div>

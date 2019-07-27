@@ -1,6 +1,8 @@
 package com.ikubinfo.project.entity;
 
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -46,7 +48,10 @@ public class User {
 	
 	@Column(name = "flag")
 	private boolean flag;
-
+	
+	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
+	private List<Post> posts;
+	
 	public User() {
 
 	}
@@ -138,6 +143,8 @@ public class User {
 	public void setFlag(boolean flag) {
 		this.flag = flag;
 	}
+
+	
 
 	@Override
 	public String toString() {

@@ -11,7 +11,9 @@ export class PostService {
     constructor(private apiService: ApiService) {
 
     }
-
+    public getPosts(): Observable<Array<Post>>{
+        return this.apiService.get(this.url);
+    }
     public allAsync = (): Observable<Array<Post>> => {
         return this.apiService.get<Array<Post>>(this.url);
     }

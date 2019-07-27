@@ -29,7 +29,7 @@ export class PostComponent implements OnInit {
         .then(data => {
           this.post = data;
           this.postForm.get('title').setValue(this.post.title);
-          this.postForm.get('description').setValue(this.post.body);
+          this.postForm.get('description').setValue(this.post.description);
         }).catch(_ => {
           this.logger.error('Error', 'An error accured');
         });
@@ -49,13 +49,13 @@ export class PostComponent implements OnInit {
 
   fillForm(data: Post = {}): void {
     this.postForm.get('title').setValue(data.title);
-    this.postForm.get('description').setValue(data.body);
+    this.postForm.get('description').setValue(data.description);
   }
 
   getData(): Post {
     return {
       title: this.postForm.get('title').value,
-      body: this.postForm.get('description').value
+      description: this.postForm.get('description').value
     }
 
   }

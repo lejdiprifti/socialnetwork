@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import com.ikubinfo.project.entity.User;
 import com.ikubinfo.project.util.PersistenceSingleton;
@@ -32,7 +33,8 @@ public class UserRepository {
 		query.setParameter(2,true);
 		return query.getSingleResult();
 	}
-
+	
+	@Transactional
 	public User register(User user) {
 		em.getTransaction().begin();
 		em.persist(user);
@@ -40,6 +42,7 @@ public class UserRepository {
 		return user;
 	}
 	
+	@Transactional
 	public User update(User user) {
 		em.getTransaction().begin();
 		User updatedUser=em.merge(user);

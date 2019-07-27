@@ -1,8 +1,7 @@
 package com.ikubinfo.project.entity;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -31,7 +30,10 @@ public class RoleEntity implements Serializable {
 
 	@Column(name = "role_description")
 	private String description;
-
+	
+	@OneToMany(mappedBy="role",fetch=FetchType.LAZY)
+	private List<User> users; 
+	
 	public RoleEntity() {
 
 	}
