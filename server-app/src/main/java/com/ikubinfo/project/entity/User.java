@@ -2,6 +2,7 @@ package com.ikubinfo.project.entity;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -50,7 +51,10 @@ public class User {
 	private boolean flag;
 	
 	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
-	private List<Post> posts;
+	private Set<Post> posts;
+	
+	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
+	private Set<Friends> user;
 	
 	public User() {
 
@@ -143,9 +147,9 @@ public class User {
 	public void setFlag(boolean flag) {
 		this.flag = flag;
 	}
-
 	
 
+	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthdate=" + birthdate

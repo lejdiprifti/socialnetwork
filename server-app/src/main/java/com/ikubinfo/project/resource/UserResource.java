@@ -45,4 +45,12 @@ public class UserResource extends BaseResource {
 		userService.delete(id);
 		return Response.noContent().build();
 	}
+	
+	@POST
+	@Path("/{id}")
+	public Response addFriend(@PathParam("id") final long id) {
+		return Response.ok(userService.addFriend(id, getEmailFromToken())).build();
+	}
+	
+	
 }

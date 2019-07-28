@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
+import com.ikubinfo.project.entity.Friends;
 import com.ikubinfo.project.entity.User;
 import com.ikubinfo.project.util.PersistenceSingleton;
 
@@ -50,7 +51,14 @@ public class UserRepository {
 		return updatedUser;
 	}
 	
+	@Transactional
+	public Friends addFriend(Friends friends) {
+		em.getTransaction().begin();
+		em.persist(friends);
+		em.getTransaction().commit();
+		return friends;
+	}
 	
-
+	
 	
 }

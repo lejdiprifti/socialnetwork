@@ -1,7 +1,9 @@
 package com.ikubinfo.project.model;
 
 import java.util.Date;
+import java.util.List;
 
+import com.ikubinfo.project.entity.Friends;
 import com.ikubinfo.project.entity.RoleEntity;
 
 public class UserModel {
@@ -108,5 +110,9 @@ public class UserModel {
 	public void setFlag(boolean flag) {
 		this.flag = flag;
 	}
+
+	
+
+	
 		
 }

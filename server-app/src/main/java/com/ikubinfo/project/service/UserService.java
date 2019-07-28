@@ -1,5 +1,6 @@
 package com.ikubinfo.project.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -7,6 +8,7 @@ import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 
 import com.ikubinfo.project.converter.UserConverter;
+import com.ikubinfo.project.entity.Friends;
 import com.ikubinfo.project.entity.RoleEntity;
 import com.ikubinfo.project.entity.User;
 import com.ikubinfo.project.model.UserModel;
@@ -97,4 +99,31 @@ public class UserService {
 		}
 	}
 	
+	public Friends addFriend(final long id,String email) {
+		if (existsUser(id)==true) {
+		User user=userRepository.getUserByEmail(email);
+		Friends friend=new Friends();
+		friend.setFriendId(id);
+		friend.setFlag(true);
+		friend.setAccepted(false);
+		friend.setDate(new Date());
+		friend.setUser(user);
+		userRepository.addFriend(friend);
+		return friend;
+		}else {
+			throw new BadRequestException("User not found.");
+		}
+	}
+	
+	
+	
+	public boolean existsUser(final long id) {
+		try {
+		userRepository.getUserById(id);
+		return true;
+		}catch(NoResultException e) {
+			return false;
+		}
+	}
 }
+
