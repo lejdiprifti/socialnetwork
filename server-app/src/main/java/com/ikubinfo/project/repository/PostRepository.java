@@ -2,9 +2,12 @@ package com.ikubinfo.project.repository;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import com.ikubinfo.project.entity.Post;
+import com.ikubinfo.project.entity.PostLiked;
+import com.ikubinfo.project.entity.User;
 import com.ikubinfo.project.util.PersistenceSingleton;
 
 public class PostRepository {
@@ -43,6 +46,27 @@ public class PostRepository {
 		Post mergedPost=em.merge(post);
 		em.getTransaction().commit();
 		return mergedPost;
+	}
+	
+	@Transactional
+	public void like(PostLiked post) {
+		em.getTransaction().begin();
+		em.persist(post);
+		em.getTransaction().commit();
+	}
+	
+	@Transactional
+	public void updateLike(PostLiked post) {
+		em.getTransaction().begin();
+		em.merge(post);
+		em.getTransaction().commit();
+	}
+	
+	public PostLiked isAlreadyLiked(Post post,User user) {
+		TypedQuery<PostLiked> query=em.createQuery("Select p from PostLiked p where p.post=?1 and p.user=?2",PostLiked.class);
+	query.setParameter(1, post);
+	query.setParameter(2, user);
+	return query.getSingleResult();
 	}
 	
 }

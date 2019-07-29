@@ -1,5 +1,6 @@
 package com.ikubinfo.project.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -50,12 +51,20 @@ public class User {
 	@Column(name = "flag")
 	private boolean flag;
 	
-	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="user",
+			fetch=FetchType.LAZY,
+			orphanRemoval=true)
 	private Set<Post> posts;
 	
-	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="user",
+			fetch=FetchType.LAZY)
 	private Set<Friends> user;
 	
+	@OneToMany(mappedBy="user",
+			cascade=CascadeType.ALL,
+			fetch=FetchType.LAZY,
+			orphanRemoval=true)
+	private List<PostLiked> likedPosts=new ArrayList<>();	
 	public User() {
 
 	}
@@ -148,8 +157,30 @@ public class User {
 		this.flag = flag;
 	}
 	
+	public Set<Post> getPosts() {
+		return posts;
+	}
 
-	
+	public void setPosts(Set<Post> posts) {
+		this.posts = posts;
+	}
+
+	public Set<Friends> getUser() {
+		return user;
+	}
+
+	public void setUser(Set<Friends> user) {
+		this.user = user;
+	}
+
+	public List<PostLiked> getLikedPosts() {
+		return likedPosts;
+	}
+
+	public void setLikedPosts(List<PostLiked> likedPosts) {
+		this.likedPosts = likedPosts;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthdate=" + birthdate

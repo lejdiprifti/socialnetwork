@@ -8,9 +8,11 @@ import com.ikubinfo.project.entity.Post;
 import com.ikubinfo.project.model.PostModel;
 
 public class PostConverter implements BaseConverter<PostModel,Post> {
-
+	private UserConverter userConverter;
+	private PostLikedConverter postLikedConverter;
 	public PostConverter() {
-		
+		this.userConverter=new UserConverter();
+		this.postLikedConverter=new PostLikedConverter(userConverter);
 	}
 
 	@Override
@@ -20,9 +22,11 @@ public class PostConverter implements BaseConverter<PostModel,Post> {
 		model.setTitle(entity.getTitle());
 		model.setDescription(entity.getDescription());
 		model.setDate(entity.getDate());
-		model.setUser(entity.getUser());
+		model.setUser(userConverter.toModel(entity.getUser()));
 		model.setFlag(entity.isFlag());
+		model.setLikes(postLikedConverter.toModel(entity.getLikes()));
 		return model;
+		
 	}
 
 	@Override
@@ -32,8 +36,9 @@ public class PostConverter implements BaseConverter<PostModel,Post> {
 		entity.setTitle(model.getTitle());
 		entity.setDescription(model.getDescription());
 		entity.setDate(model.getDate());
-		entity.setUser(model.getUser());
-		entity.setFlag(entity.isFlag());
+		entity.setUser(userConverter.toEntity(model.getUser()));
+		entity.setFlag(model.isFlag());
+		entity.setLikes(postLikedConverter.toEntity(model.getLikes()));
 		return entity;
 	}
 	
@@ -44,5 +49,8 @@ public class PostConverter implements BaseConverter<PostModel,Post> {
 		}
 		return modelList;
 	}
-
+	
+	public static void main(String[] args) {
+		
+	}
 }

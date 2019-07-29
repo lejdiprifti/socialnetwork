@@ -6,6 +6,8 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>com.ikubinfo.project.entity.Friends</class>
         <class>com.ikubinfo.project.entity.Post</class>
+        <class>com.ikubinfo.project.entity.PostLiked</class>
+        <class>com.ikubinfo.project.entity.PostLikedId</class>
         <class>com.ikubinfo.project.entity.RoleEntity</class>
         <class>com.ikubinfo.project.entity.Something</class>
         <class>com.ikubinfo.project.entity.User</class>

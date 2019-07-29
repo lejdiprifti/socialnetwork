@@ -7,7 +7,11 @@ import javax.persistence.NoResultException;
 import javax.ws.rs.NotFoundException;
 
 import com.ikubinfo.project.converter.PostConverter;
+import com.ikubinfo.project.converter.UserConverter;
 import com.ikubinfo.project.entity.Post;
+import com.ikubinfo.project.entity.PostLiked;
+import com.ikubinfo.project.entity.PostLikedId;
+import com.ikubinfo.project.entity.User;
 import com.ikubinfo.project.model.PostModel;
 import com.ikubinfo.project.repository.PostRepository;
 import com.ikubinfo.project.repository.UserRepository;
@@ -16,11 +20,12 @@ public class PostService {
 	private PostRepository postRepository;
 	private PostConverter postConverter;
 	private UserRepository userRepository;
-	
+	private UserConverter userConverter;
 	public PostService() {
 		this.postConverter=new PostConverter();
 		this.postRepository=new PostRepository();
 		this.userRepository=new UserRepository();
+		this.userConverter=new UserConverter();
 	}
 	
 	public List<PostModel> getPosts(){
@@ -36,7 +41,7 @@ public class PostService {
 	}
 	
 	public PostModel addPost(PostModel post,String email) {
-			post.setUser(userRepository.getUserByEmail(email));
+			post.setUser(userConverter.toModel(userRepository.getUserByEmail(email)));
 			post.setDate(new Date());
 			post.setFlag(true);
 			return postConverter.toModel(postRepository.addPost(postConverter.toEntity(post)));
@@ -52,7 +57,7 @@ public class PostService {
 			post.setDescription(foundPost.getDescription());
 		}
 		post.setDate(new Date());
-		post.setUser(foundPost.getUser());
+		post.setUser(userConverter.toModel(foundPost.getUser()));
 		post.setFlag(true);
 		postRepository.update(postConverter.toEntity(post));
 		return post;
@@ -68,6 +73,58 @@ public class PostService {
 			postRepository.update(foundPost);
 		}catch(NoResultException e) {
 			throw new NotFoundException("Post not found.");
+		}
+	}
+	
+	public void like(final long id,String email) {
+		try {
+		Post post=postRepository.getPostById(id);
+		User user=userRepository.getUserByEmail(email);
+		PostLiked postLiked=new PostLiked();
+		postLiked.setDate(new Date());
+		postLiked.setFlag(true);
+		postLiked.setPost(post);
+		postLiked.setUser(user);
+		PostLikedId postLikedId=new PostLikedId();
+		postLikedId.setUserId(user.getId());
+		postLikedId.setPostId(post.getId());
+		postLiked.setId(postLikedId);
+		post.getLikes().add(postLiked);
+		user.getLikedPosts().add(postLiked);
+		postRepository.update(post);
+		}catch(NoResultException e) {
+			throw new NotFoundException("Post not found.");
+		}
+	} 
+	
+	public void unlike(final long id,String email) {
+		try {
+		Post post=postRepository.getPostById(id);
+		User user=userRepository.getUserByEmail(email);
+		PostLiked postLiked=new PostLiked();
+		postLiked.setDate(new Date());
+		postLiked.setFlag(false);
+		postLiked.setPost(post);
+		postLiked.setUser(user);
+		PostLikedId postLikedId=new PostLikedId();
+		postLikedId.setPostId(post.getId());
+		postLikedId.setUserId(user.getId());
+		postLiked.setId(postLikedId);
+		post.getLikes().add(postLiked);
+		user.getLikedPosts().add(postLiked);
+		postRepository.update(post);
+		
+		}catch(NoResultException e) {
+			throw new NotFoundException("Post not found.");
+		}
+	}
+	
+	public boolean isAlreadyLiked(Post post,User user) {
+		try {
+			postRepository.isAlreadyLiked(post, user);
+			return true;
+		}catch(NoResultException e) {
+			return false;
 		}
 	}
 }

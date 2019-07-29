@@ -1,7 +1,9 @@
 package com.ikubinfo.project.model;
 
 import java.util.Date;
+import java.util.List;
 
+import com.ikubinfo.project.entity.PostLiked;
 import com.ikubinfo.project.entity.User;
 
 public class PostModel {
@@ -10,7 +12,8 @@ public class PostModel {
 	private String title;
 	private String description;
 	private Date date;
-	private User user;
+	private UserModel user;
+	private List<PostLikedModel> likes;
 	private boolean flag;
 	
 	public PostModel() {
@@ -49,13 +52,14 @@ public class PostModel {
 		this.date = date;
 	}
 
-	public User getUser() {
+	public UserModel getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserModel user) {
 		this.user = user;
 	}
+
 
 	public boolean isFlag() {
 		return flag;
@@ -63,6 +67,14 @@ public class PostModel {
 
 	public void setFlag(boolean flag) {
 		this.flag = flag;
+	}
+
+	public List<PostLikedModel> getLikes() {
+		return likes;
+	}
+
+	public void setLikes(List<PostLikedModel> likes) {
+		this.likes = likes;
 	}
 
 	@Override

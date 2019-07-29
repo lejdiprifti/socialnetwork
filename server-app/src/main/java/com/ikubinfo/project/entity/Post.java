@@ -1,9 +1,17 @@
 package com.ikubinfo.project.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,10 +19,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.NaturalIdCache;
 
 @Entity
 @Table(name="post",schema="socialnetwork")
@@ -40,12 +53,20 @@ public class Post {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="user_id")
 	private User user;
 	
+	@OneToMany(
+	        mappedBy = "post",
+	        cascade = CascadeType.ALL,
+	        fetch=FetchType.LAZY,
+	        orphanRemoval = true
+	    )
+	    private List<PostLiked> likes = new ArrayList<>();
 	@Column(name="flag")
 	private boolean flag;
+	
 	
 	public Post() {
 		
@@ -97,6 +118,15 @@ public class Post {
 
 	public void setFlag(boolean flag) {
 		this.flag = flag;
+	}
+
+
+	public List<PostLiked> getLikes() {
+		return likes;
+	}
+
+	public void setLikes(List<PostLiked> likes) {
+		this.likes = likes;
 	}
 
 	@Override

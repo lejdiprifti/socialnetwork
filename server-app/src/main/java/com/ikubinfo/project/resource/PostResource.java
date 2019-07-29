@@ -50,4 +50,18 @@ public class PostResource extends BaseResource {
 		postService.delete(id);
 		return Response.noContent().build();
 	}
+	
+	@PUT
+	@Path("/{id}/like")
+	public Response like(@PathParam("id") final long id) {
+		postService.like(id, getEmailFromToken());
+		return Response.noContent().build();
+	}
+	
+	@PUT
+	@Path("/{id}/unlike")
+	public Response unlike(@PathParam("id") final long id) { 
+				postService.unlike(id, getEmailFromToken());
+				return Response.noContent().build();
+	}
 }

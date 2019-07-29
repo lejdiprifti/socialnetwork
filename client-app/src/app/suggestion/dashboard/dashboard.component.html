@@ -4,6 +4,9 @@
       <div panel-content>
         <h1>{{post.title}}</h1>
         <p>{{post.description}}</p>
+        <div *ngFor="let like of post.likes">
+          <p *ngIf="like.flag">{{like.user.firstName}}</p>
+        </div>
       </div>
     </ikubinfo-panel>
   </div>
