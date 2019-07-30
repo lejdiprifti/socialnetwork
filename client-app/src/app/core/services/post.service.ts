@@ -14,6 +14,10 @@ export class PostService {
     public getPosts(): Observable<Array<Post>>{
         return this.apiService.get(this.url);
     }
+
+    public addPost(post: Post): Observable<Post>{
+        return this.apiService.post(this.url,post);
+    }
     public allAsync = (): Observable<Array<Post>> => {
         return this.apiService.get<Array<Post>>(this.url);
     }

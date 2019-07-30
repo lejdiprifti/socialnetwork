@@ -1,5 +1,6 @@
 package com.ikubinfo.project.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -44,6 +45,7 @@ public class PostService {
 			post.setUser(userConverter.toModel(userRepository.getUserByEmail(email)));
 			post.setDate(new Date());
 			post.setFlag(true);
+			post.setLikes(new ArrayList<>());
 			return postConverter.toModel(postRepository.addPost(postConverter.toEntity(post)));
 	}
 	public PostModel update(final long id,PostModel post) {

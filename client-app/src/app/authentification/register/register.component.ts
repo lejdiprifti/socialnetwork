@@ -4,6 +4,7 @@ import { RegisterService } from '@ikubinfo/core/services/register.service';
 import { LoggerService } from '@ikubinfo/core/utilities/logger.service';
 import { Router } from '@angular/router';
 import { User } from '@ikubinfo/core/models/user';
+import { SelectItem } from 'primeng/primeng';
 
 @Component({
   selector: 'ikubinfo-register',
@@ -14,7 +15,7 @@ export class RegisterComponent implements OnInit {
   
   registerForm: FormGroup;
   passwordForm: FormGroup;
-
+  images: Array<SelectItem>;
   static isOldEnough(control: AbstractControl): any {
     const birthDatePlus18 = new Date(control.value);
     birthDatePlus18.setFullYear(birthDatePlus18.getFullYear() + 18);
@@ -30,7 +31,13 @@ export class RegisterComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private registerService: RegisterService,
     private logger: LoggerService,
-    private router: Router) { }
+    private router: Router) {
+     this.images=[
+      {label: 'Batman',value:'batman'},
+      {label: 'Superman',value: 'superman'},
+      {label: 'Joker',value:'joker'}
+     ]
+     }
 
   ngOnInit() {
     this.passwordForm=this.fb.group({
@@ -51,6 +58,7 @@ export class RegisterComponent implements OnInit {
     {validators: RegisterComponent.passwordMatch});
   
     this.registerForm = this.fb.group({
+      image: [""],
       firstName: [
         "",
         [
@@ -79,6 +87,7 @@ export class RegisterComponent implements OnInit {
   }
   getData(): User{
     return{
+    image:this.registerForm.value.image || 'Batman',
     firstName: this.registerForm.value.firstName,
     lastName: this.registerForm.value.lastName,
     birthdate: this.registerForm.value.birthdate,

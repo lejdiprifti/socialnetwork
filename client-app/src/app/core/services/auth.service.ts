@@ -76,5 +76,7 @@ export class AuthService {
         return null;
     }
 
-
+    get loggedUser(): User {
+    return this.user;
+    }
 }

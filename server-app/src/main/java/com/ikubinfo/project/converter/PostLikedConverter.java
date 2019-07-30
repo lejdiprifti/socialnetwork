@@ -64,7 +64,6 @@ public class PostLikedConverter implements BaseConverter<PostLikedModel,PostLike
 	public PostModel toModelPost(Post entity) {
 		PostModel model=new PostModel();
 		model.setId(entity.getId());
-		model.setTitle(entity.getTitle());
 		model.setDescription(entity.getDescription());
 		model.setDate(entity.getDate());
 		model.setUser(userConverter.toModel(entity.getUser()));
@@ -76,7 +75,6 @@ public class PostLikedConverter implements BaseConverter<PostLikedModel,PostLike
 	public Post toEntityPost(PostModel model) {
 		Post entity=new Post();
 		entity.setId(model.getId());
-		entity.setTitle(model.getTitle());
 		entity.setDescription(model.getDescription());
 		entity.setDate(model.getDate());
 		entity.setUser(userConverter.toEntity(model.getUser()));

@@ -1,3 +1,16 @@
+
+  <div panel-content class="onMind">
+    <form role="form" [formGroup]="postForm">
+      <ikubinfo-input>
+          <img class="image" src="assets/images/{{user.image}}.png" alt="{{user.image}}" />
+          <textarea  class="description" formControlName="description" [rows]="2" [cols]="119" pInputTextarea placeholder="What's on your mind?"></textarea>
+        </ikubinfo-input>
+    </form>
+    <button pButton type="button" label="Post" class="ui-button-rounded ui-button-primary postButton" (click)="submit()"></button>
+   
+  </div>
+
+
 <div class="row">
   <div class="col col-xl-6 col-lg-12" *ngFor="let post of posts">
     <ikubinfo-panel header="{{post.user.firstName}}">

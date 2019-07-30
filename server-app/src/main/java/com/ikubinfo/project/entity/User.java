@@ -64,7 +64,10 @@ public class User {
 			cascade=CascadeType.ALL,
 			fetch=FetchType.LAZY,
 			orphanRemoval=true)
-	private List<PostLiked> likedPosts=new ArrayList<>();	
+	private List<PostLiked> likedPosts=new ArrayList<>();
+	
+	private String image;
+	
 	public User() {
 
 	}
@@ -179,6 +182,14 @@ public class User {
 
 	public void setLikedPosts(List<PostLiked> likedPosts) {
 		this.likedPosts = likedPosts;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	@Override

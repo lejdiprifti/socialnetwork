@@ -10,9 +10,11 @@ import com.ikubinfo.project.model.PostModel;
 public class PostConverter implements BaseConverter<PostModel,Post> {
 	private UserConverter userConverter;
 	private PostLikedConverter postLikedConverter;
+
 	public PostConverter() {
 		this.userConverter=new UserConverter();
 		this.postLikedConverter=new PostLikedConverter(userConverter);
+		
 	}
 
 	@Override
@@ -49,8 +51,5 @@ public class PostConverter implements BaseConverter<PostModel,Post> {
 		}
 		return modelList;
 	}
-	
-	public static void main(String[] args) {
-		
-	}
+
 }

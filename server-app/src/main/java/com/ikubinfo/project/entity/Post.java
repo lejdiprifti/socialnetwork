@@ -63,7 +63,7 @@ public class Post {
 	        fetch=FetchType.LAZY,
 	        orphanRemoval = true
 	    )
-	    private List<PostLiked> likes = new ArrayList<>();
+	private List<PostLiked> likes = new ArrayList<>();
 	@Column(name="flag")
 	private boolean flag;
 	

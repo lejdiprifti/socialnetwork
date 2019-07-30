@@ -23,7 +23,7 @@ public class UserConverter implements BaseConverter<UserModel, User> {
 		model.setAddress(entity.getAddress());
 		model.setFlag(entity.isFlag());
 		model.setBirthdate(entity.getBirthdate());
-		
+		model.setImage(entity.getImage());
 		model.setJob(entity.getJob());
 		return model;
 	}
@@ -41,6 +41,7 @@ public class UserConverter implements BaseConverter<UserModel, User> {
 		entity.setRole(model.getRole());
 		entity.setFlag(model.isFlag());
 		entity.setBirthdate(model.getBirthdate());
+		entity.setImage(model.getImage());
 		entity.setJob(model.getJob());
 		return entity;
 	}

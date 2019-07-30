@@ -1,0 +1,15 @@
+.description {
+    margin-left: 2%;
+    float: bottom;
+    resize: none;
+}
+.image{
+    float:left;
+}
+
+.postButton {
+    margin-left: 85%;
+}
+.onMind{
+    margin-left: 5%;
+}

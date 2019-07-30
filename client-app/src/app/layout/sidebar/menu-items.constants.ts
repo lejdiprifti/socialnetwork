@@ -4,7 +4,7 @@ import { MenuItem } from './menu-item'
 export const menuItems: Array<MenuItem> = [{
     url: '/suggestion/dashboard',
     icon: 'fa-dashboard',
-    label: 'Dashboard',
+    label: 'News Feed',
     allowedRoles: [RoleEnum.ADMIN, RoleEnum.USER]
 }, {
     url: '/suggestion/posts',

@@ -17,6 +17,7 @@ public class UserModel {
 	private String job;
 	private String education;
 	private String address;
+	private String image;
 	private boolean flag;
 
 	public UserModel() {
@@ -101,6 +102,14 @@ public class UserModel {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public boolean isFlag() {

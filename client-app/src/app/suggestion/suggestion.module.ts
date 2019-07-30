@@ -9,6 +9,7 @@ import { SuggestionRoutingModule } from '@ikubinfo/suggestion/suggestion-routing
 import { LayoutModule } from '@ikubinfo/layout/layout.module';
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
     imports: [CommonsModule, SuggestionRoutingModule, LayoutModule, FormsModule],
     exports: [],

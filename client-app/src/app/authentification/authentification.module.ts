@@ -9,6 +9,7 @@ import { LayoutModule } from '@ikubinfo/layout/layout.module';
 import { CommonModule } from '@angular/common';
 
 
+
 @NgModule({
     imports: [CommonModule, CommonsModule, LayoutModule, AuthentificationRoutingModule],
     exports: [],

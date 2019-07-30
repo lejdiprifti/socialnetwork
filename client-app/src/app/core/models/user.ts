@@ -12,5 +12,6 @@ export interface User {
     job?: string;
     education?: string;
     address?: string;
+    image?: string;
     flag?: boolean;
 } 

@@ -3,9 +3,6 @@ package com.ikubinfo.project.model;
 import java.util.Date;
 import java.util.List;
 
-import com.ikubinfo.project.entity.PostLiked;
-import com.ikubinfo.project.entity.User;
-
 public class PostModel {
 	
 	private long id;
