@@ -6,7 +6,7 @@
           <textarea  class="description" formControlName="description" [rows]="2" [cols]="119" pInputTextarea placeholder="What's on your mind?"></textarea>
         </ikubinfo-input>
     </form>
-    <button pButton type="button" label="Post" class="ui-button-rounded ui-button-primary postButton" (click)="submit()"></button>
+    <button [disabled]="postForm.invalid" pButton type="button" label="Post" class="ui-button-rounded ui-button-primary postButton" (click)="submit()"></button>
    
   </div>
 
@@ -17,6 +17,7 @@
       <div panel-content>
         <h1>{{post.title}}</h1>
         <p>{{post.description}}</p>
+        <p>{{convertDate(post)}}</p>
         <div *ngFor="let like of post.likes">
           <p *ngIf="like.flag">{{like.user.firstName}}</p>
         </div>

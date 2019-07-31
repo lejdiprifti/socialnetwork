@@ -8,12 +8,13 @@ import { DashboardComponent } from '@ikubinfo/suggestion/dashboard/dashboard.com
 import { SuggestionRoutingModule } from '@ikubinfo/suggestion/suggestion-routing.module';
 import { LayoutModule } from '@ikubinfo/layout/layout.module';
 import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
     imports: [CommonsModule, SuggestionRoutingModule, LayoutModule, FormsModule],
     exports: [],
     declarations: [DashboardComponent, PostComponent, PostsComponent],
-    providers: []
+    providers: [DatePipe]
 })
 export class SuggestionModule { }

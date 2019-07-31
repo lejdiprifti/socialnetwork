@@ -6,7 +6,7 @@ import com.ikubinfo.project.entity.User;
 
 public class FriendsModel {
 	private long id;
-	private long friendId;
+	private User friend;
 	private User user;
 	private Date date;
 	private boolean accepted;
@@ -20,11 +20,12 @@ public class FriendsModel {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public long getFriendId() {
-		return friendId;
+	
+	public User getFriend() {
+		return friend;
 	}
-	public void setFriendId(long friendId) {
-		this.friendId = friendId;
+	public void setFriend(User friend) {
+		this.friend = friend;
 	}
 	public User getUser() {
 		return user;

@@ -24,7 +24,7 @@ public class PostResource extends BaseResource {
 
 	@GET
 	public Response getPosts() {
-		return ok(postService.getPosts());
+		return ok(postService.getPosts(getEmailFromToken()));
 	}
 	
 	@GET

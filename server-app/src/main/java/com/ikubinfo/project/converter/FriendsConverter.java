@@ -17,7 +17,7 @@ public class FriendsConverter implements BaseConverter<FriendsModel,Friends>{
 	public FriendsModel toModel(Friends entity) {
 		FriendsModel model=new FriendsModel();
 		model.setId(entity.getId());
-		model.setFriendId(entity.getFriendId());
+		model.setFriend(entity.getFriend());
 		model.setUser(entity.getUser());
 		model.setAccepted(entity.isAccepted());
 		model.setDate(entity.getDate());
@@ -29,7 +29,7 @@ public class FriendsConverter implements BaseConverter<FriendsModel,Friends>{
 	public Friends toEntity(FriendsModel model) {
 		Friends entity = new Friends();
 		entity.setId(model.getId());
-		entity.setFriendId(model.getFriendId());
+		entity.setFriend(model.getFriend());
 		entity.setUser(model.getUser());
 		entity.setDate(model.getDate());
 		entity.setAccepted(model.isAccepted());

@@ -103,7 +103,7 @@ public class UserService {
 		if (existsUser(id)==true) {
 		User user=userRepository.getUserByEmail(email);
 		Friends friend=new Friends();
-		friend.setFriendId(id);
+		friend.setFriend(userRepository.getUserById(id));
 		friend.setFlag(true);
 		friend.setAccepted(false);
 		friend.setDate(new Date());

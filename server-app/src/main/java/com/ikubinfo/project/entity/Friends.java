@@ -15,46 +15,43 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-
 @Entity
-@Table(name="friends",schema="socialnetwork")
+@Table(name = "friends", schema = "socialnetwork")
 public class Friends {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
-	
+
 	@NotNull
-	@Column(name="friend_id")
-	private long friendId;
-	
+	@ManyToOne
+	private User friend;
+
 	@NotNull
-	@Column(name="date")
-	@Temporal(TemporalType.TIMESTAMP) 
+	@Column(name = "date")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
-	
+
 	@NotNull
-	@Column(name="accepted")
+	@Column(name = "accepted")
 	private boolean accepted;
-	
+
 	@NotNull
-	@Column(name="flag")
+	@Column(name = "flag")
 	private boolean flag;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	private User user;
-	
+
 	public Friends() {
-		
+
 	}
 
-	
-
-	public long getFriendId() {
-		return friendId;
+	public User getFriend() {
+		return friend;
 	}
 
-	public void setFriendId(long friendId) {
-		this.friendId = friendId;
+	public void setFriend(User friend) {
+		this.friend = friend;
 	}
 
 	public Date getDate() {
@@ -81,32 +78,20 @@ public class Friends {
 		this.flag = flag;
 	}
 
-
-
 	public long getId() {
 		return id;
 	}
-
-
 
 	public void setId(long id) {
 		this.id = id;
 	}
 
-
-
 	public User getUser() {
 		return user;
 	}
-
-
 
 	public void setUser(User user) {
 		this.user = user;
 	}
 
-
-	
-	
-	
 }

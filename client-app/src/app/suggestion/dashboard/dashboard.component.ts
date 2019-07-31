@@ -4,7 +4,8 @@ import { Post } from '@ikubinfo/core/models/post';
 import { LoggerService } from '@ikubinfo/core/utilities/logger.service';
 import { User } from '@ikubinfo/core/models/user';
 import { AuthService } from '@ikubinfo/core/services/auth.service';
-import { FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'ikubinfo-dashboard',
@@ -17,24 +18,32 @@ export class DashboardComponent implements OnInit {
   postForm: FormGroup;
   post: Post;
   constructor(private postService: PostService,private fb: FormBuilder,
-    private logger: LoggerService,private authService: AuthService) { }
+    private logger: LoggerService,private authService: AuthService,private datePipe: DatePipe) { }
 
   ngOnInit() {
     this.loadPosts();
     this.post={};
     this.user=this.authService.loggedUser;
     this.postForm=this.fb.group({
-      description: ["",Validators.required]
+      description: ["",[Validators.minLength(1),Validators.required]]
     });
+  
   }
 
-  loadPosts(){
+
+  loadPosts(): void{
     this.postService.getPosts().subscribe(res=>{
       this.posts=res;
     },
     err=>{
       this.logger.error("Error","Something bad happened.");
     })
+  }
+
+  convertDate(post: Post): string {
+      const dateString = post.date;
+      const newDate= new Date(dateString);
+      return  this.datePipe.transform(newDate, "yyyy-MM-dd hh:mm:ss");
   }
 
   getData(): Post{
@@ -49,12 +58,13 @@ export class DashboardComponent implements OnInit {
   fillForm(data: Post = {}): void {
     this.postForm.get('description').setValue(data.description);
   }
-  submit(){
+  submit(): void {
     this.postService.addPost(this.getData()).subscribe(res=>{
       this.loadPosts();
       this.reset();
       this.logger.success("Success","Post was added successfully!");
     },err=>{
+      this.reset();
       this.logger.error("Error","Something bad happened.");
     });
   }

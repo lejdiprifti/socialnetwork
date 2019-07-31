@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.NoResultException;
+import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 
 import com.ikubinfo.project.converter.PostConverter;
@@ -29,8 +30,8 @@ public class PostService {
 		this.userConverter=new UserConverter();
 	}
 	
-	public List<PostModel> getPosts(){
-		return postConverter.toModel(postRepository.getPosts());
+	public List<PostModel> getPosts(String email){
+		return postConverter.toModel(postRepository.getPosts(userRepository.getUserByEmail(email)));
 	}
 	
 	public PostModel getPostById(final long id) {
@@ -42,11 +43,17 @@ public class PostService {
 	}
 	
 	public PostModel addPost(PostModel post,String email) {
+		try {
 			post.setUser(userConverter.toModel(userRepository.getUserByEmail(email)));
 			post.setDate(new Date());
 			post.setFlag(true);
+			post.setDescription(post.getDescription().trim());
+			post.setTitle(post.getTitle().trim());
 			post.setLikes(new ArrayList<>());
 			return postConverter.toModel(postRepository.addPost(postConverter.toEntity(post)));
+		} catch (NullPointerException e) {
+			throw new BadRequestException("Null values");
+		}
 	}
 	public PostModel update(final long id,PostModel post) {
 		try {

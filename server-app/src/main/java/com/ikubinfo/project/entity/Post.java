@@ -2,14 +2,9 @@ package com.ikubinfo.project.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,56 +15,47 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.NaturalIdCache;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="post",schema="socialnetwork")
-@NamedQueries({
-	@NamedQuery(name="Post.getPosts",query="Select p from Post p where p.flag=?1"),
-	@NamedQuery(name="Post.getPostById",query="Select p from Post p where p.id=?1 and p.flag=?2")
-	
+@Table(name = "post", schema = "socialnetwork")
+@NamedQueries({ @NamedQuery(name = "Post.getPosts", query = "Select p from Post p where ( p.user IN (Select f.user FROM Friends f Join p.user u where f.flag=?1 ) OR p.user IN (Select f.friend FROM Friends f JOIN p.user u where f.flag=?1) OR p.user=?2) and p.flag=?1 ORDER BY p.date"),
+		@NamedQuery(name = "Post.getPostById", query = "Select p from Post p where p.id=?1 and p.flag=?2")
+
 })
 public class Post {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	@Column(name="post_id",nullable=false,unique=true)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE) 
+	@Column(name = "post_id", nullable = false, unique = true)
 	private long id;
-	
-	@Column(name="title")
+
+	@Column(name = "title")
 	private String title;
-	
-	@Column(name="description")
+
+	@NotNull
+	@Column(name = "description")
 	private String description;
-	
-	@Column(name="date")
+
+	@Column(name = "date")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="user_id")
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
 	private User user;
-	
-	@OneToMany(
-	        mappedBy = "post",
-	        cascade = CascadeType.ALL,
-	        fetch=FetchType.LAZY,
-	        orphanRemoval = true
-	    )
+
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<PostLiked> likes = new ArrayList<>();
-	@Column(name="flag")
+
+	@Column(name = "flag")
 	private boolean flag;
-	
-	
+
 	public Post() {
-		
+
 	}
 
 	public long getId() {
@@ -120,7 +106,6 @@ public class Post {
 		this.flag = flag;
 	}
 
-
 	public List<PostLiked> getLikes() {
 		return likes;
 	}
@@ -134,6 +119,5 @@ public class Post {
 		return "Post [id=" + id + ", description=" + description + ", date=" + date + ", user=" + user + ", flag="
 				+ flag + "]";
 	}
-	
-	
+
 }

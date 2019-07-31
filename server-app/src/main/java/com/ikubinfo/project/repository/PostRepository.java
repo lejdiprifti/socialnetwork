@@ -13,14 +13,14 @@ import com.ikubinfo.project.util.PersistenceSingleton;
 public class PostRepository {
 
 	private EntityManager em;
-
 	public PostRepository() {
 		this.em = PersistenceSingleton.INSTANCE.getEntityManagerFactory().createEntityManager();
 	}
 	
-	public List<Post> getPosts(){
+	public List<Post> getPosts(User iUser){
 		return em.createNamedQuery("Post.getPosts",Post.class)
 				.setParameter(1,true)
+				.setParameter(2, iUser )
 				.getResultList();
 	}
 	
