@@ -13,14 +13,18 @@
 
 <div class="row">
   <div class="col col-xl-6 col-lg-12" *ngFor="let post of posts">
-    <ikubinfo-panel header="{{post.user.firstName}}">
+    <ikubinfo-panel header="{{post.user.firstName}} {{post.user.lastName}}">
       <div panel-content>
         <h1>{{post.title}}</h1>
-        <p>{{post.description}}</p>
-        <p>{{convertDate(post)}}</p>
-        <div *ngFor="let like of post.likes">
-          <p *ngIf="like.flag">{{like.user.firstName}}</p>
+        <p style="text-align: center">{{post.description}}</p>
+        <div>
+          <img class="likeIcon" src="assets/images/like.png" alt="likeIcon" />
+          <span *ngFor="let like of post.likes">
+          <span class="badge badge-primary"  *ngIf="like.flag" >{{like.user.firstName}} {{like.user.lastName}}</span>
+        </span>
         </div>
+        <button pButton type="button" label="Like" class="ui-button-rounded ui-button-primary" (click)="like(post.id)"></button>
+        <span class="badge badge-primary date">{{convertDate(post)}}</span>
       </div>
     </ikubinfo-panel>
   </div>

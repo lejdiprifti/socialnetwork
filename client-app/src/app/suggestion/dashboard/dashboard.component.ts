@@ -6,6 +6,7 @@ import { User } from '@ikubinfo/core/models/user';
 import { AuthService } from '@ikubinfo/core/services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 
 @Component({
   selector: 'ikubinfo-dashboard',
@@ -18,7 +19,8 @@ export class DashboardComponent implements OnInit {
   postForm: FormGroup;
   post: Post;
   constructor(private postService: PostService,private fb: FormBuilder,
-    private logger: LoggerService,private authService: AuthService,private datePipe: DatePipe) { }
+    private logger: LoggerService,private authService: AuthService,
+    private confirmationService: ConfirmationService,private datePipe: DatePipe) { }
 
   ngOnInit() {
     this.loadPosts();
@@ -43,7 +45,7 @@ export class DashboardComponent implements OnInit {
   convertDate(post: Post): string {
       const dateString = post.date;
       const newDate= new Date(dateString);
-      return  this.datePipe.transform(newDate, "yyyy-MM-dd hh:mm:ss");
+      return  "Published on "+this.datePipe.transform(newDate, "yyyy-MM-dd hh:mm:ss");
   }
 
   getData(): Post{
@@ -59,12 +61,29 @@ export class DashboardComponent implements OnInit {
     this.postForm.get('description').setValue(data.description);
   }
   submit(): void {
+    this.confirmationService.confirm({
+      message: 'Do you want to post this record?',
+      header: 'Post Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
     this.postService.addPost(this.getData()).subscribe(res=>{
       this.loadPosts();
       this.reset();
       this.logger.success("Success","Post was added successfully!");
     },err=>{
       this.reset();
+      this.logger.error("Error","Something bad happened.");
+    });
+  }
+});
+  }
+
+  like(id: number): void {
+    this.postService.like(id).subscribe(res=>{
+      this.loadPosts();
+      this.logger.success("Success","You liked the post.");
+    },
+    err=>{
       this.logger.error("Error","Something bad happened.");
     });
   }

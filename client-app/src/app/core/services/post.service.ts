@@ -18,6 +18,10 @@ export class PostService {
     public addPost(post: Post): Observable<Post>{
         return this.apiService.post(this.url,post);
     }
+
+    public like(id: number): Observable<Post>{
+        return this.apiService.put(this.url+'/'+id+'/like');
+    }
     public allAsync = (): Observable<Array<Post>> => {
         return this.apiService.get<Array<Post>>(this.url);
     }

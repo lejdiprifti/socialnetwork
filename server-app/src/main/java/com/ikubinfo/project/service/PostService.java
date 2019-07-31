@@ -47,7 +47,7 @@ public class PostService {
 			post.setUser(userConverter.toModel(userRepository.getUserByEmail(email)));
 			post.setDate(new Date());
 			post.setFlag(true);
-			post.setDescription(post.getDescription().trim());
+			post.setDescription(post.getDescription());
 			post.setTitle(post.getTitle().trim());
 			post.setLikes(new ArrayList<>());
 			return postConverter.toModel(postRepository.addPost(postConverter.toEntity(post)));
