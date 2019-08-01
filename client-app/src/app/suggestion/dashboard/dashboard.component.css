@@ -16,10 +16,17 @@
 }
 
 .date {
-    margin-left: 60%;
+    margin-top:9%;
+    float: right;
 }
 
 .likeIcon { 
     width: 5%;
     margin-bottom: 1%;
+    margin-right: 2%;
+}
+
+.likeButton {
+    margin-top:8%;
+    float: left;
 }
