@@ -7,6 +7,7 @@ import { AuthService } from '@ikubinfo/core/services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
+import { LikedPost } from '@ikubinfo/core/models/likedpost';
 
 @Component({
   selector: 'ikubinfo-dashboard',
@@ -87,4 +88,36 @@ export class DashboardComponent implements OnInit {
       this.logger.error("Error","Something bad happened.");
     });
   }
+
+  isLiked(post: Post): boolean{
+    for (let like of post.likes){
+      if(like.user.id == this.user.id && like.flag === true){
+    
+     return true;
+    }
+    }
+  return false;
+  
+
+  }
+
+  unlike(id: number): void{
+     this.postService.unlike(id).subscribe(res=>{
+       this.loadPosts();
+       this.logger.info("Info","You unliked the post.");
+     },
+     err=>{
+       this.logger.error("Error","Something bad happened.");
+     })
+  }
+
+  countLength(post: Post): number{
+    length=0;
+      for (let like of post.likes){
+        if(like.flag === true){
+          length++;
+      }
+  }
+  return length;
+ }
 }

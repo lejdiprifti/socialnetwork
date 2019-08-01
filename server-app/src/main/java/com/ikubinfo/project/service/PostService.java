@@ -48,7 +48,7 @@ public class PostService {
 			post.setDate(new Date());
 			post.setFlag(true);
 			post.setDescription(post.getDescription());
-			post.setTitle(post.getTitle().trim());
+			post.setTitle(post.getTitle());
 			post.setLikes(new ArrayList<>());
 			return postConverter.toModel(postRepository.addPost(postConverter.toEntity(post)));
 		} catch (NullPointerException e) {

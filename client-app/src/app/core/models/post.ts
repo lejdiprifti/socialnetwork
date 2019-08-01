@@ -1,4 +1,5 @@
 import { User } from './user';
+import { LikedPost } from './likedpost';
 
 export interface Post {
   id?:number;
@@ -6,5 +7,6 @@ export interface Post {
   description?:string;
   date?: Date;
   user?: User;
+  likes?: Set<LikedPost>;
   flag?: boolean;
 }

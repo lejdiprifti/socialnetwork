@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,7 +38,7 @@ public class Post {
 	private String title;
 
 	@NotNull
-	@Column(name = "description")
+	@Column(name = "description" , length = 1000)
 	private String description;
 
 	@Column(name = "date")
@@ -47,7 +48,8 @@ public class Post {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
-
+	
+	@OrderBy("date ASC")
 	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<PostLiked> likes = new ArrayList<>();
 

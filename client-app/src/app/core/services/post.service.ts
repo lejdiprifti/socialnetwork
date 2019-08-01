@@ -22,6 +22,10 @@ export class PostService {
     public like(id: number): Observable<Post>{
         return this.apiService.put(this.url+'/'+id+'/like');
     }
+
+    public unlike(id: number): Observable<Post>{
+        return this.apiService.put(this.url+'/'+id+'/unlike');
+    }
     public allAsync = (): Observable<Array<Post>> => {
         return this.apiService.get<Array<Post>>(this.url);
     }
