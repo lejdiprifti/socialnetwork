@@ -52,4 +52,15 @@ export class FriendsComponent implements OnInit {
       this.logger.error("Error","Something bad happened.");
     })
   }
+
+  cancelRequest(id: number): void{
+    this.friendsService.cancelRequest(id).subscribe(res=>{
+      this.loadRequests();
+      this.loadUsers();
+      this.logger.warning("Warning","You canceled the request.");
+    },
+    err=>{
+      this.logger.error("Error","Something bad happened.");
+    });
+  }
 }

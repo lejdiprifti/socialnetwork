@@ -7,6 +7,7 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import com.ikubinfo.project.entity.Friends;
+import com.ikubinfo.project.entity.FriendsId;
 import com.ikubinfo.project.entity.User;
 import com.ikubinfo.project.util.PersistenceSingleton;
 
@@ -24,7 +25,7 @@ public class FriendsRepository {
 	
 	}
 	
-	public Friends getRequest(final long id) {
+	public Friends getRequest(FriendsId id) {
 		TypedQuery<Friends> query=em.createQuery("Select f from Friends f where f.id=?1 and f.flag=?2",Friends.class);
 		query.setParameter(2, true);
 		query.setParameter(1, id);
@@ -39,11 +40,6 @@ public class FriendsRepository {
 		return query.getResultList();
 	}
 	
-	@Transactional
-	public void deleteRequest(Friends friends) {
-		em.getTransaction().begin();
-		em.merge(friends);
-		em.getTransaction().commit();
-	}
+	
 
 }

@@ -20,4 +20,8 @@ export class FriendsService {
   public getRequests(): Observable<any>{
     return this.apiService.get(this.url);
   }
+
+  public cancelRequest(id:number): Observable<any>{
+    return this.apiService.delete(this.url+'/'+id+'/cancel');
+  }
 }

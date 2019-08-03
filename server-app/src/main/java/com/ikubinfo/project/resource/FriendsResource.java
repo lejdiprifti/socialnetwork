@@ -1,5 +1,6 @@
 package com.ikubinfo.project.resource;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -24,14 +25,22 @@ public class FriendsResource extends BaseResource {
 	@PUT
 	@Path("/{id}/accept")
 	public Response acceptFriendRequest(@PathParam("id") final long id) {
-		friendsService.acceptFriendRequest(id);
+		friendsService.acceptFriendRequest(id,getEmailFromToken());
 		return Response.noContent().build();
 	}
 	
 	@PUT
 	@Path("/{id}/reject")
 	public Response rejectFriendRequest(@PathParam("id") final long id) {
-		friendsService.rejectFriendRequest(id);
+		friendsService.rejectFriendRequest(id,getEmailFromToken());
 		return Response.noContent().build();
 	}
+	
+	@DELETE
+	@Path("/{id}/cancel")
+	public Response cancelFriendRequest(@PathParam("id") final long id) {
+		friendsService.cancelRequest(id, getEmailFromToken());
+		return Response.noContent().build();
+	}
+	
 }

@@ -7,6 +7,7 @@ import javax.ws.rs.NotFoundException;
 
 import com.ikubinfo.project.converter.FriendsConverter;
 import com.ikubinfo.project.entity.Friends;
+import com.ikubinfo.project.entity.FriendsId;
 import com.ikubinfo.project.entity.User;
 import com.ikubinfo.project.model.FriendsModel;
 import com.ikubinfo.project.repository.FriendsRepository;
@@ -27,9 +28,12 @@ public class FriendsService {
 		return friendsConverter.toModel(friendsRepository.getRequests(user));
 	}
 	
-	public void acceptFriendRequest(final long id) {
+	public void acceptFriendRequest(final long id,String email) {
 		try {
-		Friends friends=friendsRepository.getRequest(id);
+			FriendsId friendsId=new FriendsId();
+			friendsId.setFriendId(userRepository.getUserByEmail(email).getId());
+			friendsId.setUserId(id);
+		Friends friends=friendsRepository.getRequest(friendsId);
 		friends.setAccepted(true);
 		friendsRepository.acceptFriendRequest(friends);
 		}catch(NoResultException e) {
@@ -38,21 +42,27 @@ public class FriendsService {
 	}
 
 	
-	public void rejectFriendRequest(final long id) {
+	public void rejectFriendRequest(final long id,String email) {
 		try {
-		Friends friends=friendsRepository.getRequest(id);
+		FriendsId friendsId = new FriendsId();
+		friendsId.setFriendId(userRepository.getUserByEmail(email).getId());
+		friendsId.setUserId(id);
+		Friends friends=friendsRepository.getRequest(friendsId);
 		friends.setFlag(false);
 		friendsRepository.acceptFriendRequest(friends);
 		}catch(NoResultException e) {
 			throw new NotFoundException("Request not found.");
 		}
 	}
-	
-	public void deleteRequest(final long id) {
+
+	public void cancelRequest(final long id,String email) {
 		try {
-			Friends friends=friendsRepository.getRequest(id);
+			FriendsId friendsId= new FriendsId();
+			friendsId.setFriendId(id);
+			friendsId.setUserId(userRepository.getUserByEmail(email).getId());
+			Friends friends=friendsRepository.getRequest(friendsId);
 			friends.setFlag(false);
-			friendsRepository.deleteRequest(friends);
+			friendsRepository.acceptFriendRequest(friends);
 		}catch(NoResultException e) {
 			throw new NotFoundException("Request not found.");
 		}
@@ -60,3 +70,5 @@ public class FriendsService {
 	
 	
 }
+
+	

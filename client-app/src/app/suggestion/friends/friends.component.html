@@ -13,7 +13,7 @@
         <p style="text-align: center">Address: {{request.user.address}}</p>
         <p style="text-align: center">Education: {{request.user.education}}</p>
         <p style="text-align: center">Job: {{request.user.job}}</p>
-        <button icon="fa fa-plus-circle" pButton type="button" label="Cancel request" class="ui-button-raised ui-button-secondary" (click)="addFriend(user)"></button>
+        <button icon="fa fa-plus-circle" pButton type="button" label="Cancel request" class="ui-button-raised ui-button-secondary" (click)="cancelRequest(request.id.userId)"></button>
       </div>
      
     </ikubinfo-panel>
@@ -23,14 +23,14 @@
       <ikubinfo-panel header="{{request.friend.firstName}} {{request.friend.lastName}}">
         <div panel-content>
           <div>
-          <img src="assets/images/{{request.friend.image}}.png" alt="{{request.friend.image}}" style="float: left;" />
-          <h1>{{request.friend.firstName}} {{request.friend.lastName}}</h1>
+          <img src="assets/images/{{request.friend.image}}.png" alt="{{request.friend.image}}" style="float: left; " />
+          <h1 style="text-align: center">{{request.friend.firstName}} {{request.friend.lastName}}</h1>
           </div>
           <br>
           <p style="text-align: center">Address: {{request.friend.address}}</p>
           <p style="text-align: center">Education: {{request.friend.education}}</p>
           <p style="text-align: center">Job: {{request.friend.job}}</p>
-          <button icon="fa fa-plus-circle" pButton type="button" label="Cancel request" class="ui-button-raised ui-button-secondary" (click)="addFriend(user)"></button>
+          <button icon="fa fa-plus-circle" pButton type="button" label="Cancel request" class="ui-button-raised ui-button-secondary" (click)="cancelRequest(request.id.friendId)"></button>
         </div>
        
       </ikubinfo-panel>
