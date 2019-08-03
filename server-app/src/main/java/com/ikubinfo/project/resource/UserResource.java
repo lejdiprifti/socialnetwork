@@ -1,5 +1,8 @@
 package com.ikubinfo.project.resource;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -24,7 +27,7 @@ public class UserResource extends BaseResource {
 	
 	@GET
 	public Response getUsers() {
-		return Response.ok(userService.getAllUsers()).build();
+		return Response.ok(userService.getAllUsers(getEmailFromToken())).build();
 	}
 	
 	@GET
@@ -48,8 +51,8 @@ public class UserResource extends BaseResource {
 	
 	@POST
 	@Path("/{id}")
-	public Response addFriend(@PathParam("id") final long id) {
-		return Response.ok(userService.addFriend(id, getEmailFromToken())).build();
+	public Response addFriend(@PathParam("id") final long id) throws URISyntaxException {
+		return Response.created(new URI("friend/"+userService.addFriend(id, getEmailFromToken()).getId())).build();
 	}
 	
 	

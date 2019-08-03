@@ -12,4 +12,9 @@ export const menuItems: Array<MenuItem> = [{
     label: 'Manage posts',
     allowedRoles: [RoleEnum.ADMIN]
 
+},{
+    url:'/suggestion/friends',
+    icon: 'fa fa-address-book',
+    label: 'Friends',
+    allowedRoles: [RoleEnum.USER]
 }]

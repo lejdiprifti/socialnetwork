@@ -2,35 +2,41 @@ package com.ikubinfo.project.model;
 
 import java.util.Date;
 
-import com.ikubinfo.project.entity.User;
+import com.ikubinfo.project.entity.FriendsId;
+
 
 public class FriendsModel {
-	private long id;
-	private User friend;
-	private User user;
+	private FriendsId id;
+	private UserModel friend;
+	private UserModel user;
 	private Date date;
 	private boolean accepted;
 	private boolean flag;
 	public FriendsModel() {
 		
 	}
-	public long getId() {
+	
+	
+	public FriendsId getId() {
 		return id;
 	}
-	public void setId(long id) {
+
+
+	public void setId(FriendsId id) {
 		this.id = id;
 	}
-	
-	public User getFriend() {
+
+
+	public UserModel getFriend() {
 		return friend;
 	}
-	public void setFriend(User friend) {
+	public void setFriend(UserModel friend) {
 		this.friend = friend;
 	}
-	public User getUser() {
+	public UserModel getUser() {
 		return user;
 	}
-	public void setUser(User user) {
+	public void setUser(UserModel user) {
 		this.user = user;
 	}
 	public boolean isAccepted() {

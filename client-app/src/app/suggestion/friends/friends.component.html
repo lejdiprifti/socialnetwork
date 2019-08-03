@@ -1,0 +1,59 @@
+<div class="row" >
+<div class="col col-xl-6 col-lg-12"*ngFor="let request of requests" >
+<div *ngIf="request.user.id != user.id ">
+
+  
+    <ikubinfo-panel header="{{request.user.firstName}} {{request.user.lastName}}">
+      <div panel-content>
+        <div>
+        <img src="assets/images/{{request.user.image}}.png" alt="{{request.user.image}}" style="float: left;" />
+        <h1>{{request.user.firstName}} {{request.user.lastName}}</h1>
+        </div>
+        <br>
+        <p style="text-align: center">Address: {{request.user.address}}</p>
+        <p style="text-align: center">Education: {{request.user.education}}</p>
+        <p style="text-align: center">Job: {{request.user.job}}</p>
+        <button icon="fa fa-plus-circle" pButton type="button" label="Cancel request" class="ui-button-raised ui-button-secondary" (click)="addFriend(user)"></button>
+      </div>
+     
+    </ikubinfo-panel>
+  </div>
+
+  <div *ngIf="request.user.id == user.id ">
+      <ikubinfo-panel header="{{request.friend.firstName}} {{request.friend.lastName}}">
+        <div panel-content>
+          <div>
+          <img src="assets/images/{{request.friend.image}}.png" alt="{{request.friend.image}}" style="float: left;" />
+          <h1>{{request.friend.firstName}} {{request.friend.lastName}}</h1>
+          </div>
+          <br>
+          <p style="text-align: center">Address: {{request.friend.address}}</p>
+          <p style="text-align: center">Education: {{request.friend.education}}</p>
+          <p style="text-align: center">Job: {{request.friend.job}}</p>
+          <button icon="fa fa-plus-circle" pButton type="button" label="Cancel request" class="ui-button-raised ui-button-secondary" (click)="addFriend(user)"></button>
+        </div>
+       
+      </ikubinfo-panel>
+    </div>
+  
+</div>
+</div>
+
+<div class="row">
+  <div class="col col-xl-6 col-lg-12" *ngFor="let user of users">
+    <ikubinfo-panel header="{{user.firstName}} {{user.lastName}}">
+      <div panel-content>
+        <div>
+        <img src="assets/images/{{user.image}}.png" alt="{{user.image}}" style="float: left;" />
+        <h1>{{user.firstName}} {{user.lastName}}</h1>
+        </div>
+        <br>
+        <p style="text-align: center">Address: {{user.address}}</p>
+        <p style="text-align: center">Education: {{user.education}}</p>
+        <p style="text-align: center">Job: {{user.job}}</p>
+        <button icon="fa fa-plus-circle" pButton type="button" label="Add friend" class="ui-button-raised ui-button-secondary" (click)="addFriend(user)"></button>
+      </div>
+     
+    </ikubinfo-panel>
+  </div>
+</div>

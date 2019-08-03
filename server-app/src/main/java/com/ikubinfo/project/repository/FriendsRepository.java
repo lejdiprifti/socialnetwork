@@ -32,10 +32,10 @@ public class FriendsRepository {
 	}
 	
 	public List<Friends> getRequests(User user) {
-		TypedQuery<Friends> query=em.createQuery("Select f from Friends f where f.friendId=?1 and f.accepted=?2 and f.flag=?3",Friends.class);
+		TypedQuery<Friends> query=em.createQuery("Select f from Friends f where ( f.friend=?1 or f.user=?1 ) and f.accepted=?2 and f.flag=?3",Friends.class);
 		query.setParameter(2, false);
 		query.setParameter(3, true);
-		query.setParameter(1, user.getId());
+		query.setParameter(1, user);
 		return query.getResultList();
 	}
 	

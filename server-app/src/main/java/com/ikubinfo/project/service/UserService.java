@@ -9,6 +9,7 @@ import javax.ws.rs.NotFoundException;
 
 import com.ikubinfo.project.converter.UserConverter;
 import com.ikubinfo.project.entity.Friends;
+import com.ikubinfo.project.entity.FriendsId;
 import com.ikubinfo.project.entity.RoleEntity;
 import com.ikubinfo.project.entity.User;
 import com.ikubinfo.project.model.UserModel;
@@ -23,8 +24,8 @@ public class UserService {
 		userConverter = new UserConverter();
 	}
 	
-	public List<UserModel> getAllUsers(){
-		return userConverter.toModel(userRepository.getAllUsers());
+	public List<UserModel> getAllUsers(String email){
+		return userConverter.toModel(userRepository.getAllUsers(userRepository.getUserByEmail(email)));
 	}
 	public UserModel getUserById(long id) {
 		try {
@@ -103,17 +104,21 @@ public class UserService {
 		if (existsUser(id)==true) {
 		User user=userRepository.getUserByEmail(email);
 		Friends friend=new Friends();
+		FriendsId friendsId=new FriendsId();
+		friendsId.setFriendId(id);
+		friendsId.setUserId(user.getId());
+		friend.setId(friendsId);
 		friend.setFriend(userRepository.getUserById(id));
 		friend.setFlag(true);
 		friend.setAccepted(false);
 		friend.setDate(new Date());
-		friend.setUser(user);
+		friend.setUser(user); 
 		userRepository.addFriend(friend);
 		return friend;
 		}else {
 			throw new BadRequestException("User not found.");
 		}
-	}
+	}							
 	
 	
 	

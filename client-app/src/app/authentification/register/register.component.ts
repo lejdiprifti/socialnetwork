@@ -33,9 +33,9 @@ export class RegisterComponent implements OnInit {
     private logger: LoggerService,
     private router: Router) {
      this.images=[
-      {label: 'Batman',value:'batman'},
-      {label: 'Superman',value: 'superman'},
-      {label: 'Joker',value:'joker'}
+      {label: 'Batman',value:'Batman'},
+      {label: 'Superman',value: 'Superman'},
+      {label: 'Joker',value:'Joker'}
      ]
      }
 

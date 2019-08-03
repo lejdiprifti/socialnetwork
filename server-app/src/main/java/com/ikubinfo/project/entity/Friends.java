@@ -3,13 +3,14 @@ package com.ikubinfo.project.entity;
 import java.util.Date;
 
 import javax.persistence.Column;
-
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,12 +19,13 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "friends", schema = "socialnetwork")
 public class Friends {
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private long id;
+	
+	@EmbeddedId
+	private FriendsId id;
 
 	@NotNull
 	@ManyToOne
+	@MapsId("friendId")
 	private User friend;
 
 	@NotNull
@@ -40,6 +42,7 @@ public class Friends {
 	private boolean flag;
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@MapsId("userId")
 	private User user;
 
 	public Friends() {
@@ -78,17 +81,20 @@ public class Friends {
 		this.flag = flag;
 	}
 
-	public long getId() {
+	public FriendsId getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(FriendsId id) {
 		this.id = id;
 	}
+
 
 	public User getUser() {
 		return user;
 	}
+
+	
 
 	public void setUser(User user) {
 		this.user = user;

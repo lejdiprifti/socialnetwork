@@ -18,8 +18,12 @@ public class UserRepository {
 		this.em = PersistenceSingleton.INSTANCE.getEntityManagerFactory().createEntityManager();
 	}
 	
-	public List<User> getAllUsers() {
-		return em.createQuery("Select u from User u where u.flag=?1",User.class).setParameter(1, true).getResultList();
+	public List<User> getAllUsers(User user) {
+		return em.createQuery("Select DISTINCT u from User u where ( u NOT IN (Select f.user from Friends f where f.friend=?2 and f.flag=?1) and "
+				+ "u NOT IN (Select f.friend from Friends f where f.user=?2 and f.flag=?1) ) and u <> ?2 and u.flag=?1",User.class)
+				.setParameter(1, true)
+				.setParameter(2, user)
+				.getResultList();
 	}
 	public User getUserById(long id) {
 		TypedQuery<User> query=em.createNamedQuery("User.getById",User.class);
@@ -28,10 +32,10 @@ public class UserRepository {
 		return query.getSingleResult();
 	}
 
-	public User getUserByEmail(String email) {
+	public User getUserByEmail(String email) { 
 		TypedQuery<User> query=em.createNamedQuery("User.getByEmail",User.class);
 		query.setParameter(1,email);
-		query.setParameter(2,true);
+		query.setParameter(2,true);  
 		return query.getSingleResult();
 	}
 	
@@ -54,7 +58,7 @@ public class UserRepository {
 	@Transactional
 	public Friends addFriend(Friends friends) {
 		em.getTransaction().begin();
-		em.persist(friends);
+		em.merge(friends);
 		em.getTransaction().commit();
 		return friends;
 	}

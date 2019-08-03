@@ -8,17 +8,17 @@ import com.ikubinfo.project.entity.Friends;
 import com.ikubinfo.project.model.FriendsModel;
 
 public class FriendsConverter implements BaseConverter<FriendsModel,Friends>{
-
+	private UserConverter userConverter;
 	public FriendsConverter() {
-		
+		this.userConverter=new UserConverter();
 	}
 
 	@Override
 	public FriendsModel toModel(Friends entity) {
 		FriendsModel model=new FriendsModel();
 		model.setId(entity.getId());
-		model.setFriend(entity.getFriend());
-		model.setUser(entity.getUser());
+		model.setFriend(userConverter.toModel(entity.getFriend()));
+		model.setUser(userConverter.toModel(entity.getUser()));
 		model.setAccepted(entity.isAccepted());
 		model.setDate(entity.getDate());
 		model.setFlag(entity.isFlag());
@@ -29,8 +29,8 @@ public class FriendsConverter implements BaseConverter<FriendsModel,Friends>{
 	public Friends toEntity(FriendsModel model) {
 		Friends entity = new Friends();
 		entity.setId(model.getId());
-		entity.setFriend(model.getFriend());
-		entity.setUser(model.getUser());
+		entity.setFriend(userConverter.toEntity(model.getFriend()));
+		entity.setUser(userConverter.toEntity(model.getUser()));
 		entity.setDate(model.getDate());
 		entity.setAccepted(model.isAccepted());
 		entity.setFlag(model.isFlag());
