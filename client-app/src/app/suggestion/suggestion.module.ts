@@ -10,12 +10,13 @@ import { LayoutModule } from '@ikubinfo/layout/layout.module';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { FriendsComponent } from './friends/friends.component';
+import { RequestsComponent } from './requests/requests.component';
 
 
 @NgModule({
     imports: [CommonsModule, SuggestionRoutingModule, LayoutModule, FormsModule],
     exports: [],
-    declarations: [DashboardComponent, PostComponent, PostsComponent, FriendsComponent],
+    declarations: [DashboardComponent, PostComponent, PostsComponent, FriendsComponent, RequestsComponent],
     providers: [DatePipe]
 })
 export class SuggestionModule { }

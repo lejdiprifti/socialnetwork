@@ -17,8 +17,12 @@ export class FriendsService {
     return this.apiService.put(this.url+'/'+id+'/reject');
   }
 
-  public getRequests(): Observable<any>{
+  public getRequests(): Observable<Array<Object>>{
     return this.apiService.get(this.url);
+  }
+
+  public getMyRequests(id: number): Observable<Array<Object>>{
+    return this.apiService.get(this.url+'/'+id);
   }
 
   public cancelRequest(id:number): Observable<any>{

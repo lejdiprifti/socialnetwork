@@ -21,6 +21,12 @@ public class FriendsResource extends BaseResource {
 	public Response getRequests() {
 		return Response.ok(friendsService.getRequests(getEmailFromToken())).build();
 	}
+	
+	@GET
+	@Path("/{id}")
+	public Response getRequestsOfUser(@PathParam("id") final long id){
+		return Response.ok(friendsService.getMyRequests(id)).build();
+	}
 
 	@PUT
 	@Path("/{id}/accept")

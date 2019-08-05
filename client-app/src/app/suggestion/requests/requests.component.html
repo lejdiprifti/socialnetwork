@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col col-xl-6 col-lg-12" *ngFor="let request of requests">
+    <ikubinfo-panel header="{{request.user.firstName}} {{request.user.lastName}}">
+      <div panel-content>
+        <div>
+        <img src="assets/images/{{request.user.image}}.png" alt="{{request.user.image}}" style="float: left;" />
+        <h1>{{request.user.firstName}} {{request.user.lastName}}</h1>
+        </div>
+        <br>
+        <p style="text-align: center">Address: {{request.user.address}}</p>
+        <p style="text-align: center">Education: {{request.user.education}}</p>
+        <p style="text-align: center">Job: {{request.user.job}}</p>
+        <button icon="fa fa-user-plus" pButton type="button" label="Accept" class="ui-button-raised ui-button-success acceptBtn" (click)="accept(request.user.id)"></button>
+        <button icon="fa fa-user-times" pButton type="button" label="Decline" class="ui-button-raised ui-button-danger dangerBtn" (click)="decline(request.user.id)"></button>
+      </div>
+     
+    </ikubinfo-panel>
+  </div>
+</div>

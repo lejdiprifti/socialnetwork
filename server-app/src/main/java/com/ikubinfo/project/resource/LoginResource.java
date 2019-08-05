@@ -7,6 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.ikubinfo.project.entity.User;
 import com.ikubinfo.project.model.LoginRequest;
 import com.ikubinfo.project.service.LoginService;
 import com.ikubinfo.project.util.Paths;
@@ -17,7 +18,7 @@ import com.ikubinfo.project.util.Paths;
 public class LoginResource {
 
 	private LoginService loginService;
-
+	static User user;
 	public LoginResource() {
 		this.loginService = new LoginService();
 	}
@@ -26,4 +27,6 @@ public class LoginResource {
 	public Response login(LoginRequest request) {
 		return Response.ok(loginService.login(request)).build();
 	}
+	
+	
 }

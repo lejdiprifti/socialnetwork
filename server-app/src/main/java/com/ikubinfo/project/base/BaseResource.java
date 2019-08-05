@@ -37,4 +37,5 @@ public abstract class BaseResource {
 				.trim();
 		return (String) Jwts.parser().setSigningKey(Constants.JWT_KEY).parseClaimsJws(token).getBody().get("email");
 	}
+	
 }

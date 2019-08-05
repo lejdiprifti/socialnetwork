@@ -17,4 +17,9 @@ export const menuItems: Array<MenuItem> = [{
     icon: 'fa fa-address-book',
     label: 'Friends',
     allowedRoles: [RoleEnum.USER]
+},{
+    url:'/suggestion/requests',
+    icon: 'fa fa-users',
+    label: 'Requests',
+    allowedRoles: [RoleEnum.USER]
 }]

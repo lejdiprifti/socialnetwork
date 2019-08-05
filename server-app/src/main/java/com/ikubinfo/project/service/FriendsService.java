@@ -28,6 +28,10 @@ public class FriendsService {
 		return friendsConverter.toModel(friendsRepository.getRequests(user));
 	}
 	
+	public List<FriendsModel> getMyRequests(final long id){
+		User user=userRepository.getUserById(id);
+		return friendsConverter.toModel(friendsRepository.getMyRequests(user));
+	}
 	public void acceptFriendRequest(final long id,String email) {
 		try {
 			FriendsId friendsId=new FriendsId();
