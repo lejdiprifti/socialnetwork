@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col col-xl-6 col-lg-12" *ngFor="let user of friends">
+    <ikubinfo-panel header="{{user.firstName}} {{user.lastName}}">
+      <div panel-content>
+        <div>
+        <img src="assets/images/{{user.image}}.png" alt="{{user.image}}" style="float: left;" />
+        <h1>{{user.firstName}} {{user.lastName}}</h1>
+        </div>
+        <br>
+        <button icon="fa fa-plus-circle" pButton type="button" label="Open Conversation" class="ui-button-raised ui-button-secondary" (click)="openConversation(user.id)"></button>
+      </div>
+    </ikubinfo-panel>
+  </div>
+</div>

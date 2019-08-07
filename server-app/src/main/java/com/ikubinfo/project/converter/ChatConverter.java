@@ -15,10 +15,10 @@ public class ChatConverter implements BaseConverter<ChatModel,Chat> {
 
 	@Override
 	public ChatModel toModel(Chat entity) {
-		ChatModel model=new ChatModel();
+		ChatModel model=new ChatModel(); 
 		model.setId(entity.getId());
 		model.setMessage(entity.getMessage());
-		model.setSender(userConverter.toModel(entity.getSender()));
+		model.setSender(userConverter.toModel(entity.getUser()));
 		model.setReciever(userConverter.toModel(entity.getReciever()));
 		model.setDate(entity.getDate());
 		model.setFlag(entity.isFlag());
@@ -29,7 +29,7 @@ public class ChatConverter implements BaseConverter<ChatModel,Chat> {
 	public Chat toEntity(ChatModel model) {
 		Chat entity = new Chat ();
 		entity.setId(model.getId());
-		entity.setSender(userConverter.toEntity(model.getSender()));
+		entity.setUser(userConverter.toEntity(model.getUser()));
 		entity.setMessage(model.getMessage());
 		entity.setReciever(userConverter.toEntity(model.getReciever()));
 		entity.setFlag(entity.isFlag());

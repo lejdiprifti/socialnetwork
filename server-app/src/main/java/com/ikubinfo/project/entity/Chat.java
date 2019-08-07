@@ -5,29 +5,41 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="chat")
+@Table(name="chat",schema="socialnetwork")
+@NamedQueries({
+	@NamedQuery(name="Chat.getMessages",query="Select c from Chat c where c.user=?1 and c.reciever=?2 and c.flag=?3"),
+	@NamedQuery(name="Chat.getMessageById", query="Select c from Chat c where c.id=?1 and c.flag=?2")
+})
 public class Chat {
 
 	public Chat() {
 		
 	}
 	
-	@EmbeddedId
-	private ChatMessageId id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@Column(name="message_id",nullable=false, unique=true)
+	private long id;
 	
 	@ManyToOne
-	@MapsId("senderId")
-	private User sender;
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	@ManyToOne
-	@MapsId("recieverId")
+	@JoinColumn(name="reciever_id")
 	private User reciever;
 	
 	@Column(name="message",nullable=false,length=1000000)
@@ -40,20 +52,21 @@ public class Chat {
 	@Column(name="flag")
 	private boolean flag;
 
-	public ChatMessageId getId() {
+	
+	public long getId() {
 		return id;
 	}
 
-	public void setId(ChatMessageId id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public User getSender() {
-		return sender;
+	public User getUser() {
+		return user;
 	}
 
-	public void setSender(User sender) {
-		this.sender = sender;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public User getReciever() {
@@ -90,7 +103,7 @@ public class Chat {
 
 	@Override
 	public String toString() {
-		return "Chat [id=" + id + ", sender=" + sender + ", reciever=" + reciever + ", message=" + message + ", date="
+		return "Chat [id=" + id + ", user=" + user + ", reciever=" + reciever + ", message=" + message + ", date="
 				+ date + ", flag=" + flag + "]";
 	}
 	

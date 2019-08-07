@@ -23,6 +23,12 @@ public class FriendsResource extends BaseResource {
 	}
 	
 	@GET
+	@Path("/friends")
+	public Response getFriends() {
+		return Response.ok(friendsService.getFriends(getEmailFromToken())).build();
+	}
+	
+	@GET
 	@Path("/{id}")
 	public Response getRequestsOfUser(@PathParam("id") final long id){
 		return Response.ok(friendsService.getMyRequests(id)).build();

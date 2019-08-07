@@ -28,4 +28,8 @@ export class FriendsService {
   public cancelRequest(id:number): Observable<any>{
     return this.apiService.delete(this.url+'/'+id+'/cancel');
   }
+
+  public getFriends(): Observable<any>{
+    return this.apiService.get(this.url+'/friends');
+  }
 }

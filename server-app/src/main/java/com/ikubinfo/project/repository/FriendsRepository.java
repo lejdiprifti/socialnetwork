@@ -22,7 +22,7 @@ public class FriendsRepository {
 		em.getTransaction().begin();
 		em.merge(friends);
 		em.getTransaction().commit();
-	
+		em.close();
 	}
 	
 	public Friends getRequest(FriendsId id) {
@@ -48,6 +48,17 @@ public class FriendsRepository {
 		return query.getResultList();
 	}
 	
-
+	public List<User> getFriends(User user){
+		TypedQuery<User> query=em.createQuery("Select f.user from Friends f where f.friend = ?2 and f.user<>?2 and f.accepted=?3 and f.flag=?1 ",User.class);
+		TypedQuery<User> query2=em.createQuery(" Select f.friend from Friends f where f.user=?2 and f.friend<>?2 and f.accepted=?3 and f.flag=?1",User.class);
+		query.setParameter(1, true);
+		query.setParameter(2, user);
+		query.setParameter(3, true);
+		query2.setParameter(1, true);
+		query2.setParameter(2, user);
+		query2.setParameter(3, true);
+		query.getResultList().addAll(query2.getResultList());
+		return query.getResultList();
+	}
 
 }

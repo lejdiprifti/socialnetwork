@@ -2,12 +2,11 @@ package com.ikubinfo.project.model;
 
 import java.util.Date;
 
-import com.ikubinfo.project.entity.ChatMessageId;
 
 public class ChatModel {
 	
-	private ChatMessageId id;
-	private UserModel sender;
+	private long id;
+	private UserModel user;
 	private UserModel reciever;
 	private String message;
 	private Date date;
@@ -17,20 +16,20 @@ public class ChatModel {
 		
 	}
 
-	public ChatMessageId getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(ChatMessageId id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public UserModel getSender() {
-		return sender;
+	public UserModel getUser() {
+		return user;
 	}
 
-	public void setSender(UserModel sender) {
-		this.sender = sender;
+	public void setSender(UserModel user) {
+		this.user = user;
 	}
 
 	public UserModel getReciever() {

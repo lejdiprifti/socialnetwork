@@ -8,6 +8,7 @@ public class Paths {
 	public static final String REGISTER="/register";
 	public static final String POSTS="/posts";
 	public static final String REQUESTS="/requests";
+	public static final String CHAT="/chat";
 	private Paths() {
 		super();
 	}

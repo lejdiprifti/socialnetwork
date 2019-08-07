@@ -11,12 +11,14 @@ import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { FriendsComponent } from './friends/friends.component';
 import { RequestsComponent } from './requests/requests.component';
+import { MessagesComponent } from './messages/messages.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 @NgModule({
     imports: [CommonsModule, SuggestionRoutingModule, LayoutModule, FormsModule],
     exports: [],
-    declarations: [DashboardComponent, PostComponent, PostsComponent, FriendsComponent, RequestsComponent],
+    declarations: [DashboardComponent, PostComponent, PostsComponent, FriendsComponent, RequestsComponent, MessagesComponent, ChatComponent],
     providers: [DatePipe]
 })
 export class SuggestionModule { }

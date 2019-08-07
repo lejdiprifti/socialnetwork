@@ -44,6 +44,7 @@ public class UserRepository {
 		em.getTransaction().begin();
 		em.persist(user);
 		em.getTransaction().commit();
+		em.close();
 		return user;
 	}
 	
@@ -52,6 +53,7 @@ public class UserRepository {
 		em.getTransaction().begin();
 		User updatedUser=em.merge(user);
 		em.getTransaction().commit();
+		em.close();
 		return updatedUser;
 	}
 	
@@ -60,6 +62,7 @@ public class UserRepository {
 		em.getTransaction().begin();
 		em.merge(friends);
 		em.getTransaction().commit();
+		em.close();
 		return friends;
 	}
 	

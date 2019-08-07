@@ -37,6 +37,7 @@ public class PostRepository {
 		em.getTransaction().begin();
 		em.persist(post);
 		em.getTransaction().commit();
+		em.close();
 		return post;
 	}
 	
@@ -60,6 +61,7 @@ public class PostRepository {
 		em.getTransaction().begin();
 		em.merge(post);
 		em.getTransaction().commit();
+		em.close();
 	}
 	
 	public PostLiked isAlreadyLiked(Post post,User user) {

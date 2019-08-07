@@ -22,7 +22,7 @@ public class UserService {
 	public UserService() {
 		userRepository = new UserRepository();
 		userConverter = new UserConverter();
-	}
+		}
 	
 	public List<UserModel> getAllUsers(String email){
 		return userConverter.toModel(userRepository.getAllUsers(userRepository.getUserByEmail(email)));
@@ -37,7 +37,8 @@ public class UserService {
 
 	public UserModel getUserByEmail(String email) {
 		try {
-			return userConverter.toModel(userRepository.getUserByEmail(email));
+			User user=userRepository.getUserByEmail(email);
+			return userConverter.toModel(user);
 		}catch(NoResultException e) {
 			throw new NotFoundException("User not found");
 		}
@@ -130,5 +131,7 @@ public class UserService {
 			return false;
 		}
 	}
+	
+
 }
 

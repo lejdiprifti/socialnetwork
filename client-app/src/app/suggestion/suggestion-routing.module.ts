@@ -9,6 +9,8 @@ import { FullComponent } from '@ikubinfo/layout/full/full.component';
 import { FriendsComponent } from './friends/friends.component';
 import { UserGuard } from '@ikubinfo/core/guards/user-guard';
 import { RequestsComponent } from './requests/requests.component';
+import { MessagesComponent } from './messages/messages.component';
+import { ChatComponent } from './chat/chat.component';
 
 const suggestionRoutes: Routes = [
     {
@@ -20,6 +22,8 @@ const suggestionRoutes: Routes = [
             { path: 'post', component: PostComponent, canActivate: [AdminGuard] },
             { path: 'post/:id', component: PostComponent, canActivate: [AdminGuard] },
             { path: 'friends', component: FriendsComponent , canActivate: [UserGuard]},
+            { path: 'messages/:id', component: MessagesComponent,canActivate:[UserGuard]},
+            { path: 'chat',component: ChatComponent, canActivate:[UserGuard]},
             { path: 'requests', component: RequestsComponent, canActivate: [UserGuard]},
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
         ]

@@ -8,6 +8,7 @@ import java.util.Date;
 
 import java.util.UUID;
 
+import com.ikubinfo.project.entity.User;
 import com.ikubinfo.project.model.LoginRequest;
 import com.ikubinfo.project.model.LoginResponse;
 import com.ikubinfo.project.model.UserModel;
@@ -19,13 +20,12 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 public class LoginService {
 	private UserService userService;
-
 	public LoginService() {
 		this.userService = new UserService();
 	}
 
 	public LoginResponse login(LoginRequest request) {
-
+		
 		UserModel loggedInUser = userService.getUserByEmail(request.getEmail());
 		Claims customClaims = Jwts.claims();
 		customClaims.put("email", loggedInUser.getEmail());
@@ -45,4 +45,6 @@ public class LoginService {
 		return response;
 
 	}
+	
+	
 }
