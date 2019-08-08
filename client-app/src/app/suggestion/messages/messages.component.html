@@ -60,7 +60,7 @@
           <div _ngcontent-c8="" class="header">
             <strong _ngcontent-c8="" class="primary-font">{{message.user.firstName}} {{message.user.lastName}}</strong
             ><small _ngcontent-c8="" class="pull-right text-muted"
-              ><i _ngcontent-c8="" class="fa fa-clock-o fa-fw"></i> 12 mins ago
+              ><i _ngcontent-c8="" class="fa fa-clock-o fa-fw"></i> {{convertDate(message)}}
             </small>
           </div>
           <p _ngcontent-c8="">
@@ -80,7 +80,7 @@
         <div _ngcontent-c8="" class="chat-body clearfix" >
           <div _ngcontent-c8="" class="header">
             <small _ngcontent-c8="" class=" text-muted"
-              ><i _ngcontent-c8="" class="fa fa-clock-o fa-fw"></i> 13 mins ago </small
+              ><i _ngcontent-c8="" class="fa fa-clock-o fa-fw"></i> {{convertDate(message)}} </small
             ><strong _ngcontent-c8="" class="pull-right primary-font"
               >{{message.user.firstName}} {{message.user.lastName}}</strong
             >

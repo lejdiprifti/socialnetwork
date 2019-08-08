@@ -5,6 +5,7 @@ import { LoggerService } from '@ikubinfo/core/utilities/logger.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '@ikubinfo/core/models/user';
 import { AuthService } from '@ikubinfo/core/services/auth.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'ikubinfo-messages',
@@ -13,7 +14,7 @@ import { AuthService } from '@ikubinfo/core/services/auth.service';
 })
 export class MessagesComponent implements OnInit {
   constructor(private chatService: ChatService,private authService: AuthService,
-    private logger: LoggerService,private active: ActivatedRoute) { }
+    private logger: LoggerService,private datePipe: DatePipe,private active: ActivatedRoute) { }
   chat: any;
   user:User;
   messages:Array<Chat>;
@@ -48,4 +49,9 @@ export class MessagesComponent implements OnInit {
     })
   }
 
+  convertDate(message: Chat): string {
+    const dateString = message.date;
+    const newDate= new Date(dateString);
+    return  "Sent "+this.datePipe.transform(newDate, "yyyy-MM-dd hh:mm:ss");
+}
 }
