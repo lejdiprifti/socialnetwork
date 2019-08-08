@@ -3,14 +3,12 @@ package com.ikubinfo.project.entity;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -20,7 +18,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name="chat",schema="socialnetwork")
 @NamedQueries({
-	@NamedQuery(name="Chat.getMessages",query="Select c from Chat c where c.user=?1 and c.reciever=?2 and c.flag=?3"),
+	@NamedQuery(name="Chat.getMessages",query="Select c from Chat c where ( c.user=?1 and c.reciever=?2) or (c.user=?2 and c.reciever=?1) and c.flag=?3"),
 	@NamedQuery(name="Chat.getMessageById", query="Select c from Chat c where c.id=?1 and c.flag=?2")
 })
 public class Chat {

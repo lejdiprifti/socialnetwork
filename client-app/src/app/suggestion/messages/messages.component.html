@@ -46,19 +46,19 @@
       </ul>
     </div>
   </div>
-  <div _ngcontent-c8="" class="card-body" *ngFor="let message of messages">
-    <ul _ngcontent-c8="" class="chat">
-      <li _ngcontent-c8="" class="left clearfix">
-        <span _ngcontent-c8="" class="chat-img pull-left"
+  <div _ngcontent-c8="" class="card-body" >
+    <ul _ngcontent-c8="" class="chat" *ngFor="let message of messages">
+      <li _ngcontent-c8="" class="left clearfix" *ngIf="message.reciever.id === user.id">
+        <span _ngcontent-c8="" class="chat-img pull-left" 
           ><img
             _ngcontent-c8=""
             alt="User Avatar"
             class="img-circle"
-            src="assets/images/{{message.reciever.image}}.png"
+            src="assets/images/{{message.user.image}}.png"
         /></span>
-        <div _ngcontent-c8="" class="chat-body clearfix">
+        <div _ngcontent-c8="" class="chat-body clearfix" >
           <div _ngcontent-c8="" class="header">
-            <strong _ngcontent-c8="" class="primary-font">{{message.reciever.firstName}} {{message.reciever.lastName}}</strong
+            <strong _ngcontent-c8="" class="primary-font">{{message.user.firstName}} {{message.user.lastName}}</strong
             ><small _ngcontent-c8="" class="pull-right text-muted"
               ><i _ngcontent-c8="" class="fa fa-clock-o fa-fw"></i> 12 mins ago
             </small>
@@ -68,15 +68,16 @@
           </p>
         </div>
       </li>
-      <li _ngcontent-c8="" class="right clearfix" >
-        <span _ngcontent-c8="" class="chat-img pull-right"
-          ><img
+      <br>
+      <li _ngcontent-c8="" class="right clearfix" *ngIf="message.user.id === user.id">
+        <span _ngcontent-c8="" class="chat-img pull-right"  >
+          <img
             _ngcontent-c8=""
             alt="User Avatar"
             class="img-circle"
             src="assets/images/{{message.user.image}}.png"
         /></span>
-        <div _ngcontent-c8="" class="chat-body clearfix">
+        <div _ngcontent-c8="" class="chat-body clearfix" >
           <div _ngcontent-c8="" class="header">
             <small _ngcontent-c8="" class=" text-muted"
               ><i _ngcontent-c8="" class="fa fa-clock-o fa-fw"></i> 13 mins ago </small
