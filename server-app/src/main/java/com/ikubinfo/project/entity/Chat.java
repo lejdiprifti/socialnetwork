@@ -40,7 +40,7 @@ public class Chat {
 	@JoinColumn(name="reciever_id")
 	private User reciever;
 	
-	@Column(name="message",nullable=false,length=1000000)
+	@Column(name="message",nullable=false,length=1000000,updatable=false)
 	private String message;
 	
 	@Temporal(TemporalType.TIMESTAMP)

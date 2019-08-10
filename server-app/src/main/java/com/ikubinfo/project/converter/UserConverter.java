@@ -10,6 +10,9 @@ import com.ikubinfo.project.entity.User;
 
 public class UserConverter implements BaseConverter<UserModel, User> {
 
+	public UserConverter() {
+
+	}
 	@Override
 	public UserModel toModel(User entity) {
 		UserModel model = new UserModel();

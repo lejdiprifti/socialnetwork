@@ -1,0 +1,127 @@
+<div class="container">
+  <header>
+    
+  </header>
+  <main>
+    <div class="row">
+      <div class="left col-lg-4">
+        <div class="photo-left">
+          <img class="photo" src="assets/images/Lejdi.jpeg"/>
+          <div class="active"></div>
+        </div>
+        <h4 class="name">{{user.firstName}} {{user.lastName}}</h4>
+        <p class="info">{{user.job}}</p>
+        <p class="info">{{user.email}}</p>
+        <div class="stats row">
+          <div class="stat col-xs-4" style="padding-right: 50px;">
+            <p class="number-stat">3,619</p>
+            <p class="desc-stat">Followers</p>
+          </div>
+          <div class="stat col-xs-4">
+            <p class="number-stat">234</p>
+            <p class="desc-stat">Friends</p>
+          </div>
+          <div class="stat col-xs-4" style="padding-left: 50px;">
+            <p class="number-stat">34</p>
+            <p class="desc-stat">Posts</p>
+          </div>
+        </div>
+        <p class="desc">Hi ! My name is Jane Doe. I'm a UI/UX Designer from Paris, in France. I really enjoy photography and mountains.</p>
+        <div class="social">
+          <i class="fa fa-facebook-square" aria-hidden="true"></i>
+          <i class="fa fa-twitter-square" aria-hidden="true"></i>
+          <i class="fa fa-pinterest-square" aria-hidden="true"></i>
+          <i class="fa fa-tumblr-square" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="right col-lg-8">
+        <ul class="nav">
+          <li>Gallery</li>
+          <li>Collections</li>
+          <li>Groups</li>
+          <li>About</li>
+        </ul>
+        <span class="follow">Follow</span>
+        <div class="row gallery">
+          <div class="col-md-4">
+             <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774813-photo4.jpg"/>
+          </div>
+          <div class="col-md-4">
+            <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774814-photo5.jpg"/>
+          </div>
+          <div class="col-md-4">
+             <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774814-photo6.jpg"/>
+          </div>
+          <div class="col-md-4">
+             <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774817-photo1.jpg"/>
+          </div>
+          <div class="col-md-4">
+            <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774815-photo2.jpg"/>
+          </div>
+          <div class="col-md-4">
+            <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774816-photo3.jpg"/>
+          </div>
+        </div>
+      </div>
+ 
+</div>
+<div class="card-body" header="My posts">
+    <ul class="timeline" *ngFor="let post of posts; index as i">
+        <li *ngIf="i % 2=== 0">
+            <div class="timeline-badge"><i class="fa fa-check"></i>
+            </div>
+            <div class="timeline-panel">
+                <div class="timeline-heading">
+                    <p><small class="text-muted" ><i class="fa fa-clock-o"></i> {{post.date | dateAgo}}</small>
+                    </p>
+                </div>
+                <div class="timeline-body">
+                    <p>{{post.description}}</p>
+                </div>
+            </div>
+        </li>
+        <li class="timeline-inverted" *ngIf="i % 2 !== 0">
+            <div class="timeline-badge warning"><i class="fa fa-credit-card"></i>
+            </div>
+            <div class="timeline-panel">
+                <div class="timeline-heading">
+                    <p><small class="text-muted" ><i class="fa fa-clock-o"></i> {{post.date | dateAgo}}</small>
+                    </p>
+                </div>
+                <div class="timeline-body">
+                    <p>{{post.description}}</p>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="timeline-badge info"><i class="fa fa-save"></i>
+            </div>
+            <div class="timeline-panel">
+                <div class="timeline-heading">
+                    <h4 class="timeline-title">Lorem ipsum dolor</h4>
+                </div>
+                <div class="timeline-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis minus modi quam ipsum alias at est molestiae excepturi delectus nesciunt, quibusdam debitis amet, beatae consequuntur impedit nulla qui! Laborum, atque.</p>
+                    <hr>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-gear"></i>  <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Action</a>
+                            </li>
+                            <li><a href="#">Another action</a>
+                            </li>
+                            <li><a href="#">Something else here</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </li>
+      
+    </ul>
+</div>

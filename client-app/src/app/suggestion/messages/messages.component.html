@@ -1,50 +1,40 @@
-<div _ngcontent-c8="" class="chat-panel card card-default">
-  <div _ngcontent-c8="" class="card-header">
-    <i _ngcontent-c8="" class="fa fa-comments fa-fw"></i> Chat
-    <div _ngcontent-c8="" class=" pull-right" ngbdropdown="">
-      <button
-        _ngcontent-c8=""
-        class="btn btn-secondary btn-sm"
-        ngbdropdowntoggle=""
-      >
-        <span _ngcontent-c8="" class="caret"></span>
-      </button>
-      <ul _ngcontent-c8="" class="dropdown-menu dropdown-menu-right">
-        <li _ngcontent-c8="" role="menuitem">
-          <a _ngcontent-c8="" class="dropdown-item" href="#"
-            ><i _ngcontent-c8="" class="fa fa-refresh fa-fw"></i> Refresh</a
-          >
-        </li>
-        <li _ngcontent-c8="" role="menuitem">
-          <a _ngcontent-c8="" class="dropdown-item" href="#"
-            ><i _ngcontent-c8="" class="fa fa-check-circle fa-fw"></i>
-            Available</a
-          >
-        </li>
-        <li _ngcontent-c8="" role="menuitem">
-          <a _ngcontent-c8="" class="dropdown-item" href="#"
-            ><i _ngcontent-c8="" class="fa fa-times fa-fw"></i> Busy</a
-          >
-        </li>
-        <li _ngcontent-c8="" class="divider dropdown-divider"></li>
-        <li _ngcontent-c8="" role="menuitem">
-          <a _ngcontent-c8="" class="dropdown-item" href="#"
-            ><i _ngcontent-c8="" class="fa fa-times fa-fw"></i> Busy
-          </a>
-        </li>
-        <li _ngcontent-c8="">
-          <a _ngcontent-c8="" class="dropdown-item" href="#"
-            ><i _ngcontent-c8="" class="fa fa-clock-o fa-fw"></i> Away
-          </a>
-        </li>
-        <li _ngcontent-c8="" class="divider"></li>
-        <li _ngcontent-c8="">
-          <a _ngcontent-c8="" class="dropdown-item" href="#"
-            ><i _ngcontent-c8="" class="fa fa-sign-out fa-fw"></i> Sign Out
-          </a>
-        </li>
-      </ul>
-    </div>
+<div class="chat-panel card card-default">
+  <div class="card-header">
+      <i class="fa fa-comments fa-fw"></i>
+      Chat
+      <div class=" pull-right" ngbDropdown>
+          <button class="btn btn-secondary btn-sm" ngbDropdownToggle>
+              <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-right">
+              <li role="menuitem"><a class="dropdown-item" href="#">
+                  <i class="fa fa-refresh fa-fw"></i> Refresh</a>
+              </li>
+              <li role="menuitem"><a class="dropdown-item" href="#">
+                  <i class="fa fa-check-circle fa-fw"></i> Available</a>
+              </li>
+              <li role="menuitem"><a class="dropdown-item" href="#">
+                  <i class="fa fa-times fa-fw"></i> Busy</a>
+              </li>
+              <li class="divider dropdown-divider"></li>
+              <li role="menuitem">
+                  <a href="#" class="dropdown-item">
+                      <i class="fa fa-times fa-fw"></i> Busy
+                  </a>
+              </li>
+              <li>
+                  <a href="#" class="dropdown-item">
+                      <i class="fa fa-clock-o fa-fw"></i> Away
+                  </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="#" class="dropdown-item">
+                  <i class="fa fa-sign-out fa-fw"></i> Sign Out
+                </a>
+              </li>
+          </ul>
+      </div>
   </div>
   <div _ngcontent-c8="" class="card-body" >
     <ul _ngcontent-c8="" class="chat" *ngFor="let message of messages">
@@ -60,7 +50,7 @@
           <div _ngcontent-c8="" class="header">
             <strong _ngcontent-c8="" class="primary-font">{{message.user.firstName}} {{message.user.lastName}}</strong
             ><small _ngcontent-c8="" class="pull-right text-muted"
-              ><i _ngcontent-c8="" class="fa fa-clock-o fa-fw"></i> {{convertDate(message)}}
+              ><i _ngcontent-c8="" class="fa fa-clock-o fa-fw"></i> {{message.date | dateAgo}}
             </small>
           </div>
           <p _ngcontent-c8="">
@@ -80,7 +70,7 @@
         <div _ngcontent-c8="" class="chat-body clearfix" >
           <div _ngcontent-c8="" class="header">
             <small _ngcontent-c8="" class=" text-muted"
-              ><i _ngcontent-c8="" class="fa fa-clock-o fa-fw"></i> {{convertDate(message)}} </small
+              ><i _ngcontent-c8="" class="fa fa-clock-o fa-fw"></i> {{message.date | dateAgo}} </small
             ><strong _ngcontent-c8="" class="pull-right primary-font"
               >{{message.user.firstName}} {{message.user.lastName}}</strong
             >
@@ -89,7 +79,8 @@
             {{message.message}}
           </p>
         </div>
-      </li>     
+      </li> 
+      <br>    
     </ul>
   </div>
   <div _ngcontent-c8="" class="card-footer">

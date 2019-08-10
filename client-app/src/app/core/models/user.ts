@@ -1,4 +1,5 @@
 import { Role } from './role';
+import { Post } from './post';
 
 
 export interface User {
@@ -13,5 +14,8 @@ export interface User {
     education?: string;
     address?: string;
     image?: string;
+    posts?: Array<Post>;
+    friends?: Array<any>;
+    likes?: Array<Post>;
     flag?: boolean;
 } 

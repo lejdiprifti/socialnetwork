@@ -49,9 +49,5 @@ export class MessagesComponent implements OnInit {
     })
   }
 
-  convertDate(message: Chat): string {
-    const dateString = message.date;
-    const newDate= new Date(dateString);
-    return  "Sent "+this.datePipe.transform(newDate, "yyyy-MM-dd hh:mm:ss");
-}
+ 
 }

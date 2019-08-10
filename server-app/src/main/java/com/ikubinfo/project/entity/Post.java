@@ -24,8 +24,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "post", schema = "socialnetwork")
 @NamedQueries({ @NamedQuery(name = "Post.getPosts", query = "Select p from Post p where ( p.user IN (Select f.user FROM Friends f Join p.user u where f.friend=?2 and f.flag=?1 and f.accepted=?1 ) OR p.user IN (Select f.friend FROM Friends f JOIN p.user u where f.user=?2 and f.flag=?1 and f.accepted=?1 ) OR p.user=?2) and p.flag=?1 ORDER BY p.date"),
-		@NamedQuery(name = "Post.getPostById", query = "Select p from Post p where p.id=?1 and p.flag=?2")
-
+		@NamedQuery(name = "Post.getPostById", query = "Select p from Post p where p.id=?1 and p.flag=?2"),
+		@NamedQuery(name="Post.getMyPosts", query="Select p from Post p where p.user=?1 and p.flag=?2")
 })
 public class Post {
 

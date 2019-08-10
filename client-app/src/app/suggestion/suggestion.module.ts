@@ -13,12 +13,15 @@ import { FriendsComponent } from './friends/friends.component';
 import { RequestsComponent } from './requests/requests.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ChatComponent } from './chat/chat.component';
+import { ProfileComponent } from './profile/profile.component';
+import { DateAgoPipe } from '@ikubinfo/pipes/date-ago.pipe';
+
 
 
 @NgModule({
     imports: [CommonsModule, SuggestionRoutingModule, LayoutModule, FormsModule],
     exports: [],
-    declarations: [DashboardComponent, PostComponent, PostsComponent, FriendsComponent, RequestsComponent, MessagesComponent, ChatComponent],
+    declarations: [DateAgoPipe,DashboardComponent, PostComponent, PostsComponent, FriendsComponent, RequestsComponent, MessagesComponent, ChatComponent, ProfileComponent],
     providers: [DatePipe]
 })
 export class SuggestionModule { }

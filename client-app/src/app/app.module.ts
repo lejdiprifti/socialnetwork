@@ -8,10 +8,13 @@ import { CoreModule } from '@ikubinfo/core/core.module';
 import { AppRoutingModule } from '@ikubinfo/app-routing.module';
 import { AppComponent } from '@ikubinfo/app.component';
 import { AuthentificationModule } from '@ikubinfo/authentification/authentification.module';
+import { TimeagoModule } from 'ngx-timeago';
+
 
 @NgModule({
   declarations: [
     AppComponent
+
   ],
   imports: [
     BrowserModule,
@@ -19,7 +22,9 @@ import { AuthentificationModule } from '@ikubinfo/authentification/authentificat
     AppRoutingModule,
     CoreModule,
     AuthentificationModule,
-    CommonsModule
+    CommonsModule,
+    TimeagoModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

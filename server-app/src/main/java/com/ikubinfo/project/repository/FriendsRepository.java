@@ -67,8 +67,16 @@ public class FriendsRepository {
 		query2.setParameter(3, true);
 		List<User> list = query.getResultList();
 		list.addAll(query2.getResultList());
-
+ 
 		return list;
 	}
+	
+	public User areFriends(User friend,User user) {
+		TypedQuery<User> query=em.createQuery("Select f.user from Friends f where (f.friend = ?1 and f.user=?2 and f.flag=?3) or (f.user=?1 and f.friend=?2 and f.flag=?3) ",User.class);
+		query.setParameter(1,friend);
+		query.setParameter(2, user);
+		query.setParameter(3, true);
+		return query.getSingleResult();
+	} 
 
 }

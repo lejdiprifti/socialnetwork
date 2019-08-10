@@ -14,15 +14,18 @@ import javax.ws.rs.core.Response;
 
 import com.ikubinfo.project.base.BaseResource;
 import com.ikubinfo.project.model.UserModel;
+import com.ikubinfo.project.service.PostService;
 import com.ikubinfo.project.service.UserService;
 import com.ikubinfo.project.util.Paths;
 
 @Path(Paths.USERS)
 public class UserResource extends BaseResource {
 	private UserService userService;
-
+	private PostService postService;
+	
 	public UserResource() {
 		this.userService = new UserService();
+		this.postService = new PostService();
 	}
 	
 	@GET
@@ -34,6 +37,12 @@ public class UserResource extends BaseResource {
 	@Path("/{id}")
 	public Response getUserById(@PathParam("id") final long id) {
 		return Response.ok(userService.getUserById(id)).build();
+	}
+	
+	@GET
+	@Path("/{id}/posts")
+	public Response getPostsOfUser(@PathParam("id") final long id) {
+		return Response.ok(postService.getMyPosts(id)).build();
 	}
 	
 	@PUT 

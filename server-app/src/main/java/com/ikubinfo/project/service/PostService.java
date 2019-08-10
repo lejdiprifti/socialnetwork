@@ -136,4 +136,13 @@ public class PostService {
 			return false;
 		}
 	}
+	
+	public List<PostModel> getMyPosts(final long id) {
+		try {
+			User user=userRepository.getUserById(id);
+			return postConverter.toModel(postRepository.getMyPosts(user));
+		}catch(NoResultException e) {
+			throw new NotFoundException();
+		}
+	}
 }

@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
   convertDate(post: Post): string {
       const dateString = post.date;
       const newDate= new Date(dateString);
-      return  "Published on "+this.datePipe.transform(newDate, "yyyy-MM-dd hh:mm:ss");
+      return  this.datePipe.transform(newDate, "yyyy-MM-dd hh:mm:ss");
   }
 
   getData(): Post{

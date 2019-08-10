@@ -11,6 +11,7 @@ import { UserGuard } from '@ikubinfo/core/guards/user-guard';
 import { RequestsComponent } from './requests/requests.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ChatComponent } from './chat/chat.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const suggestionRoutes: Routes = [
     {
@@ -25,6 +26,7 @@ const suggestionRoutes: Routes = [
             { path: 'messages/:id', component: MessagesComponent,canActivate:[UserGuard]},
             { path: 'chat',component: ChatComponent, canActivate:[UserGuard]},
             { path: 'requests', component: RequestsComponent, canActivate: [UserGuard]},
+            { path: 'profile/:id', component: ProfileComponent, canActivate: [UserGuard]},
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
         ]
     }

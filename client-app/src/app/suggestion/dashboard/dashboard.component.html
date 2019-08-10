@@ -27,7 +27,7 @@
         <div>
         <button *ngIf="!isLiked(post)" pButton type="button" label="Like" class="ui-button-rounded ui-button-primary likeButton" icon="fa fa-thumbs-up" (click)="like(post.id)"></button>
         <button *ngIf="isLiked(post)" pButton type="button" label="Unlike" class="ui-button-rounded ui-button-danger likeButton" icon="fa fa-thumbs-down" (click)="unlike(post.id)"></button>
-        <span class="badge badge-primary date">{{convertDate(post)}}</span>
+        <span class="badge badge-primary date"><i class="fa fa-clock-o"></i> {{post.date | dateAgo}}</span>
     </div>
       </div>
     </ikubinfo-panel>

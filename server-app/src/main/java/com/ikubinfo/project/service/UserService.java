@@ -38,7 +38,9 @@ public class UserService {
 	public UserModel getUserByEmail(String email) {
 		try {
 			User user=userRepository.getUserByEmail(email);
-			return userConverter.toModel(user);
+			UserModel model=userConverter.toModel(user);
+
+			return model;
 		}catch(NoResultException e) {
 			throw new NotFoundException("User not found");
 		}

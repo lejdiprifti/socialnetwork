@@ -3,7 +3,6 @@ package com.ikubinfo.project.model;
 import java.util.Date;
 import java.util.List;
 
-import com.ikubinfo.project.entity.Friends;
 import com.ikubinfo.project.entity.RoleEntity;
 
 public class UserModel {
@@ -18,6 +17,9 @@ public class UserModel {
 	private String education;
 	private String address;
 	private String image;
+	private List<PostModel> posts;
+	private List<FriendsModel> friends;
+	private List<PostLikedModel> likes;
 	private boolean flag;
 
 	public UserModel() {
@@ -84,6 +86,14 @@ public class UserModel {
 		return job;
 	}
 
+	public List<PostModel> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<PostModel> posts) {
+		this.posts = posts;
+	}
+
 	public void setJob(String job) {
 		this.job = job;
 	}
@@ -118,6 +128,22 @@ public class UserModel {
 
 	public void setFlag(boolean flag) {
 		this.flag = flag;
+	}
+
+	public List<FriendsModel> getFriends() {
+		return friends;
+	}
+
+	public void setFriends(List<FriendsModel> friends) {
+		this.friends = friends;
+	}
+
+	public List<PostLikedModel> getLikes() {
+		return likes;
+	}
+
+	public void setLikes(List<PostLikedModel> likes) {
+		this.likes = likes;
 	}
 
 	

@@ -3,7 +3,7 @@ package com.ikubinfo.project.entity;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
+
 
 import javax.persistence.*;
 
@@ -54,11 +54,11 @@ public class User {
 	@OneToMany(mappedBy="user",
 			fetch=FetchType.LAZY,
 			orphanRemoval=true)
-	private Set<Post> posts;
+	private List<Post> posts= new ArrayList<>();
 	
 	@OneToMany(mappedBy="user",
 			fetch=FetchType.LAZY)
-	private Set<Friends> user;
+	private List<Friends> friends=new ArrayList<>();
 	
 	@OneToMany(mappedBy="user",
 			cascade=CascadeType.ALL,
@@ -160,20 +160,20 @@ public class User {
 		this.flag = flag;
 	}
 	
-	public Set<Post> getPosts() {
+	public List<Post> getPosts() {
 		return posts;
 	}
 
-	public void setPosts(Set<Post> posts) {
+	public void setPosts(List<Post> posts) {
 		this.posts = posts;
 	}
 
-	public Set<Friends> getUser() {
-		return user;
+	public List<Friends> getFriends() {
+		return friends;
 	}
 
-	public void setUser(Set<Friends> user) {
-		this.user = user;
+	public void setFriends(List<Friends> user) {
+		this.friends = user;
 	}
 
 	public List<PostLiked> getLikedPosts() {

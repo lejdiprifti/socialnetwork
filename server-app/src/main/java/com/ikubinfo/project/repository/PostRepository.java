@@ -16,10 +16,10 @@ public class PostRepository {
 	public PostRepository() {
 		this.em = PersistenceSingleton.INSTANCE.getEntityManagerFactory().createEntityManager();
 	}
-	
+	 
 	public List<Post> getPosts(User iUser){
 		return em.createNamedQuery("Post.getPosts",Post.class)
-				.setParameter(1,true)
+				.setParameter(1,true) 
 				.setParameter(2, iUser )
 				.getResultList();
 	}
@@ -46,6 +46,7 @@ public class PostRepository {
 		em.getTransaction().begin();
 		Post mergedPost=em.merge(post);
 		em.getTransaction().commit();
+		em.close();
 		return mergedPost;
 	}
 	
@@ -54,6 +55,7 @@ public class PostRepository {
 		em.getTransaction().begin();
 		em.persist(post);
 		em.getTransaction().commit();
+		em.close();
 	}
 	
 	@Transactional
@@ -71,4 +73,10 @@ public class PostRepository {
 	return query.getSingleResult();
 	}
 	
+	public List<Post> getMyPosts(User user) {
+		TypedQuery<Post> query=em.createNamedQuery("Post.getMyPosts",Post.class);
+		query.setParameter(1, user);
+		query.setParameter(2, true);
+		return query.getResultList();
+	}
 }
