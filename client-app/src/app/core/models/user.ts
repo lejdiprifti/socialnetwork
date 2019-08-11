@@ -15,7 +15,7 @@ export interface User {
     address?: string;
     image?: string;
     posts?: Array<Post>;
-    friends?: Array<any>;
+    friends?: Array<User>;
     likes?: Array<Post>;
     flag?: boolean;
 } 

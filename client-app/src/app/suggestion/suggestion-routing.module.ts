@@ -27,6 +27,7 @@ const suggestionRoutes: Routes = [
             { path: 'chat',component: ChatComponent, canActivate:[UserGuard]},
             { path: 'requests', component: RequestsComponent, canActivate: [UserGuard]},
             { path: 'profile/:id', component: ProfileComponent, canActivate: [UserGuard]},
+            { path: 'profile', component: ProfileComponent, canActivate: [UserGuard]},
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
         ]
     }

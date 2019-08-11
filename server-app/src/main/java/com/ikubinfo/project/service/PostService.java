@@ -137,12 +137,15 @@ public class PostService {
 		}
 	}
 	
-	public List<PostModel> getMyPosts(final long id) {
+	public List<PostModel> getMyPosts(User user) {
 		try {
-			User user=userRepository.getUserById(id);
 			return postConverter.toModel(postRepository.getMyPosts(user));
 		}catch(NoResultException e) {
 			throw new NotFoundException();
 		}
+	}
+	
+	public List<PostModel> getMyLikes(User user){
+			return postConverter.toModel(postRepository.getMyLikes(user));
 	}
 }

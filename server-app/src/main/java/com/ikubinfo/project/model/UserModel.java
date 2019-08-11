@@ -18,8 +18,8 @@ public class UserModel {
 	private String address;
 	private String image;
 	private List<PostModel> posts;
-	private List<FriendsModel> friends;
-	private List<PostLikedModel> likes;
+	private List<UserModel> friends;
+	private List<PostModel> likes;
 	private boolean flag;
 
 	public UserModel() {
@@ -130,20 +130,20 @@ public class UserModel {
 		this.flag = flag;
 	}
 
-	public List<FriendsModel> getFriends() {
+	public List<UserModel> getFriends() {
 		return friends;
 	}
 
-	public void setFriends(List<FriendsModel> friends) {
+	public void setFriends(List<UserModel> friends) {
 		this.friends = friends;
 	}
 
-	public List<PostLikedModel> getLikes() {
+	public List<PostModel> getLikes() {
 		return likes;
 	}
 
-	public void setLikes(List<PostLikedModel> likes) {
-		this.likes = likes;
+	public void setLikes(List<PostModel> list) {
+		this.likes = list;
 	}
 
 	

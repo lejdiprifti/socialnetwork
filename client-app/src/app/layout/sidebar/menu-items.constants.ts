@@ -27,4 +27,10 @@ export const menuItems: Array<MenuItem> = [{
     icon: 'fa fa-users',
     label: 'Chat',
     allowedRoles: [RoleEnum.USER]
+},
+{
+    url:'/suggestion/profile',
+    icon: 'fa fa-user-circle',
+    label: 'Profile',
+    allowedRoles: [RoleEnum.USER]
 }]
