@@ -24,7 +24,7 @@ export const menuItems: Array<MenuItem> = [{
     allowedRoles: [RoleEnum.USER]
 },{
     url:'/suggestion/chat',
-    icon: 'fa fa-users',
+    icon: 'fa fa-send',
     label: 'Chat',
     allowedRoles: [RoleEnum.USER]
 },
