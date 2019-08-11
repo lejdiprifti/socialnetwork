@@ -1,5 +1,6 @@
 import { Role } from './role';
 import { Post } from './post';
+import { SocialLinks } from './socialLinks';
 
 
 export interface User {
@@ -17,5 +18,7 @@ export interface User {
     posts?: Array<Post>;
     friends?: Array<User>;
     likes?: Array<Post>;
+    bio?: String;
+    socialLinks?: SocialLinks;
     flag?: boolean;
 } 

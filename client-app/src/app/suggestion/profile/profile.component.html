@@ -6,7 +6,7 @@
     <div class="row">
       <div class="left col-lg-4">
         <div class="photo-left">
-          <img class="photo" src="assets/images/{{user.image}}.jpeg"/>
+          <img class="photo" src="assets/images/{{user.image}}.png"/>
           <div class="active"></div>
         </div>
         <h4 class="name">{{user.firstName}} {{user.lastName}}</h4>
@@ -28,10 +28,10 @@
         </div>
         <p class="desc">Hi ! My name is Jane Doe. I'm a UI/UX Designer from Paris, in France. I really enjoy photography and mountains.</p>
         <div class="social">
-          <i class="fa fa-facebook-square" aria-hidden="true"></i>
-          <i class="fa fa-twitter-square" aria-hidden="true"></i>
-          <i class="fa fa-pinterest-square" aria-hidden="true"></i>
-          <i class="fa fa-tumblr-square" aria-hidden="true"></i>
+          <a href="{{user.socialLinks.facebook}}" ><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+          <a href="{{user.socialLinks.twitter}}" ><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+          <a href="{{user.socialLinks.linkedin}}" ><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+          <a href="{{user.socialLinks.instagram}}" ><i class="fa fa-instagram" aria-hidden="true"></i></a>
         </div>
       </div>
       <div class="right col-lg-8">
@@ -41,7 +41,8 @@
           <li (click)="loadFriends()">Friends</li>
           <li>About</li>
         </ul>
-        <span class="follow">Follow</span>
+        <span *ngIf="loggedUser.id != id" class="follow" (click)="addFriend(user)">Add friend</span>
+        <span *ngIf="loggedUser.id == id" class="follow"><i class="fa fa-edit" aria-hidden="true"></i> Edit Profile</span>
         <div class="row gallery">
           <div class="col-md-4">
              <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774813-photo4.jpg"/>

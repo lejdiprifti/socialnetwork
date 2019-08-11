@@ -17,24 +17,28 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     private logger: LoggerService,
     private active: ActivatedRoute,
-    private datePipe: DatePipe,
     private userService: UserService
-  ) {}
+  ) {
+    
+  }
   user: User;
   posts: Array<Post>;
   friends: Array<User>;
   showPosts: boolean;
   showFriends: boolean;
   showLikes: boolean;
+  loggedUser: User;
   ngOnInit() {
     this.posts = [];
     this.friends=[];
+    this.user={};
     this.loadMyPosts();
+    this.loggedUser=this.authService.loggedUser;
   }
+  id = this.active.snapshot.paramMap.get("id") || this.authService.loggedUser.id;
 
   loadMyPosts(): void {
-    const id = this.active.snapshot.paramMap.get("id") || this.authService.loggedUser.id;
-    this.userService.getUserById(Number(id)).subscribe(
+    this.userService.getUserById(Number(this.id)).subscribe(
       res => {
         this.showPosts=true;
         this.showLikes=false;
@@ -62,9 +66,15 @@ export class ProfileComponent implements OnInit {
     this.showPosts=false;
     this.posts=this.user.likes;
   }
-  convertDate(post: Post): string {
-    const dateString = post.date;
-    const newDate = new Date(dateString);
-    return this.datePipe.transform(newDate, "yyyy-MM-dd");
+
+  addFriend(user:User): void{
+    this.userService.sendFriendRequest(user.id).subscribe(res=>{
+      this.logger.info("Info","Request sent!");
+    },
+    err=>{
+      this.logger.error("Error","Request could not be sent.");
+    });
   }
+
+
 }

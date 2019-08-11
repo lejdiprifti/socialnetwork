@@ -9,7 +9,6 @@
         <class>com.ikubinfo.project.entity.PostLiked</class>
         <class>com.ikubinfo.project.entity.PostLikedId</class>
         <class>com.ikubinfo.project.entity.RoleEntity</class>
-        <class>com.ikubinfo.project.entity.Something</class>
         <class>com.ikubinfo.project.entity.User</class>
         <properties>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
