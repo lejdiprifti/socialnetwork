@@ -71,36 +71,33 @@ public class UserService {
 	public UserModel update(UserModel user,long id) {
 		try {
 		User foundUser=userRepository.getUserById(id);
-		user.setId(id);
-		if (user.getFirstName() == null) {
-			user.setFirstName(foundUser.getFirstName());
+		if (user.getFirstName() != null) {
+			foundUser.setFirstName(user.getFirstName());
 		}
-		if (user.getLastName() == null) {
+		if (user.getLastName() != null) {
 			user.setLastName(foundUser.getLastName());
 		}
-		user.setEmail(foundUser.getEmail());
-		if (user.getBirthdate()==null) {
-			user.setBirthdate(foundUser.getBirthdate());
+			foundUser.setBirthdate(user.getBirthdate());
+		if (user.getEducation()!=null) {
+			foundUser.setEducation(user.getEducation());
 		}
-		if (user.getEducation()==null) {
-			user.setEducation(foundUser.getEducation());
+		if (user.getAddress()!=null) {
+			foundUser.setAddress(user.getAddress());
 		}
-		if (user.getAddress()==null) {
-			user.setAddress(foundUser.getAddress());
+		if (user.getJob()!=null) {
+			foundUser.setJob(user.getJob());
 		}
-		if (user.getJob()==null) {
-			user.setJob(foundUser.getJob());
+		if (user.getPassword()!=null) {
+			foundUser.setPassword(user.getPassword());
 		}
-		if (user.getPassword()==null) {
-			user.setPassword(foundUser.getPassword());
-		}
-		user.setFlag(true);
-		userRepository.update(userConverter.toEntity(user));
-		return user;
+		foundUser.setBio(user.getBio());
+		foundUser.setSocialLinks(user.getSocialLinks());
+		userRepository.update(foundUser);
+		return userConverter.toModel(foundUser);
 		}catch(NoResultException e) {
 			throw new NotFoundException("User not found.");
 		}
-	}
+	} 
 	
 	public void delete(long id) {
 		try {

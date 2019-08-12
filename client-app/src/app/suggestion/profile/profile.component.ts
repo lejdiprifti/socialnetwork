@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { PostService } from "@ikubinfo/core/services/post.service";
 import { LoggerService } from "@ikubinfo/core/utilities/logger.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Post } from "@ikubinfo/core/models/post";
 import { AuthService } from "@ikubinfo/core/services/auth.service";
 import { User } from "@ikubinfo/core/models/user";
@@ -17,7 +17,8 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     private logger: LoggerService,
     private active: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     
   }
@@ -29,10 +30,20 @@ export class ProfileComponent implements OnInit {
   showLikes: boolean;
   loggedUser: User;
   ngOnInit() {
+    this.user={
+      likes: [],
+      posts: [],
+      friends: [],
+      socialLinks:{
+        
+      }
+    };
+    this.loggedUser={
+
+    };
+    this.loadMyPosts();
     this.posts = [];
     this.friends=[];
-    this.user={};
-    this.loadMyPosts();
     this.loggedUser=this.authService.loggedUser;
   }
   id = this.active.snapshot.paramMap.get("id") || this.authService.loggedUser.id;
@@ -76,5 +87,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-
+  editProfile(){
+    this.router.navigate(['suggestion/edit']);
+  }
 }

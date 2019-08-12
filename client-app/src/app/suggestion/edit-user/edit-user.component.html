@@ -1,3 +1,88 @@
-<p>
-  edit-user works!
-</p>
+<form role="form" [formGroup]="editForm">
+  <div class="form-content">
+
+    <!--Birthdate -->
+    <div class="form-group">
+      <input type="date" formControlName="birthdate" class="form-control input-underline input-lg "
+       placeholder="Birthdate" format="yyyy-MM-dd" />
+      <div class="required" *ngIf="editForm.get('birthdate').dirty && editForm.get('birthdate').hasError('tooYoung')">
+        *You must be over 18 years old.
+      </div>
+    </div>
+    <!--Address -->
+    <div class="form-group">
+      <input type="text" formControlName="address" class="form-control input-underline input-lg"
+        placeholder="Address" />
+    </div>
+    <!--Email -->
+    <div class="form-group">
+      <input type="text" formControlName="email" class="form-control input-underline input-lg" disabled="true" placeholder="Email" />
+    </div>
+    <!--Bio-->
+    <div class="form-group">
+      <input type="textarea" formControlName="bio" class="form-control input-underline input-lg"
+        placeholder="Bio" />
+    </div>
+    <!--Job -->
+    <div class="form-group">
+      <input type="text" formControlName="job" class="form-control input-underline input-lg"
+        placeholder="Working at" />
+    </div>
+    <!--Education -->
+    <div class="form-group">
+      <input type="text" formControlName="education" class="form-control input-underline input-lg"
+        placeholder="Studied at" />
+    </div>
+    <!--Facebook-->
+    <div class="form-group">
+      <input type="link" formControlName="facebook" class="form-control input-underline input-lg"
+        placeholder="Facebook" />
+        <div class="required" *ngIf="editForm.get('facebook').dirty && editForm.get('facebook').hasError('pattern')">
+          *You must be over 18 years old.
+        </div>
+    </div>
+    <!--Twitter-->
+    <div class="form-group">
+      <input type="link" formControlName="twitter" class="form-control input-underline input-lg"
+        placeholder="Twitter" />
+    </div>
+    <!--LinkedIn-->
+    <div class="form-group">
+      <input type="link" formControlName="linkedin" class="form-control input-underline input-lg"
+        placeholder="LinkedIn" />
+    </div>
+    <!--Instagram-->
+    <div class="form-group">
+      <input type="link" formControlName="instagram" class="form-control input-underline input-lg"
+        placeholder="Instagram" />
+    </div>
+    <button [disabled]="editForm.invalid" (click)="updateData()" class="btn btn-success">
+      Update Profile
+    </button>
+    <!--Password -->
+    <h5 class="header">Change password</h5>
+    <div [formGroup]="passwordForm"><div class="form-group">
+        <input type="password" formControlName="password" class="form-control input-underline input-lg"
+          placeholder="New password" />
+        <div class="required" *ngIf="
+        passwordForm.get('password').dirty && passwordForm.get('password').hasError('pattern')">
+          Password must contain at least one number and one uppercase and
+          lowercase letter, and at least 8 or more characters.
+        </div>
+      </div>
+      <!--Repeat Password-->
+      <div class="form-group">
+          <input type="password" formControlName="repeatPassword" class="form-control input-underline input-lg"
+            placeholder="Repeat Password" />
+        </div>
+        <div class="required"
+            *ngIf="passwordForm.get('repeatPassword').dirty && passwordForm.hasError('matchingError')">
+            *Passwords do not match.
+          </div>
+    </div>
+    
+  </div>
+  <button [disabled]="passwordForm.invalid" (click)="updatePassword()" class="btn btn-success">
+    Update Password
+  </button>
+</form>

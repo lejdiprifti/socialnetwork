@@ -19,27 +19,13 @@ public class UserModel {
 	private String address;
 	private String image;
 	private String bio;
-	public String getBio() {
-		return bio;
-	}
-
-	public void setBio(String bio) {
-		this.bio = bio;
-	}
-
-	public SocialLinks getSocialLinks() {
-		return socialLinks;
-	}
-
-	public void setSocialLinks(SocialLinks socialLinks) {
-		this.socialLinks = socialLinks;
-	}
-
 	private SocialLinks socialLinks;
 	private List<PostModel> posts;
 	private List<UserModel> friends;
 	private List<PostModel> likes;
 	private boolean flag;
+	
+
 
 	public UserModel() {
 
@@ -163,9 +149,23 @@ public class UserModel {
 
 	public void setLikes(List<PostModel> list) {
 		this.likes = list;
+	} 
+
+	public String getBio() {
+		return bio;
 	}
 
-	
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
+	public SocialLinks getSocialLinks() {
+		return socialLinks;
+	}
+
+	public void setSocialLinks(SocialLinks socialLinks) {
+		this.socialLinks = socialLinks;
+	}
 
 	
 		

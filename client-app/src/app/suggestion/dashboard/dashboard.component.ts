@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
     this.post={};
     this.user=this.authService.loggedUser;
     this.postForm=this.fb.group({
-      description: ["",[Validators.minLength(1),Validators.required]]
+      description: ["",[Validators.nullValidator,Validators.required]]
     });
   
   }

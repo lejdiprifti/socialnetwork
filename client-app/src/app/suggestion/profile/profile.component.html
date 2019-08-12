@@ -12,6 +12,7 @@
         <h4 class="name">{{user.firstName}} {{user.lastName}}</h4>
         <p class="info">{{user.job}}</p>
         <p class="info">{{user.email}}</p>
+        <p class="info">{{user.address}}</p>
         <div class="stats row">
           <div class="stat col-xs-4" style="padding-right: 50px;">
             <p class="number-stat">{{user.likes.length}}</p>
@@ -26,12 +27,12 @@
             <p class="desc-stat">Posts</p>
           </div>
         </div>
-        <p class="desc">Hi ! My name is Jane Doe. I'm a UI/UX Designer from Paris, in France. I really enjoy photography and mountains.</p>
+        <p class="desc">{{user.bio}}</p>
         <div class="social">
-          <a href="{{user.socialLinks.facebook}}" ><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
-          <a href="{{user.socialLinks.twitter}}" ><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
-          <a href="{{user.socialLinks.linkedin}}" ><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
-          <a href="{{user.socialLinks.instagram}}" ><i class="fa fa-instagram" aria-hidden="true"></i></a>
+          <a href="{{user.socialLinks.facebook}}" ><i class="fa fa-facebook-square" aria-hidden="true" *ngIf="user.socialLinks.facebook != null"></i></a>
+          <a href="{{user.socialLinks.twitter}}" ><i class="fa fa-twitter-square" aria-hidden="true" *ngIf="user.socialLinks.twitter != null"></i></a>
+          <a href="{{user.socialLinks.linkedin}}" ><i class="fa fa-linkedin-square" aria-hidden="true" *ngIf="user.socialLinks.linkedin != null"></i></a>
+          <a href="{{user.socialLinks.instagram}}" ><i class="fa fa-instagram" aria-hidden="true" *ngIf="user.socialLinks.instagram != null"></i></a>
         </div>
       </div>
       <div class="right col-lg-8">
@@ -42,7 +43,7 @@
           <li>About</li>
         </ul>
         <span *ngIf="loggedUser.id != id" class="follow" (click)="addFriend(user)">Add friend</span>
-        <span *ngIf="loggedUser.id == id" class="follow"><i class="fa fa-edit" aria-hidden="true"></i> Edit Profile</span>
+        <span *ngIf="loggedUser.id == id" class="follow" (click)="editProfile()"><i class="fa fa-edit" aria-hidden="true"></i> Edit Profile</span>
         <div class="row gallery">
           <div class="col-md-4">
              <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774813-photo4.jpg"/>
