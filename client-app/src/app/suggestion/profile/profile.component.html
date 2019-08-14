@@ -1,38 +1,67 @@
 <div class="container">
-  <header>
-    
-  </header>
+  <header></header>
   <main>
     <div class="row">
       <div class="left col-lg-4">
         <div class="photo-left">
-          <img class="photo" src="assets/images/{{user.image}}.png"/>
+          <img class="photo" src="assets/images/{{ user.image }}.png" />
           <div class="active"></div>
         </div>
-        <h4 class="name">{{user.firstName}} {{user.lastName}}</h4>
-        <p class="info">{{user.job}}</p>
-        <p class="info">{{user.email}}</p>
-        <p class="info">{{user.address}}</p>
+        <h4 class="name">{{ user.firstName }} {{ user.lastName }}</h4>
+        <p class="info">{{ user.email }}</p>
+        <p class="info">
+          <i class="fa fa-birthday-cake"></i> {{ user.birthdate | date }}
+        </p>
+        <p class="info"><i class="fa fa-home"></i> {{ user.address }}</p>
+        <p class="info"><i class="fa fa-briefcase"></i> {{ user.job }}</p>
+        <p class="info">
+          <i class="fa fa-graduation-cap"></i> {{ user.education }}
+        </p>
+
         <div class="stats row">
           <div class="stat col-xs-4" style="padding-right: 50px;">
-            <p class="number-stat">{{user.likes.length}}</p>
+            <p class="number-stat">{{ user.likes.length }}</p>
             <p class="desc-stat">Likes</p>
           </div>
           <div class="stat col-xs-4">
-            <p class="number-stat">{{user.friends.length}}</p>
+            <p class="number-stat">{{ user.friends.length }}</p>
             <p class="desc-stat">Friends</p>
           </div>
           <div class="stat col-xs-4" style="padding-left: 50px;">
-            <p class="number-stat">{{user.posts.length}}</p>
+            <p class="number-stat">{{ user.posts.length }}</p>
             <p class="desc-stat">Posts</p>
           </div>
         </div>
-        <p class="desc">{{user.bio}}</p>
+        <p class="desc">{{ user.bio }}</p>
         <div class="social">
-          <a href="{{user.socialLinks.facebook}}" ><i class="fa fa-facebook-square" aria-hidden="true" *ngIf="user.socialLinks.facebook != null"></i></a>
-          <a href="{{user.socialLinks.twitter}}" ><i class="fa fa-twitter-square" aria-hidden="true" *ngIf="user.socialLinks.twitter != null"></i></a>
-          <a href="{{user.socialLinks.linkedin}}" ><i class="fa fa-linkedin-square" aria-hidden="true" *ngIf="user.socialLinks.linkedin != null"></i></a>
-          <a href="{{user.socialLinks.instagram}}" ><i class="fa fa-instagram" aria-hidden="true" *ngIf="user.socialLinks.instagram != null"></i></a>
+          <a href="{{ user.socialLinks.facebook }}"
+            ><i
+              class="fa fa-facebook-square"
+              aria-hidden="true"
+              *ngIf="user.socialLinks.facebook != null"
+            ></i
+          ></a>
+          <a href="{{ user.socialLinks.twitter }}"
+            ><i
+              class="fa fa-twitter-square"
+              aria-hidden="true"
+              *ngIf="user.socialLinks.twitter != null"
+            ></i
+          ></a>
+          <a href="{{ user.socialLinks.linkedin }}"
+            ><i
+              class="fa fa-linkedin-square"
+              aria-hidden="true"
+              *ngIf="user.socialLinks.linkedin != null"
+            ></i
+          ></a>
+          <a href="{{ user.socialLinks.instagram }}"
+            ><i
+              class="fa fa-instagram"
+              aria-hidden="true"
+              *ngIf="user.socialLinks.instagram != null"
+            ></i
+          ></a>
         </div>
       </div>
       <div class="right col-lg-8">
@@ -42,154 +71,196 @@
           <li (click)="loadFriends()">Friends</li>
           <li>About</li>
         </ul>
-        <span *ngIf="loggedUser.id != id" class="follow" (click)="addFriend(user)">Add friend</span>
-        <span *ngIf="loggedUser.id == id" class="follow" (click)="editProfile()"><i class="fa fa-edit" aria-hidden="true"></i> Edit Profile</span>
+        <span
+          *ngIf="loggedUser.id != id"
+          class="follow"
+          (click)="addFriend(user)"
+          >Add friend</span
+        >
+        <span *ngIf="loggedUser.id == id" class="follow" (click)="editProfile()"
+          ><i class="fa fa-edit" aria-hidden="true"></i> Edit Profile</span
+        >
         <div class="row gallery">
           <div class="col-md-4">
-             <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774813-photo4.jpg"/>
+            <img
+              src="https://image.noelshack.com/fichiers/2017/38/2/1505774813-photo4.jpg"
+            />
           </div>
           <div class="col-md-4">
-            <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774814-photo5.jpg"/>
+            <img
+              src="https://image.noelshack.com/fichiers/2017/38/2/1505774814-photo5.jpg"
+            />
           </div>
           <div class="col-md-4">
-             <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774814-photo6.jpg"/>
+            <img
+              src="https://image.noelshack.com/fichiers/2017/38/2/1505774814-photo6.jpg"
+            />
           </div>
           <div class="col-md-4">
-             <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774817-photo1.jpg"/>
+            <img
+              src="https://image.noelshack.com/fichiers/2017/38/2/1505774817-photo1.jpg"
+            />
           </div>
           <div class="col-md-4">
-            <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774815-photo2.jpg"/>
+            <img
+              src="https://image.noelshack.com/fichiers/2017/38/2/1505774815-photo2.jpg"
+            />
           </div>
           <div class="col-md-4">
-            <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774816-photo3.jpg"/>
+            <img
+              src="https://image.noelshack.com/fichiers/2017/38/2/1505774816-photo3.jpg"
+            />
           </div>
         </div>
       </div>
- 
-</div>
-<div class="card-body" *ngIf="showPosts===true || showLikes===true">
-    <ul class="timeline" *ngFor="let post of posts; index as i">
-        <li *ngIf="i % 2=== 0">
-            <div class="timeline-badge"><i class="fa fa-check"></i>
+    </div>
+    <div class="card-body" *ngIf="showPosts === true || showLikes === true">
+      <ul class="timeline" *ngFor="let post of posts; index as i">
+        <li *ngIf="i % 2 === 0">
+          <div class="timeline-badge"><i class="fa fa-check"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <p>
+                <small class="text-muted"
+                  ><i class="fa fa-clock-o"></i>
+                  {{ post.date | dateAgo }}</small
+                >
+              </p>
             </div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <p><small class="text-muted" ><i class="fa fa-clock-o"></i> {{post.date | dateAgo}}</small>
-                    </p>
-                </div>
-                <div class="timeline-body">
-                    <p>{{post.description}}</p>
-                </div>
+            <div class="timeline-body">
+              <p>{{ post.description }}</p>
             </div>
+          </div>
         </li>
         <li class="timeline-inverted" *ngIf="i % 2 !== 0">
-            <div class="timeline-badge warning"><i class="fa fa-credit-card"></i>
+          <div class="timeline-badge warning">
+            <i class="fa fa-credit-card"></i>
+          </div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <p>
+                <small class="text-muted"
+                  ><i class="fa fa-clock-o"></i>
+                  {{ post.date | dateAgo }}</small
+                >
+              </p>
             </div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <p><small class="text-muted" ><i class="fa fa-clock-o"></i> {{post.date | dateAgo}}</small>
-                    </p>
-                </div>
-                <div class="timeline-body">
-                    <p>{{post.description}}</p>
-                </div>
+            <div class="timeline-body">
+              <p>{{ post.description }}</p>
             </div>
+          </div>
         </li>
         <li>
-            <div class="timeline-badge info"><i class="fa fa-save"></i>
+          <div class="timeline-badge info"><i class="fa fa-save"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">Lorem ipsum dolor</h4>
             </div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                </div>
-                <div class="timeline-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis minus modi quam ipsum alias at est molestiae excepturi delectus nesciunt, quibusdam debitis amet, beatae consequuntur impedit nulla qui! Laborum, atque.</p>
-                    <hr>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-gear"></i>  <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Action</a>
-                            </li>
-                            <li><a href="#">Another action</a>
-                            </li>
-                            <li><a href="#">Something else here</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a href="#">Separated link</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="timeline-body">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
+                minus modi quam ipsum alias at est molestiae excepturi delectus
+                nesciunt, quibusdam debitis amet, beatae consequuntur impedit
+                nulla qui! Laborum, atque.
+              </p>
+              <hr />
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-primary btn-sm dropdown-toggle"
+                  data-toggle="dropdown"
+                >
+                  <i class="fa fa-gear"></i> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  <li>Action</li>
+                  <li>Another action</li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </div>
             </div>
+          </div>
         </li>
-      
-    </ul>
-</div>
+      </ul>
+    </div>
 
-<!--Friends-->
-<div class="card-body" *ngIf="showFriends===true">
-  <ul class="timeline" *ngFor="let friend of friends; index as i">
-      <li *ngIf="i % 2=== 0">
-          <div class="timeline-badge"><i class="fa fa-check"></i>
-          </div>
+    <!--Friends-->
+    <div class="card-body" *ngIf="showFriends === true">
+      <ul class="timeline" *ngFor="let friend of friends; index as i">
+        <li *ngIf="i % 2 === 0">
+          <div class="timeline-badge"><i class="fa fa-check"></i></div>
           <div class="timeline-panel">
-              <div class="timeline-heading">
-                  <p><small class="text-muted" ><i class="fa fa-clock-o"></i> {{friend.birthdate | date}}</small>
-                  </p>
-              </div>
-              <div class="timeline-body">
-                  <h4 class="name">{{friend.firstName}} {{friend.lastName}}</h4>
-                  <p class="info">{{friend.job}}</p>
-                  <p class="info">{{friend.email}}</p>
-              </div>
-          </div>
-      </li>
-      <li class="timeline-inverted" *ngIf="i % 2 !== 0">
-          <div class="timeline-badge warning"><i class="fa fa-credit-card"></i>
-          </div>
-          <div class="timeline-panel">
-              <div class="timeline-heading">
-                  <p><small class="text-muted" ><i class="fa fa-clock-o"></i> {{friend.birthdate | date}}</small>
-                  </p>
-              </div>
-              <div class="timeline-body">
-                <h4 class="name">{{friend.firstName}} {{friend.lastName}}</h4>
-                <p class="info">{{friend.job}}</p>
-                <p class="info">{{friend.email}}</p>
+            <div class="timeline-heading">
+              <p>
+                <small class="text-muted"
+                  ><i class="fa fa-clock-o"></i>
+                  {{ friend.birthdate | date }}</small
+                >
+              </p>
+            </div>
+            <div class="timeline-body">
+              <h4 class="name">{{ friend.firstName }} {{ friend.lastName }}</h4>
+              <p class="info">{{ friend.job }}</p>
+              <p class="info">{{ friend.email }}</p>
             </div>
           </div>
-      </li>
-      <li>
-          <div class="timeline-badge info"><i class="fa fa-save"></i>
+        </li>
+        <li class="timeline-inverted" *ngIf="i % 2 !== 0">
+          <div class="timeline-badge warning">
+            <i class="fa fa-credit-card"></i>
           </div>
           <div class="timeline-panel">
-              <div class="timeline-heading">
-                  <h4 class="timeline-title">Lorem ipsum dolor</h4>
-              </div>
-              <div class="timeline-body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis minus modi quam ipsum alias at est molestiae excepturi delectus nesciunt, quibusdam debitis amet, beatae consequuntur impedit nulla qui! Laborum, atque.</p>
-                  <hr>
-                  <div class="btn-group">
-                      <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
-                          <i class="fa fa-gear"></i>  <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Action</a>
-                          </li>
-                          <li><a href="#">Another action</a>
-                          </li>
-                          <li><a href="#">Something else here</a>
-                          </li>
-                          <li class="divider"></li>
-                          <li><a href="#">Separated link</a>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
+            <div class="timeline-heading">
+              <p>
+                <small class="text-muted"
+                  ><i class="fa fa-clock-o"></i>
+                  {{ friend.birthdate | date }}</small
+                >
+              </p>
+            </div>
+            <div class="timeline-body">
+              <h4 class="name">{{ friend.firstName }} {{ friend.lastName }}</h4>
+              <p class="info">{{ friend.job }}</p>
+              <p class="info">{{ friend.email }}</p>
+            </div>
           </div>
-      </li>
-    
-  </ul>
+        </li>
+        <li>
+          <div class="timeline-badge info"><i class="fa fa-save"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">Lorem ipsum dolor</h4>
+            </div>
+            <div class="timeline-body">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
+                minus modi quam ipsum alias at est molestiae excepturi delectus
+                nesciunt, quibusdam debitis amet, beatae consequuntur impedit
+                nulla qui! Laborum, atque.
+              </p>
+              <hr />
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-primary btn-sm dropdown-toggle"
+                  data-toggle="dropdown"
+                >
+                  <i class="fa fa-gear"></i> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </main>
 </div>

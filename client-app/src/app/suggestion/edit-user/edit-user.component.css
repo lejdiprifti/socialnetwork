@@ -3,3 +3,23 @@
     color: red;
     font-size: 12px;
 }
+
+.delete{
+    float:right;
+}
+
+.header{
+    margin-top:2%;
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 130%;
+}
+.passwordForm{
+    margin-top: 2%;
+}
+
+.title{
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 120%;
+}

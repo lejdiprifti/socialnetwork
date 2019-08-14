@@ -2,6 +2,7 @@
   <div class="form-content">
 
     <!--Birthdate -->
+    <h6 class="title"><i class="fa fa-birthday-cake"></i> Birthdate</h6>
     <div class="form-group">
       <input type="date" formControlName="birthdate" class="form-control input-underline input-lg "
        placeholder="Birthdate" format="yyyy-MM-dd" />
@@ -10,58 +11,75 @@
       </div>
     </div>
     <!--Address -->
+    <h6 class="title"><i class="fa fa-home"></i> Address</h6>
     <div class="form-group">
       <input type="text" formControlName="address" class="form-control input-underline input-lg"
         placeholder="Address" />
     </div>
     <!--Email -->
+    <h6 class="title"><i class="fa fa-envelope"></i> Email</h6>
     <div class="form-group">
       <input type="text" formControlName="email" class="form-control input-underline input-lg" disabled="true" placeholder="Email" />
     </div>
     <!--Bio-->
+    <h6 class="title"><i class="fa fa-film"></i> Bio</h6>
     <div class="form-group">
       <input type="textarea" formControlName="bio" class="form-control input-underline input-lg"
         placeholder="Bio" />
     </div>
     <!--Job -->
+    <h6 class="title"><i class="fa fa-briefcase"></i> Works at</h6>
     <div class="form-group">
       <input type="text" formControlName="job" class="form-control input-underline input-lg"
         placeholder="Working at" />
     </div>
     <!--Education -->
+    <h6 class="title"><i class="fa fa-graduation-cap"></i> Studied at</h6>
     <div class="form-group">
       <input type="text" formControlName="education" class="form-control input-underline input-lg"
         placeholder="Studied at" />
     </div>
     <!--Facebook-->
+    <h6 class="title"><i class="fa fa-facebook-square"></i> Facebook</h6>
     <div class="form-group">
       <input type="link" formControlName="facebook" class="form-control input-underline input-lg"
         placeholder="Facebook" />
         <div class="required" *ngIf="editForm.get('facebook').dirty && editForm.get('facebook').hasError('pattern')">
-          *You must be over 18 years old.
+          *You must provide a valid link.
         </div>
     </div>
     <!--Twitter-->
+    <h6 class="title"><i class="fa fa-twitter-square"></i> Twitter</h6>
     <div class="form-group">
       <input type="link" formControlName="twitter" class="form-control input-underline input-lg"
         placeholder="Twitter" />
+        <div class="required" *ngIf="editForm.get('twitter').dirty && editForm.get('twitter').hasError('pattern')">
+            *You must provide a valid link.
+          </div>
     </div>
     <!--LinkedIn-->
+    <h6 class="title"><i class="fa fa-linkedin-square"></i> LinkedIn</h6>
     <div class="form-group">
       <input type="link" formControlName="linkedin" class="form-control input-underline input-lg"
         placeholder="LinkedIn" />
+        <div class="required" *ngIf="editForm.get('linkedin').dirty && editForm.get('linkedin').hasError('pattern')">
+            *You must provide a valid link.
+          </div>
     </div>
     <!--Instagram-->
+    <h6 class="title"><i class="fa fa-instagram"></i> Instagram</h6>
     <div class="form-group">
       <input type="link" formControlName="instagram" class="form-control input-underline input-lg"
         placeholder="Instagram" />
+        <div class="required" *ngIf="editForm.get('instagram').dirty && editForm.get('instagram').hasError('pattern')">
+            *You must provide a valid link.
+          </div>
     </div>
-    <button [disabled]="editForm.invalid" (click)="updateData()" class="btn btn-success">
-      Update Profile
-    </button>
+    <button pButton type="button" icon="fa fa-check-square-o" label="Save" class="ui-button-raised ui-button-success"  [disabled]="editForm.invalid" (click)="updateData()"></button>
+    
     <!--Password -->
     <h5 class="header">Change password</h5>
-    <div [formGroup]="passwordForm"><div class="form-group">
+    <div [formGroup]="passwordForm"><div class="form-group passwordForm">
         <input type="password" formControlName="password" class="form-control input-underline input-lg"
           placeholder="New password" />
         <div class="required" *ngIf="
@@ -82,7 +100,6 @@
     </div>
     
   </div>
-  <button [disabled]="passwordForm.invalid" (click)="updatePassword()" class="btn btn-success">
-    Update Password
-  </button>
+  <button pButton type="button" label="Save password" icon="fa fa-check-square-o" class="ui-button-raised ui-button-success" [disabled]="passwordForm.invalid" (click)="updatePassword()" ></button>
 </form>
+<button pButton icon="fa fa-close" (click)="delete()" type="button" label="Delete" class="ui-button-raised ui-button-danger delete"></button>

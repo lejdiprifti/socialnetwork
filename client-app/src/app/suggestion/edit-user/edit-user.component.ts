@@ -173,4 +173,21 @@ export class EditUserComponent implements OnInit {
       }
     });
   }
+
+
+  delete(): void {
+    this.confirmationService.confirm({
+      message: "Do you want to delete your account?",
+      header: "Delete Confirmation",
+      icon: "pi pi-info-circle",
+      accept: () => {
+        this.userService.delete(this.user.id).subscribe(res=>{
+          this.logger.info("Info","Account was deleted.");
+          this.router.navigate(['suggestion/login'])
+        },err=>{
+          this.logger.error("Error","Something bad happened.");
+        });
+    }
+  });
+}
 }
