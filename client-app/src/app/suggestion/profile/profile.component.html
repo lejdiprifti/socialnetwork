@@ -33,9 +33,9 @@
           </div>
         </div>
         <p class="desc">{{ user.bio }}</p>
-        <div class="social">
-          <a href="{{ user.socialLinks.facebook }}"
-            ><i
+        <div class="social" *ngIf="user.socialLinks != null">
+          <a *ngIf="user.socialLinks.facebook != null" href="{{ user.socialLinks.facebook }}">
+            <i
               class="fa fa-facebook-square"
               aria-hidden="true"
               *ngIf="user.socialLinks.facebook != null"
@@ -64,7 +64,7 @@
           ></a>
         </div>
       </div>
-      <div class="right col-lg-8">
+      <div class="right col-lg-8" >
         <ul class="nav">
           <li (click)="loadMyPosts()">Gallery</li>
           <li (click)="loadLikes()">Likes</li>
@@ -72,11 +72,17 @@
           <li>About</li>
         </ul>
         <span
-          *ngIf="loggedUser.id != id"
+          *ngIf="isFriend(user) === false"
           class="follow"
           (click)="addFriend(user)"
           >Add friend</span
         >
+        <span *ngIf="isFriend(user) === true"
+        class="follow"
+        (click)="unfriend(user)">
+        <i class="fa fa-check-square"></i>
+         Friends
+      </span>
         <span *ngIf="loggedUser.id == id" class="follow" (click)="editProfile()"
           ><i class="fa fa-edit" aria-hidden="true"></i> Edit Profile</span
         >
@@ -120,6 +126,9 @@
           <div class="timeline-badge"><i class="fa fa-check"></i></div>
           <div class="timeline-panel">
             <div class="timeline-heading">
+                
+                    <h4 class="timeline-title">{{post.user.firstName}} {{post.user.lastName}}</h4>
+            
               <p>
                 <small class="text-muted"
                   ><i class="fa fa-clock-o"></i>
@@ -138,6 +147,7 @@
           </div>
           <div class="timeline-panel">
             <div class="timeline-heading">
+                <h4 class="timeline-title">{{post.user.firstName}} {{post.user.lastName}}</h4>
               <p>
                 <small class="text-muted"
                   ><i class="fa fa-clock-o"></i>

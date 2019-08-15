@@ -7,6 +7,9 @@ import { AuthService } from "@ikubinfo/core/services/auth.service";
 import { User } from "@ikubinfo/core/models/user";
 import { DatePipe } from "@angular/common";
 import { UserService } from "@ikubinfo/core/services/user.service";
+import { FriendsService } from '@ikubinfo/core/services/friends.service';
+import { ConfirmationService } from 'primeng/primeng';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 @Component({
   selector: "ikubinfo-profile",
   templateUrl: "./profile.component.html",
@@ -18,7 +21,9 @@ export class ProfileComponent implements OnInit {
     private logger: LoggerService,
     private active: ActivatedRoute,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private friendsService: FriendsService,
+    private confirmationService: ConfirmationService
   ) {
     
   }
@@ -34,8 +39,8 @@ export class ProfileComponent implements OnInit {
       likes: [],
       posts: [],
       friends: [],
-      socialLinks:{
-        
+      socialLinks: {
+
       }
     };
     this.loggedUser={
@@ -56,7 +61,8 @@ export class ProfileComponent implements OnInit {
         this.showFriends=false;
         this.user = res;
         this.posts=this.user.posts;
-      },
+        
+            },
       err => {
         this.logger.error("Error", "User not found.");
       }
@@ -87,7 +93,34 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  editProfile(){
+  editProfile(): void{
     this.router.navigate(['suggestion/edit']);
   }
+
+  isFriend(user : User): boolean{
+    if (user.friends != null){
+    for (let i=0; i<user.friends.length;i++){
+      if (user.friends[i].id == this.loggedUser.id && this.user.id != this.loggedUser.id){
+        return true;
+      }
+    }
+  }
+    return false;
+  }
+
+  unfriend(user: User): void{
+    this.confirmationService.confirm({
+      message: 'Do you want to unfriend this user?',
+      header: 'Unfriend Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {  this.friendsService.rejectFriendRequest(user.id).subscribe(res=>{
+      this.logger.info("Info","You unfriended " + user.firstName +" !");
+      this.loadMyPosts();
+    },
+    err=>{
+      this.logger.error("Error","Something bad happened.");
+    })
+  }
+  });
+}
 }

@@ -56,6 +56,7 @@ public class FriendsService {
 		friendsId.setFriendId(userRepository.getUserByEmail(email).getId());
 		friendsId.setUserId(id);
 		Friends friends=friendsRepository.getRequest(friendsId);
+		friends.setAccepted(false);
 		friends.setFlag(false);
 		friendsRepository.acceptFriendRequest(friends);
 		}catch(NoResultException e) {

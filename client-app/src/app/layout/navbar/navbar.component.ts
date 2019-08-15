@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 import { AuthService } from '@ikubinfo/core/services/auth.service';
+import { User } from '@ikubinfo/core/models/user';
 
 @Component({
   selector: 'ikubinfo-navbar',
@@ -10,7 +11,7 @@ import { AuthService } from '@ikubinfo/core/services/auth.service';
 })
 export class NavbarComponent {
   public pushRightClass: string;
-
+  user: User;
   constructor(private router: Router, private authervice: AuthService) {
 
     this.router.events.subscribe(val => {
@@ -26,6 +27,7 @@ export class NavbarComponent {
 
   ngOnInit() {
     this.pushRightClass = 'push-right';
+    this.user=this.authervice.loggedUser;
   }
 
   isToggled(): boolean {

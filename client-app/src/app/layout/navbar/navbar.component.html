@@ -3,13 +3,19 @@
     <button class="navbar-toggler" type="button" (click)="toggleSidebar()">
         <i class="fa fa-bars text-muted" aria-hidden="true"></i>
     </button>
+    
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                        <h6 class="nav-link mt-1" style="padding: 0.375rem 1rem !important; border-color: #999;">{{user.firstName}} {{user.lastName}}</h6>
+                </li> &nbsp;
             <li class="nav-item">
+                
                 <a (click)="onLoggedout()" href="javascript:void(0)" class="nav-link mt-1" style="padding: 0.375rem 1rem !important; border-color: #999;">
                     Logout
                 </a>
             </li> &nbsp;
+            
         </ul>
     </div>
 </nav>

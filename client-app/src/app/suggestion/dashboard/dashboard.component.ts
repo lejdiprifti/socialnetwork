@@ -8,6 +8,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { LikedPost } from '@ikubinfo/core/models/likedpost';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'ikubinfo-dashboard',
@@ -21,6 +22,7 @@ export class DashboardComponent implements OnInit {
   post: Post;
   constructor(private postService: PostService,private fb: FormBuilder,
     private logger: LoggerService,private authService: AuthService,
+    private router: Router,
     private confirmationService: ConfirmationService,private datePipe: DatePipe) { }
 
   ngOnInit() {
@@ -119,5 +121,9 @@ export class DashboardComponent implements OnInit {
       }
   }
   return length;
+ }
+
+ openProfile(id:number): void{
+   this.router.navigate(['suggestion/profile/'+id]); 
  }
 }
