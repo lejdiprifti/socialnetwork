@@ -1,6 +1,23 @@
 <form role="form" [formGroup]="editForm">
   <div class="form-content">
-
+    <!--First Name-->
+      <h6 class="title"><i class="fa fa-user"></i> First Name</h6>
+      <div class="form-group">
+        <input type="text" formControlName="firstName" class="form-control input-underline input-lg "
+         placeholder="Fisrt Name" />
+        <div class="required" *ngIf="editForm.get('firstName').dirty && editForm.get('firstName').hasError('required')">
+          *You must enter a name.
+       </div>
+      </div>
+       <!--Last Name-->
+       <h6 class="title"><i class="fa fa-user"></i> Last Name</h6>
+       <div class="form-group">
+         <input type="text" formControlName="lastName" class="form-control input-underline input-lg "
+          placeholder="Last Name" />
+         <div class="required" *ngIf="editForm.get('lastName').dirty && editForm.get('lastName').hasError('required')">
+           *You must enter a last name.
+        </div>
+       </div>
     <!--Birthdate -->
     <h6 class="title"><i class="fa fa-birthday-cake"></i> Birthdate</h6>
     <div class="form-group">

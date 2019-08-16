@@ -10,6 +10,12 @@
     border: 4px solid #fff;
 }
 
+.name:hover{
+    cursor: pointer;
+}
+.image:hover{
+    cursor: pointer;
+}
     
 .postButton {
     margin-left: 85%;
@@ -36,8 +42,4 @@
 .likeButton {
     margin-top:8%;
     float: left;
-}
-
-.row:hover{
-    cursor: pointer;
 }

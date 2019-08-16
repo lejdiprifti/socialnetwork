@@ -15,7 +15,7 @@
   <div class="col col-xl-6 col-lg-12" *ngFor="let post of posts" >
     <ikubinfo-panel header="{{post.user.firstName}} {{post.user.lastName}}">
       <div panel-content>
-        <h1 (click)="openProfile(post.user.id)"><img class="image" src="assets/images/{{post.user.image}}.png" alt="{{post.user.image}}" (click)="openProfile(post.user.id)" />{{post.title || post.user.firstName}}</h1>
+        <h1 class="name" (click)="openProfile(post.user.id)"><img class="image" src="assets/images/{{post.user.image}}.png" alt="{{post.user.image}}" (click)="openProfile(post.user.id)" />{{post.title || post.user.firstName}}</h1>
         <p style="text-align: center; margin-top: 7%;">{{post.description}}</p>
         <hr>
         <div>

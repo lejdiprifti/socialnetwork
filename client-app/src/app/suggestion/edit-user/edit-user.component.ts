@@ -44,8 +44,8 @@ export class EditUserComponent implements OnInit {
     );
 
     this.editForm = this.fb.group({
-      firstName: [""],
-      lastName: [""],
+      firstName: ["" , Validators.required],
+      lastName: ["",Validators.required],
       birthdate: ["", [RegisterComponent.isOldEnough]],
       email: [""],
       address: [""],
@@ -147,6 +147,12 @@ export class EditUserComponent implements OnInit {
     this.updateUser.bio = this.editForm.value.bio;
     if (this.editForm.value.education !== "") {
       this.updateUser.education = this.editForm.value.education;
+    }
+    if (this.editForm.value.firstName !== ""){
+      this.updateUser.firstName = this.editForm.value.firstName;
+    }
+    if (this.editForm.value.lastName !== ""){
+      this.updateUser.lastName= this.editForm.value.lastName;
     }
     this.updateUser.socialLinks.facebook = this.editForm.value.facebook;
 

@@ -23,7 +23,7 @@ const suggestionRoutes: Routes = [
             { path: 'posts', component: PostsComponent, canActivate: [AdminGuard] },
             { path: 'post', component: PostComponent, canActivate: [AdminGuard] },
             { path: 'post/:id', component: PostComponent, canActivate: [AdminGuard] },
-            { path: 'friends', component: FriendsComponent , canActivate: [UserGuard]},
+            { path: 'people', component: FriendsComponent , canActivate: [UserGuard]},
             { path: 'messages/:id', component: MessagesComponent,canActivate:[UserGuard]},
             { path: 'chat',component: ChatComponent, canActivate:[UserGuard]},
             { path: 'requests', component: RequestsComponent, canActivate: [UserGuard]},
