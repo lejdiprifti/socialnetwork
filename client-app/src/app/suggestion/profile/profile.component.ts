@@ -102,7 +102,7 @@ export class ProfileComponent implements OnInit {
     for (let i=0; i<user.friends.length;i++){
       if (user.friends[i].id == this.loggedUser.id && this.user.id != this.loggedUser.id){
         return true;
-      }
+      } 
     }
   }
     return false;

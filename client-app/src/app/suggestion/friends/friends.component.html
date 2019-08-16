@@ -45,12 +45,12 @@
       <div panel-content>
         <div>
         <img src="assets/images/{{user.image}}.png" alt="{{user.image}}" style="float: left;" />
-        <h1>{{user.firstName}} {{user.lastName}}</h1>
+        <h1 style="text-align: center">{{user.firstName}} {{user.lastName}}</h1>
         </div>
         <br>
-        <p style="text-align: center">Address: {{user.address}}</p>
-        <p style="text-align: center">Education: {{user.education}}</p>
-        <p style="text-align: center">Job: {{user.job}}</p>
+        <p style="text-align: center"><i class="fa fa-home"></i> Address: {{user.address}}</p>
+        <p style="text-align: center"><i class="fa fa-graduation-cap"></i> Education: {{user.education}}</p>
+        <p style="text-align: center"><i class="fa fa-briefcase"></i> Job: {{user.job}}</p>
         <button icon="fa fa-plus-circle" pButton type="button" label="Add friend" class="ui-button-raised ui-button-secondary" (click)="addFriend(user)"></button>
       </div>
      
