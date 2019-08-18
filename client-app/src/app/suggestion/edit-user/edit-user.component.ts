@@ -8,7 +8,6 @@ import { DatePipe } from "@angular/common";
 import { ConfirmationService } from "primeng/components/common/confirmationservice";
 import { LoggerService } from "@ikubinfo/core/utilities/logger.service";
 import { Router } from "@angular/router";
-
 @Component({
   selector: "ikubinfo-edit-user",
   templateUrl: "./edit-user.component.html",
@@ -160,7 +159,7 @@ export class EditUserComponent implements OnInit {
 
     this.updateUser.socialLinks.instagram = this.editForm.value.instagram;
     this.updateUser.socialLinks.twitter = this.editForm.value.twitter;
-
+    
     this.confirmationService.confirm({
       message: "Do you want to save your data?",
       header: "Save Confirmation",
@@ -196,4 +195,6 @@ export class EditUserComponent implements OnInit {
     }
   });
 }
+
+
 }

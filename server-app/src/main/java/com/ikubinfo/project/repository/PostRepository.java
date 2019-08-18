@@ -81,7 +81,7 @@ public class PostRepository {
 	}
 	
 	public List<Post> getMyLikes(User user){
-		TypedQuery<Post> query=em.createQuery("Select p.post from PostLiked p where p.user=?1 and p.flag=?2",Post.class);
+		TypedQuery<Post> query=em.createQuery("Select p.post from PostLiked p where p.user=?1 and p.flag=?2 ORDER BY p.post.date DESC",Post.class);
 		query.setParameter(1, user);
 		query.setParameter(2, true);
 		return query.getResultList();

@@ -8,7 +8,7 @@
           <div class="active"></div>
         </div>
         <h4 class="name">{{ user.firstName }} {{ user.lastName }}</h4>
-        <p class="info">{{ user.email }}</p>
+        <p class="info"><i class="fa fa-laptop"></i> {{ user.email }}</p>
         <p class="info">
           <i class="fa fa-birthday-cake"></i> {{ user.birthdate | date }}
         </p>
@@ -139,6 +139,9 @@
             <div class="timeline-body">
               <p>{{ post.description }}</p>
             </div>
+            <hr>
+            <button pButton type="button" icon="fa fa-edit" (click)="editPost(post.id)" label="Edit" class="ui-button-raised"></button> 
+            <button pButton type="button" icon="fa fa-times" (click)="deletePost(post.id)" label="Delete" class="ui-button-rounded ui-button-danger"></button>
           </div>
         </li>
         <li class="timeline-inverted" *ngIf="i % 2 !== 0">
@@ -158,41 +161,12 @@
             <div class="timeline-body">
               <p>{{ post.description }}</p>
             </div>
+            <hr>
+            <button pButton type="button" icon="fa fa-edit" label="Edit" class="ui-button-raised"></button> 
+            <button pButton type="button" icon="fa fa-times" (click)="deletePost(post.id)" label="Delete" class="ui-button-rounded ui-button-danger"></button>
           </div>
         </li>
-        <li>
-          <div class="timeline-badge info"><i class="fa fa-save"></i></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">Lorem ipsum dolor</h4>
-            </div>
-            <div class="timeline-body">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
-                minus modi quam ipsum alias at est molestiae excepturi delectus
-                nesciunt, quibusdam debitis amet, beatae consequuntur impedit
-                nulla qui! Laborum, atque.
-              </p>
-              <hr />
-              <div class="btn-group">
-                <button
-                  type="button"
-                  class="btn btn-primary btn-sm dropdown-toggle"
-                  data-toggle="dropdown"
-                >
-                  <i class="fa fa-gear"></i> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li>Action</li>
-                  <li>Another action</li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </li>
+       
       </ul>
     </div>
 
@@ -237,39 +211,7 @@
             </div>
           </div>
         </li>
-        <li>
-          <div class="timeline-badge info"><i class="fa fa-save"></i></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">Lorem ipsum dolor</h4>
-            </div>
-            <div class="timeline-body">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
-                minus modi quam ipsum alias at est molestiae excepturi delectus
-                nesciunt, quibusdam debitis amet, beatae consequuntur impedit
-                nulla qui! Laborum, atque.
-              </p>
-              <hr />
-              <div class="btn-group">
-                <button
-                  type="button"
-                  class="btn btn-primary btn-sm dropdown-toggle"
-                  data-toggle="dropdown"
-                >
-                  <i class="fa fa-gear"></i> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </li>
+        
       </ul>
     </div>
   </main>

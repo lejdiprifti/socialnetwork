@@ -395,3 +395,6 @@ html,body {
     max-width: 100%;
   }
 
+ .ui-button-danger{
+   float: right;
+ }

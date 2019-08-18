@@ -23,7 +23,8 @@ export class ProfileComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private friendsService: FriendsService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private postService: PostService
   ) {
     
   }
@@ -123,4 +124,24 @@ export class ProfileComponent implements OnInit {
   }
   });
 }
+
+  editPost(id: number): void{
+    this.router.navigate(['suggestion/edit/post/'+id]);
+  }
+
+  deletePost(id: number): void{
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this post?',
+      header: 'Delete Confirmation',
+      icon: '	fa fa-exclamation-triangle',
+      accept: () => {
+        this.postService.deletePost(id).subscribe(res=>{
+          this.loadMyPosts();
+        },err=>{
+          this.logger.error("Error","Something bad happened.");
+        });
+      }
+    });
+   
+  }
 }

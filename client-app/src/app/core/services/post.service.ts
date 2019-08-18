@@ -28,6 +28,13 @@ export class PostService {
     return this.apiService.get("users/" + id + "/posts");
   }
 
+  public deletePost(id: number): Observable<void>{
+    return this.apiService.delete(this.url+"/"+id);
+  }
+
+  public editPost(id:number,post: Post): Observable<Post>{
+    return this.apiService.put(this.url+"/"+id,post);
+  }
   public allAsync = (): Observable<Array<Post>> => {
     return this.apiService.get<Array<Post>>(this.url);
   };
