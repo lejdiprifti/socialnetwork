@@ -16,14 +16,13 @@ import { ChatComponent } from './chat/chat.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DateAgoPipe } from '@ikubinfo/pipes/date-ago.pipe';
 import { EditUserComponent } from './edit-user/edit-user.component';
-import { EditPostComponent } from './edit-post/edit-post.component';
 
 
 
 @NgModule({
     imports: [CommonsModule, SuggestionRoutingModule, LayoutModule, FormsModule],
     exports: [],
-    declarations: [DateAgoPipe,DashboardComponent, PostComponent, PostsComponent, FriendsComponent, RequestsComponent, MessagesComponent, ChatComponent, ProfileComponent, EditUserComponent, EditPostComponent],
+    declarations: [DateAgoPipe,DashboardComponent, PostComponent, PostsComponent, FriendsComponent, RequestsComponent, MessagesComponent, ChatComponent, ProfileComponent, EditUserComponent],
     providers: [DatePipe]
 })
 export class SuggestionModule { }

@@ -25,13 +25,12 @@ export class PostComponent implements OnInit {
   loadData(): void {
     const id = this.active.snapshot.paramMap.get('id');
     if (id) {
-      this.postService.readAsync(Number(id)).toPromise()
-        .then(data => {
+      this.postService.getPostById(Number(id)).subscribe(data => {
           this.post = data;
           this.postForm.get('title').setValue(this.post.title);
           this.postForm.get('description').setValue(this.post.description);
-        }).catch(_ => {
-          this.logger.error('Error', 'An error accured');
+        },err => {
+          this.logger.error('Error', 'An error occurred.');
         });
     }
   }
@@ -42,7 +41,7 @@ export class PostComponent implements OnInit {
 
   initializeForm(): void {
     this.postForm = this.fb.group({
-      title: ['', Validators.required],
+      title: [''],
       description: ['', Validators.required]
     });
   }
@@ -55,27 +54,27 @@ export class PostComponent implements OnInit {
   getData(): Post {
     return {
       title: this.postForm.get('title').value,
-      description: this.postForm.get('description').value
+      description: this.postForm.get('description').value 
     }
 
   }
 
   submit(): void {
     if (this.post) {
-      this.postService.editAsync(this.post.id, this.getData()).toPromise().then(_ => {
-        this.logger.info('Success', 'Added !');
-        this.router.navigate(['posts'], { relativeTo: this.active.parent });
+      this.postService.editPost(this.post.id, this.getData()).subscribe(res => {
+        this.logger.info('Success', 'Post was updated.');
+        this.router.navigate(['suggestion/profile']);
 
-      }).catch(_ => {
-        this.logger.error('Error', 'An error accured');
+      },err => {
+        this.logger.error('Error', 'An error occurred.');
       });
     }
     else {
-      this.postService.createAsync(this.getData()).toPromise().then(_ => {
-        this.logger.info('Success', 'Created ');
-        this.router.navigate(['posts'], { relativeTo: this.active.parent });
-      }).catch(_ => {
-        this.logger.error('Error', 'An error accured');
+      this.postService.addPost(this.getData()).subscribe(res => {
+        this.logger.info('Success', 'Post was successfully created!');
+        this.router.navigate(['suggestions/dashboard']);
+      },err => {
+        this.logger.error('Error', 'An error occurred.');
       });
 
     }

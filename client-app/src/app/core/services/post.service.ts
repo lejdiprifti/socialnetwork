@@ -11,6 +11,10 @@ export class PostService {
   public getPosts(): Observable<Array<Post>> {
     return this.apiService.get(this.url);
   }
+  
+  public getPostById(id: number): Observable<Post>{
+    return this.apiService.get(this.url+'/'+id);
+  }
 
   public addPost(post: Post): Observable<Post> {
     return this.apiService.post(this.url, post);

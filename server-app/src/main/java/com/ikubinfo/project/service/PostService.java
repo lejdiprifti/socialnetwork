@@ -54,21 +54,17 @@ public class PostService {
 		} catch (NullPointerException e) {
 			throw new BadRequestException("Null values");
 		}
-	}
+	} 
 	public PostModel update(final long id,PostModel post) {
 		try {
 		Post foundPost = postRepository.getPostById(id);
-		post.setId(foundPost.getId());
-		if (post.getTitle()==null) {
-			post.setTitle(foundPost.getTitle());
+		if (post.getTitle()!=null) {
+			foundPost.setTitle(post.getTitle());
 		}
-		if (post.getDescription()==null) {
-			post.setDescription(foundPost.getDescription());
+		if (post.getDescription()!=null) {
+			foundPost.setDescription(post.getDescription());
 		}
-		post.setDate(new Date());
-		post.setUser(userConverter.toModel(foundPost.getUser()));
-		post.setFlag(true);
-		postRepository.update(postConverter.toEntity(post));
+		postRepository.update(foundPost);
 		return post;
 	}catch(NoResultException e){
 		throw new NotFoundException("Post not found.");

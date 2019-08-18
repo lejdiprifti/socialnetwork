@@ -140,8 +140,8 @@
               <p>{{ post.description }}</p>
             </div>
             <hr>
-            <button pButton type="button" icon="fa fa-edit" (click)="editPost(post.id)" label="Edit" class="ui-button-raised"></button> 
-            <button pButton type="button" icon="fa fa-times" (click)="deletePost(post.id)" label="Delete" class="ui-button-rounded ui-button-danger"></button>
+            <button *ngIf="showPosts===true" pButton type="button" icon="fa fa-edit" (click)="editPost(post.id)" label="Edit" class="ui-button-raised"></button> 
+            <button *ngIf="showPosts===true" pButton type="button" icon="fa fa-trash" (click)="deletePost(post.id)" label="Delete" class="ui-button-rounded ui-button-danger"></button>
           </div>
         </li>
         <li class="timeline-inverted" *ngIf="i % 2 !== 0">
@@ -162,8 +162,8 @@
               <p>{{ post.description }}</p>
             </div>
             <hr>
-            <button pButton type="button" icon="fa fa-edit" label="Edit" class="ui-button-raised"></button> 
-            <button pButton type="button" icon="fa fa-times" (click)="deletePost(post.id)" label="Delete" class="ui-button-rounded ui-button-danger"></button>
+            <button *ngIf="showPosts===true"  pButton type="button" icon="fa fa-edit" label="Edit" class="ui-button-raised"></button> 
+            <button *ngIf="showPosts===true"  pButton type="button" icon="fa fa-trash" (click)="deletePost(post.id)" label="Delete" class="ui-button-rounded ui-button-danger"></button>
           </div>
         </li>
        
