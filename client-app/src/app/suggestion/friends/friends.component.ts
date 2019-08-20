@@ -4,6 +4,7 @@ import { User } from '@ikubinfo/core/models/user';
 import { LoggerService } from '@ikubinfo/core/utilities/logger.service';
 import { FriendsService } from '@ikubinfo/core/services/friends.service';
 import { AuthService } from '@ikubinfo/core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ikubinfo-friends',
@@ -13,7 +14,8 @@ import { AuthService } from '@ikubinfo/core/services/auth.service';
 export class FriendsComponent implements OnInit {
   
   constructor(private userService: UserService,private authService: AuthService,
-    private logger: LoggerService,private friendsService: FriendsService) { }
+    private logger: LoggerService,private friendsService: FriendsService,
+    private router: Router) { }
   users: Array<User>;
   requests: Array<any>;
   user: User;
@@ -62,5 +64,9 @@ export class FriendsComponent implements OnInit {
     err=>{
       this.logger.error("Error","Something bad happened.");
     });
+  }
+
+  openProfile(id: number): void{
+    this.router.navigate(['suggestion/profile/'+id]);
   }
 }
