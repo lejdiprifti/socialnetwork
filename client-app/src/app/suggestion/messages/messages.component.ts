@@ -18,6 +18,7 @@ export class MessagesComponent implements OnInit {
   chat: any;
   user:User;
   messages:Array<Chat>;
+  num: number;
   ngOnInit() {
     this.chat={
 
@@ -25,12 +26,14 @@ export class MessagesComponent implements OnInit {
     this.user=this.authService.loggedUser;
     this.messages=[];
     this.getMessages();
+    this.num=this.messages.length-5;
   }
 
   getMessages(): void{
     const id=this.active.snapshot.paramMap.get('id');
     this.chatService.getMessages(Number(id)).subscribe(res=>{
       this.messages=res;
+
     },
     err=>{
       this.logger.error("Error","Something bad happened.");
@@ -49,5 +52,11 @@ export class MessagesComponent implements OnInit {
     })
   }
 
- 
+ showAll(): void{
+   this.num=0;
+ }
+
+ showLess(): void{
+   this.num=this.messages.length-5;
+ }
 }

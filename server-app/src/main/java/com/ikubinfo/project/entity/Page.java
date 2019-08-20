@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -24,11 +25,11 @@ public class Page {
 	private String bio;
 
 	@ManyToOne
-	@Column(name = "createdBy")
+	@JoinColumn(name = "createdBy")
 	private User user;
 
 	@ManyToOne
-	@Column(name = "role_id")
+	@JoinColumn(name = "role_id")
 	private RoleEntity role;
 
 	private boolean flag;
