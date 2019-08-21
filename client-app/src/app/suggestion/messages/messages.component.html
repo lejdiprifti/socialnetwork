@@ -36,8 +36,8 @@
           </ul>
       </div>
   </div>
-  <span *ngIf="num != 0" (click)="showAll()" class="badge badge-pill badge-dark">Show all messages...</span>
-  <span *ngIf="num == 0" (click)="showLess()" class="badge badge-pill badge-dark">Show less messages...</span>
+  <span *ngIf="num != 0" (click)="showAll()" class="badge badge-pill badge-primary">Show all messages...</span>
+  <span *ngIf="num == 0" (click)="showLess()" class="badge badge-pill badge-primary">Show less messages...</span>
   <div _ngcontent-c8="" class="card-body" >
     <ul _ngcontent-c8="" class="chat" *ngFor="let message of messages | slice: num">
       <li _ngcontent-c8="" class="left clearfix" *ngIf="message.reciever.id === user.id">

@@ -33,7 +33,7 @@ export class MessagesComponent implements OnInit {
     const id=this.active.snapshot.paramMap.get('id');
     this.chatService.getMessages(Number(id)).subscribe(res=>{
       this.messages=res;
-
+      this.showLess();
     },
     err=>{
       this.logger.error("Error","Something bad happened.");
