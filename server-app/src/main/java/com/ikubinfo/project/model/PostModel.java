@@ -10,6 +10,7 @@ public class PostModel {
 	private String description;
 	private Date date;
 	private UserModel user;
+	private PageModel page;
 	private List<PostLikedModel> likes;
 	private boolean flag;
 	
@@ -74,10 +75,19 @@ public class PostModel {
 		this.likes = likes;
 	}
 
+	public PageModel getPage() {
+		return page;
+	}
+
+	public void setPage(PageModel page) {
+		this.page = page;
+	}
+
 	@Override
 	public String toString() {
 		return "PostModel [id=" + id + ", title=" + title + ", description=" + description + ", date=" + date
-				+ ", user=" + user + ", flag=" + flag + "]";
+				+ ", user=" + user + ", page=" + page + ", likes=" + likes + ", flag=" + flag + "]";
 	}
+
 
 }

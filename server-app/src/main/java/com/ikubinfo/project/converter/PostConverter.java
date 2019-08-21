@@ -10,11 +10,11 @@ import com.ikubinfo.project.model.PostModel;
 public class PostConverter implements BaseConverter<PostModel,Post> {
 	private UserConverter userConverter;
 	private PostLikedConverter postLikedConverter;
-
+	private PageConverter pageConverter;
 	public PostConverter() {
 		this.userConverter=new UserConverter();
 		this.postLikedConverter=new PostLikedConverter(userConverter);
-		
+		this.pageConverter=new PageConverter();
 	}
 
 	@Override
@@ -27,6 +27,7 @@ public class PostConverter implements BaseConverter<PostModel,Post> {
 		model.setUser(userConverter.toModel(entity.getUser()));
 		model.setFlag(entity.isFlag());
 		model.setLikes(postLikedConverter.toModel(entity.getLikes()));
+		model.setPage(pageConverter.toModel(entity.getPage()));
 		return model;
 		
 	}
@@ -41,6 +42,7 @@ public class PostConverter implements BaseConverter<PostModel,Post> {
 		entity.setUser(userConverter.toEntity(model.getUser()));
 		entity.setFlag(model.isFlag());
 		entity.setLikes(postLikedConverter.toEntity(model.getLikes()));
+		entity.setPage(pageConverter.toEntity(model.getPage()));
 		return entity;
 	}
 	

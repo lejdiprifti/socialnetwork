@@ -7,10 +7,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "pages", schema = "socialnetwork")
+@NamedQueries({
+	@NamedQuery(name="Page.getMyPages",query="Select p from Page p where p.user=?1 and p.flag=?2"),
+	@NamedQuery(name="Page.getPageById", query="Select p from Page p where p.id=?1 and p.flag=?2")
+	
+})
 public class Page {
 
 	@Id

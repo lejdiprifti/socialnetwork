@@ -14,6 +14,7 @@ import com.ikubinfo.project.entity.Post;
 import com.ikubinfo.project.entity.PostLiked;
 import com.ikubinfo.project.entity.PostLikedId;
 import com.ikubinfo.project.entity.User;
+import com.ikubinfo.project.model.PageModel;
 import com.ikubinfo.project.model.PostModel;
 import com.ikubinfo.project.repository.PostRepository;
 import com.ikubinfo.project.repository.UserRepository;
@@ -143,5 +144,12 @@ public class PostService {
 	
 	public List<PostModel> getMyLikes(User user){
 			return postConverter.toModel(postRepository.getMyLikes(user));
+	}
+	
+	public Post addPost(PostModel post,PageModel page) {
+		post.setPage(page);
+		post.setDate(new Date());
+		post.setFlag(true);
+		return postRepository.addPost(postConverter.toEntity(post));
 	}
 }

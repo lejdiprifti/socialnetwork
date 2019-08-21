@@ -49,6 +49,10 @@ public class Post {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="page_id")
+	private Page page;
+	
 	@OrderBy("date ASC")
 	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<PostLiked> likes = new ArrayList<>();
@@ -116,10 +120,19 @@ public class Post {
 		this.likes = likes;
 	}
 
-	@Override
-	public String toString() {
-		return "Post [id=" + id + ", description=" + description + ", date=" + date + ", user=" + user + ", flag="
-				+ flag + "]";
+	public Page getPage() {
+		return page;
 	}
 
+	public void setPage(Page page) {
+		this.page = page;
+	}
+
+	@Override
+	public String toString() {
+		return "Post [id=" + id + ", title=" + title + ", description=" + description + ", date=" + date + ", user="
+				+ user + ", page=" + page + ", likes=" + likes + ", flag=" + flag + "]";
+	}
+
+	
 }
