@@ -3,6 +3,7 @@ package com.ikubinfo.project.resource;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -20,7 +21,10 @@ public class PageResource extends BaseResource {
 	public PageResource() {
 		this.pageService = new PageService();
 	}
-	
+	@GET
+	public Response getMyPages() {
+		return ok(pageService.getMyPages(getEmailFromToken()));
+	}
 	@POST
 	public Response createPage(PageModel page) throws URISyntaxException {
 		return Response.created(new URI("pages/"+pageService.createPage(page, getEmailFromToken()).getId())).build();

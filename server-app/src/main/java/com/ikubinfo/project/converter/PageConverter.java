@@ -1,5 +1,8 @@
 package com.ikubinfo.project.converter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.ikubinfo.project.base.BaseConverter;
 import com.ikubinfo.project.entity.Page;
 import com.ikubinfo.project.model.PageModel;
@@ -35,5 +38,14 @@ public class PageConverter implements BaseConverter<PageModel,Page> {
 		entity.setFlag(model.isFlag());
 		return entity;
 	}
+	
+	public List<PageModel> toModel(List<Page> entityList){
+		List<PageModel> modelList=new ArrayList<PageModel>();
+		for (Page page: entityList) {
+			modelList.add(toModel(page));
+		}
+		return modelList;
+	}
+	
 
 }

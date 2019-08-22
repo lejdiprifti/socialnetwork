@@ -7,8 +7,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import java.util.UUID;
-
-import com.ikubinfo.project.entity.User;
 import com.ikubinfo.project.model.LoginRequest;
 import com.ikubinfo.project.model.LoginResponse;
 import com.ikubinfo.project.model.UserModel;

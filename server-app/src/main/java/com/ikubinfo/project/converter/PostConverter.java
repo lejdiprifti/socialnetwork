@@ -41,9 +41,12 @@ public class PostConverter implements BaseConverter<PostModel,Post> {
 		entity.setTitle(model.getTitle());
 		entity.setDescription(model.getDescription());
 		entity.setDate(model.getDate());
+		if (model.getUser() != null)
 		entity.setUser(userConverter.toEntity(model.getUser()));
 		entity.setFlag(model.isFlag());
+		if (model.getLikes() != null)
 		entity.setLikes(postLikedConverter.toEntity(model.getLikes()));
+		if (model.getPage() != null)
 		entity.setPage(pageConverter.toEntity(model.getPage()));
 		return entity;
 	}

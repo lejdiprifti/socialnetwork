@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
-
 import com.ikubinfo.project.converter.PostConverter;
 import com.ikubinfo.project.converter.UserConverter;
 import com.ikubinfo.project.entity.Post;
@@ -24,11 +23,13 @@ public class PostService {
 	private PostConverter postConverter;
 	private UserRepository userRepository;
 	private UserConverter userConverter;
+	private PageService pageService;
 	public PostService() {
 		this.postConverter=new PostConverter();
 		this.postRepository=new PostRepository();
 		this.userRepository=new UserRepository();
 		this.userConverter=new UserConverter();
+		this.pageService=new PageService();
 	}
 	
 	public List<PostModel> getPosts(String email){
@@ -147,11 +148,12 @@ public class PostService {
 			return postConverter.toModel(postRepository.getMyLikes(user));
 	}
 	
-	public Post addPost(PostModel post,PageModel page) {
+	public Post addPost(PostModel post, final long pageId,final String email) {
+		PageModel page=pageService.getPageById(pageId);
 		post.setPage(page);
 		post.setDate(new Date());
 		post.setFlag(true);
-		post.setUser(null);
+		post.setUser(userConverter.toModel(userRepository.getUserByEmail(email)));
 		return postRepository.addPost(postConverter.toEntity(post));
 	}
 }
