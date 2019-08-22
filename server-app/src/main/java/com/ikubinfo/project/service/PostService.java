@@ -47,6 +47,7 @@ public class PostService {
 		try {
 			post.setUser(userConverter.toModel(userRepository.getUserByEmail(email)));
 			post.setDate(new Date());
+			post.setPage(null);
 			post.setFlag(true);
 			post.setDescription(post.getDescription());
 			post.setTitle(post.getTitle());
@@ -150,6 +151,7 @@ public class PostService {
 		post.setPage(page);
 		post.setDate(new Date());
 		post.setFlag(true);
+		post.setUser(null);
 		return postRepository.addPost(postConverter.toEntity(post));
 	}
 }

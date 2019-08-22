@@ -5,7 +5,7 @@ import com.ikubinfo.project.entity.Page;
 import com.ikubinfo.project.model.PageModel;
 
 public class PageConverter implements BaseConverter<PageModel,Page> {
-	private UserConverter userConverter;
+	private UserConverter userConverter; 
 	public PageConverter() {
 		this.userConverter= new UserConverter();
 	}
@@ -18,6 +18,7 @@ public class PageConverter implements BaseConverter<PageModel,Page> {
 		model.setBio(entity.getBio());
 		model.setUser(userConverter.toModel(entity.getUser()));
 		model.setRole(entity.getRole());
+		model.setDate(entity.getDate());
 		model.setFlag(entity.isFlag());
 		return model;
 	}
@@ -30,6 +31,7 @@ public class PageConverter implements BaseConverter<PageModel,Page> {
 		entity.setBio(model.getBio());
 		entity.setUser(userConverter.toEntity(model.getUser()));
 		entity.setRole(model.getRole());
+		entity.setDate(model.getDate());
 		entity.setFlag(model.isFlag());
 		return entity;
 	}

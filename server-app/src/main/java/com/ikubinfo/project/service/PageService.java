@@ -48,9 +48,9 @@ public class PageService {
 		pageLiked.setFlag(true);
 		try {
 			pageRepository.isLiked(page, user);
-			pageRepository.likePage(pageLiked);
-		} catch (NoResultException e) {
 			pageRepository.update(pageLiked);
+		} catch (NoResultException e) {
+			pageRepository.likePage(pageLiked);
 		}
 	}
 

@@ -46,11 +46,11 @@ public class Post {
 	private Date date;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id",nullable=true,updatable=false)
 	private User user;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="page_id")
+	@JoinColumn(name="page_id",nullable=true,updatable=false)
 	private Page page;
 	
 	@OrderBy("date ASC")
@@ -128,11 +128,6 @@ public class Post {
 		this.page = page;
 	}
 
-	@Override
-	public String toString() {
-		return "Post [id=" + id + ", title=" + title + ", description=" + description + ", date=" + date + ", user="
-				+ user + ", page=" + page + ", likes=" + likes + ", flag=" + flag + "]";
-	}
-
+	
 	
 }

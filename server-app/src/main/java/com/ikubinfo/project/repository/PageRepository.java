@@ -43,12 +43,12 @@ public class PageRepository {
 	
 	
 	@Transactional
-	public PageLiked likePage(PageLiked likedPage) {
+	public void likePage(PageLiked likedPage) {
 		em.getTransaction().begin();
 		em.persist(likedPage);
 		em.getTransaction().commit();
 		em.close();
-		return likedPage;
+	
 	}
 	
 	public Page getPageById(long id) {
@@ -58,21 +58,19 @@ public class PageRepository {
 		return query.getSingleResult();
 	}
 	
-	public PageLiked isLiked(Page page, User user) {
-		TypedQuery<PageLiked> query=em.createQuery("Select p from PageLiked p where p.user=?1 and p.page?2 and p.flag=?3",PageLiked.class);
+	public Page isLiked(Page page, User user) {
+		TypedQuery<Page> query=em.createQuery("Select p.page from PageLiked p where p.user=?1 and p.page=?2",Page.class);
 		query.setParameter(1, user);
-		query.setParameter(2, user);
-		query.setParameter(3, true);
+		query.setParameter(2, page);
 		return query.getSingleResult();
 	}
 	
 	@Transactional
-	public PageLiked update(PageLiked pageLiked) {
+	public void update(PageLiked pageLiked) {
 		em.getTransaction().begin();
 		em.merge(pageLiked);
 		em.getTransaction().commit();
 		em.close();
-		return pageLiked;
 	}
 
 }

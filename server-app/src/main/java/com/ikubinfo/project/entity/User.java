@@ -204,13 +204,5 @@ public class User {
 		this.socialLinks = socialLinks;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", password=" + password
-				+ ", birthdate=" + birthdate + ", email=" + email + ", job=" + job + ", education=" + education
-				+ ", role=" + role + ", address=" + address + ", bio=" + bio + ", socialLinks=" + socialLinks
-				+ ", flag=" + flag + ", posts=" + posts + ", friends=" + friends + ", likedPosts=" + likedPosts
-				+ ", image=" + image + "]";
-	}
-
+	
 }

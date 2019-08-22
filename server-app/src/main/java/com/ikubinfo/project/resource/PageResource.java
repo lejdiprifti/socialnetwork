@@ -6,6 +6,7 @@ import java.net.URISyntaxException;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
 import com.ikubinfo.project.base.BaseResource;
@@ -26,13 +27,15 @@ public class PageResource extends BaseResource {
 	}
 	
 	@PUT
-	public Response likePage(final long id) {
+	@Path("/{id}/like")
+	public Response likePage(@PathParam("id") final long id) {
 		pageService.likePage(getEmailFromToken(), id);
 		return Response.noContent().build();
 	}
 	
 	@PUT
-	public Response unlikePage(final long id) {
+	@Path("/{id}/unlike")
+	public Response unlikePage(@PathParam("id")final long id) {
 		pageService.unlikePage(getEmailFromToken(), id);
 		return Response.noContent().build();
 	}
