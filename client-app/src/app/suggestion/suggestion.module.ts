@@ -17,11 +17,11 @@ import { ProfileComponent } from './profile/profile.component';
 import { DateAgoPipe } from '@ikubinfo/pipes/date-ago.pipe';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { PagesComponent } from './pages/pages.component';
-
+import {CardModule} from 'primeng/card';
 
 
 @NgModule({
-    imports: [CommonsModule, SuggestionRoutingModule, LayoutModule, FormsModule],
+    imports: [CardModule,CommonsModule, SuggestionRoutingModule, LayoutModule, FormsModule],
     exports: [],
     declarations: [DateAgoPipe,DashboardComponent, PostComponent, PostsComponent, FriendsComponent, RequestsComponent, MessagesComponent, ChatComponent, ProfileComponent, EditUserComponent, PagesComponent],
     providers: [DatePipe]

@@ -1,7 +1,9 @@
 package com.ikubinfo.project.model;
 
 import java.util.Date;
+import java.util.List;
 
+import com.ikubinfo.project.entity.Post;
 import com.ikubinfo.project.entity.RoleEntity;
 
 public class PageModel {
@@ -12,6 +14,8 @@ public class PageModel {
 	private Date date;
 	private UserModel user;
 	private RoleEntity role;
+	private List<PageLikedModel> followers;
+	private List<PostModel> posts;
 	private boolean flag;
 
 	public PageModel() {
@@ -74,10 +78,21 @@ public class PageModel {
 		this.flag = flag;
 	}
 
-	@Override
-	public String toString() {
-		return "PageModel [id=" + id + ", name=" + name + ", bio=" + bio + ", user=" + user + ", role=" + role
-				+ ", flag=" + flag + "]";
+	public List<PageLikedModel> getFollowers() {
+		return followers;
 	}
+
+	public void setFollowers(List<PageLikedModel> followers) {
+		this.followers = followers;
+	}
+
+	public List<PostModel> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<PostModel> posts) {
+		this.posts = posts;
+	}
+
 
 }

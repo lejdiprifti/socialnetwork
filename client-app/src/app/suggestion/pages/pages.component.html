@@ -1,3 +1,32 @@
-<p>
-  pages works!
-</p>
+<div *ngFor="let page of pages">
+  <p-card
+    header="{{ page.name }}"
+    subheader="{{ page.followers.length }} Followers  {{
+      page.posts.length
+    }} Posts"
+    [style]="{ width: '360px' }"
+    styleClass="ui-card-shadow"
+  >
+    <p-header>
+      <img src="Card" src="assets/images/children.jpg" />
+    </p-header>
+    <div>{{ page.bio }}</div>
+    <hr />
+    <p-footer>
+      <button
+        pButton
+        type="button"
+        label="Save"
+        icon="pi pi-check"
+        style="margin-right: .25em"
+      ></button>
+      <button
+        pButton
+        type="button"
+        label="Cancel"
+        icon="pi pi-times"
+        class="ui-button-secondary"
+      ></button>
+    </p-footer>
+  </p-card>
+</div>

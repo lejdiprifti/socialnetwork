@@ -9,8 +9,12 @@ import com.ikubinfo.project.model.PageModel;
 
 public class PageConverter implements BaseConverter<PageModel,Page> {
 	private UserConverter userConverter; 
+	private PageLikedConverter pageLikedConverter;
+	private PostConverter postConverter;
 	public PageConverter() {
 		this.userConverter= new UserConverter();
+		this.pageLikedConverter=new PageLikedConverter();
+		this.postConverter=new PostConverter();
 	}
 
 	@Override
@@ -22,6 +26,8 @@ public class PageConverter implements BaseConverter<PageModel,Page> {
 		model.setUser(userConverter.toModel(entity.getUser()));
 		model.setRole(entity.getRole());
 		model.setDate(entity.getDate());
+		model.setFollowers(pageLikedConverter.toModel(entity.getLikedUsers()));
+		model.setPosts(postConverter.toModel(entity.getPosts()));
 		model.setFlag(entity.isFlag());
 		return model;
 	}

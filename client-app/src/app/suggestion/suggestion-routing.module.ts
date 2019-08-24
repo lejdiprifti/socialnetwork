@@ -13,6 +13,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { ChatComponent } from './chat/chat.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { PagesComponent } from './pages/pages.component';
 
 const suggestionRoutes: Routes = [
     {
@@ -30,6 +31,7 @@ const suggestionRoutes: Routes = [
             { path: 'profile/:id', component: ProfileComponent, canActivate: [UserGuard]},
             { path: 'profile', component: ProfileComponent, canActivate: [UserGuard]},
             {path: 'edit/post/:id', component: PostComponent},
+            {path: 'pages', component: PagesComponent, canActivate:[UserGuard]},
             { path: 'edit', component: EditUserComponent,canActivate:[UserGuard]},
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
         ]

@@ -1,9 +1,11 @@
 package com.ikubinfo.project.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -45,7 +48,13 @@ public class Page {
 	@ManyToOne
 	@JoinColumn(name = "role_id")
 	private RoleEntity role;
-
+	
+	@OneToMany(mappedBy="page",fetch=FetchType.LAZY)
+	private List<PageLiked> followers;
+	
+	@OneToMany(mappedBy="page",fetch=FetchType.LAZY)
+	private List<Post> posts;
+	
 	private boolean flag;
 
 	public Page() {
@@ -98,6 +107,22 @@ public class Page {
 
 	public void setRole(RoleEntity role) {
 		this.role = role;
+	}
+
+	public List<PageLiked> getLikedUsers() {
+		return followers;
+	}
+
+	public void setLikedUsers(List<PageLiked> followers) {
+		this.followers = followers;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
 	}
 
 	public boolean isFlag() {

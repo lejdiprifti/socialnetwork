@@ -10,7 +10,19 @@ export class PageService {
   url = "pages";
   constructor(private apiService: ApiService) { }
 
-  public getMyPages(): Observable<Page>{
+  public getMyPages(): Observable<Array<Page>>{
     return this.apiService.get(this.url);
+  }
+
+  public createPage(page: Page): Observable<Page>{
+    return this.apiService.post(this.url,page);
+  }
+
+  public editPage(id: number,page: Page): Observable<Page>{
+    return this.apiService.put(this.url+"/"+id,page);
+  }
+
+  public deletePage(id: number): Observable<void>{
+    return this.apiService.delete(this.url+"/"+id);
   }
 }

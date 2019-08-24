@@ -29,6 +29,12 @@ export const menuItems: Array<MenuItem> = [{
     allowedRoles: [RoleEnum.USER]
 },
 {
+    url: '/suggestion/pages',
+    icon: 'fa fa-dashboard',
+    label: 'My Pages',
+    allowedRoles: [RoleEnum.USER]
+},
+{
     url:'/suggestion/profile',
     icon: 'fa fa-user-circle',
     label: 'Profile',

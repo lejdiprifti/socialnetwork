@@ -33,6 +33,13 @@ public class PageResource extends BaseResource {
 	}
 	
 	@PUT
+	@Path("/{id}")
+	public Response editPage(@PathParam("id") final long id,PageModel page) {
+		pageService.editPage(id,page);
+		return Response.noContent().build();
+	}
+	
+	@PUT
 	@Path("/{id}/like")
 	public Response likePage(@PathParam("id") final long id) {
 		pageService.likePage(getEmailFromToken(), id);

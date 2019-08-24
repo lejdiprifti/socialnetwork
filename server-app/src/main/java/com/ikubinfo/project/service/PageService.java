@@ -69,9 +69,9 @@ public class PageService {
 		return pageRepository.createPage(pageConverter.toEntity(page));
 	}
 
-	public void editPage(PageModel page) {
+	public void editPage(final long id,PageModel page) {
 		try {
-			Page foundPage = pageRepository.getPageById(page.getId());
+			Page foundPage = pageRepository.getPageById(id);
 			if (page.getName() != "") {
 				foundPage.setName(page.getName());
 			}
@@ -104,5 +104,6 @@ public class PageService {
 		Page page = pageRepository.getPageById(id);
 		pageRepository.editPage(page);
 	}
+	
 
 }
