@@ -68,7 +68,7 @@ public class PostResource extends BaseResource {
 	@POST
 	@Path("/page/{id}")
 	public Response addPagePost(@PathParam("id") final long id, PostModel post) throws URISyntaxException {
-		return Response.created(new URI("post/"+postService.addPost(post,id,getEmailFromToken()).getId())).build();
+		return Response.created(new URI("post/"+postService.addPost(post,id))).build();
 	}
 	
 	

@@ -148,12 +148,11 @@ public class PostService {
 			return postConverter.toModel(postRepository.getMyLikes(user));
 	}
 	
-	public Post addPost(PostModel post, final long pageId,final String email) {
+	public Post addPost(PostModel post, final long pageId) {
 		PageModel page=pageService.getPageById(pageId);
 		post.setPage(page);
 		post.setDate(new Date());
 		post.setFlag(true);
-		post.setUser(userConverter.toModel(userRepository.getUserByEmail(email)));
 		return postRepository.addPost(postConverter.toEntity(post));
 	}
 }

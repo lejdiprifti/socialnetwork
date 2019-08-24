@@ -99,5 +99,10 @@ public class PageService {
 		pageLiked.setFlag(false);
 		pageRepository.update(pageLiked);
 	}
+	
+	public void deletePage(final long id) {
+		Page page = pageRepository.getPageById(id);
+		pageRepository.editPage(page);
+	}
 
 }

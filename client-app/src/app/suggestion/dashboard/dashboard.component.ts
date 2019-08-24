@@ -30,7 +30,8 @@ export class DashboardComponent implements OnInit {
     this.post={};
     this.user=this.authService.loggedUser;
     this.postForm=this.fb.group({
-      description: ["",[Validators.nullValidator,Validators.required]]
+      description: ["",[Validators.nullValidator,Validators.required]],
+      title: [""]
     });
   
   }
@@ -54,7 +55,7 @@ export class DashboardComponent implements OnInit {
   getData(): Post{
     return{
       description: this.postForm.value.description,
-    
+      title: this.postForm.value.title,
     }
   }
   reset(): void {
@@ -62,6 +63,7 @@ export class DashboardComponent implements OnInit {
   }
   fillForm(data: Post = {}): void {
     this.postForm.get('description').setValue(data.description);
+    this.postForm.get('title').setValue(data.title);
   }
   submit(): void {
     this.confirmationService.confirm({

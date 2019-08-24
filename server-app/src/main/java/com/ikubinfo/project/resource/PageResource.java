@@ -3,6 +3,7 @@ package com.ikubinfo.project.resource;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -21,6 +22,7 @@ public class PageResource extends BaseResource {
 	public PageResource() {
 		this.pageService = new PageService();
 	}
+	
 	@GET
 	public Response getMyPages() {
 		return ok(pageService.getMyPages(getEmailFromToken()));
@@ -41,6 +43,13 @@ public class PageResource extends BaseResource {
 	@Path("/{id}/unlike")
 	public Response unlikePage(@PathParam("id")final long id) {
 		pageService.unlikePage(getEmailFromToken(), id);
+		return Response.noContent().build();
+	}
+	
+	@DELETE
+	@Path("/{id}")
+	public Response deletePage(@PathParam("id") final long id) {
+		pageService.deletePage(id);
 		return Response.noContent().build();
 	}
 }
