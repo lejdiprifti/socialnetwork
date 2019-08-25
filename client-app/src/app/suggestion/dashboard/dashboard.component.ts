@@ -9,6 +9,9 @@ import { DatePipe } from '@angular/common';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { LikedPost } from '@ikubinfo/core/models/likedpost';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PageService } from '@ikubinfo/core/services/page.service';
+import { Page } from '@ikubinfo/core/models/page';
+import { MenuItem } from 'primeng/primeng';
 
 @Component({
   selector: 'ikubinfo-dashboard',
@@ -20,20 +23,26 @@ export class DashboardComponent implements OnInit {
   posts: Array<Post>;
   postForm: FormGroup;
   post: Post;
+  items:MenuItem[];
+  pages: Array<Page>;
   constructor(private postService: PostService,private fb: FormBuilder,
     private logger: LoggerService,private authService: AuthService,
-    private router: Router,
+    private router: Router,private pageService:PageService,
     private confirmationService: ConfirmationService,private datePipe: DatePipe) { }
 
   ngOnInit() {
+    this.pages=[];
+    this.items=[];
     this.loadPosts();
+    this.getMyPages();
+    
     this.post={};
     this.user=this.authService.loggedUser;
     this.postForm=this.fb.group({
       description: ["",[Validators.nullValidator,Validators.required]],
       title: [""]
     });
-  
+    
   }
 
 
@@ -127,5 +136,30 @@ export class DashboardComponent implements OnInit {
 
  openProfile(id:number): void{
    this.router.navigate(['suggestion/profile/'+id]); 
+ }
+
+ getMyPages(): void{
+   this.pageService.getMyPages().subscribe(res=>{
+    this.pages=res;
+    for (let i=0;i<this.pages.length;i++){
+      this.items.push({label: this.pages[i].name , icon: 'fa fa-caret-square-o-right' , command: () => {
+        this.postAsPage(this.pages[i].id,this.getData());
+      }});
+    }
+   },
+   err=>{
+     this.logger.error("Error","Something bad happened.");
+   })
+ }
+
+ postAsPage(id: number,post: Post): void{
+   this.postService.postAsPage(id,post).subscribe(res=>{
+     this.loadPosts();
+     this.reset();
+     this.logger.success("Success","Post was added succesfully.");
+   },
+   err=>{
+     this.logger.error("Error","Something bad happened.");
+   })
  }
 }

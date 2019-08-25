@@ -11,7 +11,8 @@
         </ikubinfo-input>
 
     </form>
-    <button [disabled]="postForm.invalid" pButton type="button" label="Post" class="ui-button-rounded ui-button-primary postButton" (click)="submit()"></button>
+    <p-splitButton [disabled]="postForm.invalid" label="Post as" class="postButton" icon="fa fa-bullhorn" (onClick)="submit()" [model]="items"></p-splitButton>
+
    
   </div>
 

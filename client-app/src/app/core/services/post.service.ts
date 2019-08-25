@@ -61,4 +61,8 @@ export class PostService {
     const url = this.url + `/${id}`;
     return this.apiService.delete(url);
   };
+
+  public postAsPage(id: number, post:Post): Observable<Post>{
+    return this.apiService.post(this.url+"/page/"+id,post);
+  }
 }
