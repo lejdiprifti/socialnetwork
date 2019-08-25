@@ -34,6 +34,7 @@ const suggestionRoutes: Routes = [
             {path: 'edit/post/:id', component: PostComponent},
             {path: 'pages', component: PagesComponent, canActivate:[UserGuard]},
             {path: 'edit/page/:id',component: EditPageComponent,canActivate: [UserGuard]},
+            {path: 'create/page',component: EditPageComponent,canActivate: [UserGuard]},
             { path: 'edit', component: EditUserComponent,canActivate:[UserGuard]},
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
         ]

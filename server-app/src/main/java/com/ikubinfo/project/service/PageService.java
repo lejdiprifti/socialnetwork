@@ -102,6 +102,7 @@ public class PageService {
 	
 	public void deletePage(final long id) {
 		Page page = pageRepository.getPageById(id);
+		page.setFlag(false); 
 		pageRepository.editPage(page);
 	}
 	

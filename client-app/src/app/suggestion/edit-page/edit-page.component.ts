@@ -63,6 +63,7 @@ export class EditPageComponent implements OnInit {
   }
 
   submit(): void {
+    if (this.page){
     this.confirmationService.confirm({
       message: "Do you want to save your data?",
       header: "Save Confirmation",
@@ -76,5 +77,13 @@ export class EditPageComponent implements OnInit {
       });
     }
   });
+}else{
+    this.pageService.createPage(this.getData()).subscribe(res => {
+      this.logger.info('Success', 'Page was successfully created!');
+      this.router.navigate(['suggestion/pages']);
+    },err => {
+      this.logger.error('Error', 'An error occurred.');
+    });
+}
   }
 }

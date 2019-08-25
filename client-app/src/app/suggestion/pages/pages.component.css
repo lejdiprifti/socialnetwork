@@ -1,3 +1,14 @@
 .ui-button-danger{
     float:right;
 }
+
+.create{
+float: right;
+margin-bottom: 4%;
+}
+
+.cards{
+    display: inline-flex;
+    margin-right: 4%;
+    margin-bottom: 4%;
+}

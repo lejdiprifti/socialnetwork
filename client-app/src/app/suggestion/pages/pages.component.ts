@@ -3,6 +3,7 @@ import { PageService } from '@ikubinfo/core/services/page.service';
 import { Page } from '@ikubinfo/core/models/page';
 import { LoggerService } from '@ikubinfo/core/utilities/logger.service';
 import { Router } from '@angular/router';
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 
 @Component({
   selector: 'ikubinfo-pages',
@@ -11,7 +12,8 @@ import { Router } from '@angular/router';
 })
 export class PagesComponent implements OnInit {
   pages: Array<Page>;
-  constructor(private pageService: PageService,private logger: LoggerService,private router: Router) { }
+  constructor(private confirmationService: ConfirmationService,
+    private pageService: PageService,private logger: LoggerService,private router: Router) { }
 
   ngOnInit() {
     this.pages=[
@@ -34,6 +36,11 @@ export class PagesComponent implements OnInit {
   }
 
   deletePage(id: number): void{
+    this.confirmationService.confirm({
+      message: "Are you sure you want to delete this page?",
+      header: "Delete Confirmation",
+      icon: "pi pi-info-circle",
+      accept: () => {
     this.pageService.deletePage(id).subscribe(res=>{
       this.logger.info("Info","Page was deleted succesfully.");
       this.getMyPages();
@@ -41,5 +48,10 @@ export class PagesComponent implements OnInit {
     err=>{
       this.logger.error("Error","Something bad happened.")
     })
+  }
+});
+  }
+  createPage(): void{
+    this.router.navigate(['suggestion/create/page']);
   }
 }

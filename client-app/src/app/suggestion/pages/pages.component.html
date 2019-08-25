@@ -1,4 +1,5 @@
-<div *ngFor="let page of pages">
+<button pButton type="button" icon="fa fa-plus" (click)="createPage()" label="New Page" class="ui-button-rounded create"></button>
+<div class="cards" *ngFor="let page of pages">
   <p-card
     header="{{ page.name }}"
     subheader="{{ page.followers.length }} Followers  {{
