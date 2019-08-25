@@ -103,6 +103,7 @@ export class DashboardComponent implements OnInit {
   }
 
   isLiked(post: Post): boolean{
+    if(post.likes != null){
     for (let like of post.likes){
       if(like.user.id == this.user.id && like.flag === true){
     
@@ -111,7 +112,7 @@ export class DashboardComponent implements OnInit {
     }
   return false;
   
-
+  }
   }
 
   unlike(id: number): void{
@@ -126,10 +127,12 @@ export class DashboardComponent implements OnInit {
 
   countLength(post: Post): number{
     length=0;
+    if (post.likes != null){
       for (let like of post.likes){
         if(like.flag === true){
           length++;
       }
+    }
   }
   return length;
  }

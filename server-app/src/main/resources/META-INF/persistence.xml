@@ -17,7 +17,7 @@
             <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/postgres"/>
             <property name="hibernate.connection.username" value="postgres"/>
             <property name="hibernate.connection.password" value="admin"/>
-            <property name="hibernate.connection.pool_size" value="10"/>
+            <property name="hibernate.connection.pool_size" value="50"/>
             <property name="hibernate.show_sql" value="true"/>
            <property name="hibernate.hbm2ddl.auto" value="update"/> 
             <property name="hibernate.hibernate.c3p0.timeout" value="7200"/>
