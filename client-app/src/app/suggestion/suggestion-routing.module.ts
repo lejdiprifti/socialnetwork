@@ -14,6 +14,7 @@ import { ChatComponent } from './chat/chat.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { PagesComponent } from './pages/pages.component';
+import { EditPageComponent } from './edit-page/edit-page.component';
 
 const suggestionRoutes: Routes = [
     {
@@ -32,6 +33,7 @@ const suggestionRoutes: Routes = [
             { path: 'profile', component: ProfileComponent, canActivate: [UserGuard]},
             {path: 'edit/post/:id', component: PostComponent},
             {path: 'pages', component: PagesComponent, canActivate:[UserGuard]},
+            {path: 'edit/page/:id',component: EditPageComponent,canActivate: [UserGuard]},
             { path: 'edit', component: EditUserComponent,canActivate:[UserGuard]},
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
         ]

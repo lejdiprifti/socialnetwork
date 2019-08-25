@@ -1,0 +1,17 @@
+
+  <div>
+    <form role="form" [formGroup]="pageForm">
+     
+      <ikubinfo-input label="Name">
+      
+        <input formControlName="name" type="text" class="form-control" />
+      </ikubinfo-input>
+      <ikubinfo-input label="Description">
+        <textarea formControlName="description" type="text" class="form-control"> </textarea>
+      </ikubinfo-input>
+    </form>
+    <button pButton type="submit" label="Save" icon="pi pi-file" (click)="submit()" [disabled]="pageForm.invalid" class="ui-button-raised ui-button-success"></button>
+    <button pButton type="button" icon="fa fa-times" (click)="reset()" label="Reset" class="ui-button-raised ui-button-secondary"></button>
+  </div>
+
+

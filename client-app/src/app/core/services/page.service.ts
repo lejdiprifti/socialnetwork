@@ -14,6 +14,9 @@ export class PageService {
     return this.apiService.get(this.url);
   }
 
+  public getPageById(id: number): Observable<Page>{
+    return this.apiService.get(this.url+"/"+id);
+  } 
   public createPage(page: Page): Observable<Page>{
     return this.apiService.post(this.url,page);
   }

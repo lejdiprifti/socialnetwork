@@ -27,6 +27,12 @@ public class PageResource extends BaseResource {
 	public Response getMyPages() {
 		return ok(pageService.getMyPages(getEmailFromToken()));
 	}
+	
+	@GET
+	@Path("/{id}")
+	public Response getPageById(@PathParam("id") final long id) {
+		return ok(pageService.getPageById(id));
+	}
 	@POST
 	public Response createPage(PageModel page) throws URISyntaxException {
 		return Response.created(new URI("pages/"+pageService.createPage(page, getEmailFromToken()).getId())).build();

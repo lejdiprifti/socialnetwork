@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PageService } from '@ikubinfo/core/services/page.service';
 import { Page } from '@ikubinfo/core/models/page';
 import { LoggerService } from '@ikubinfo/core/utilities/logger.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ikubinfo-pages',
@@ -10,7 +11,7 @@ import { LoggerService } from '@ikubinfo/core/utilities/logger.service';
 })
 export class PagesComponent implements OnInit {
   pages: Array<Page>;
-  constructor(private pageService: PageService,private logger: LoggerService) { }
+  constructor(private pageService: PageService,private logger: LoggerService,private router: Router) { }
 
   ngOnInit() {
     this.pages=[
@@ -24,6 +25,21 @@ export class PagesComponent implements OnInit {
       this.pages=res;
     }, err=>{
       this.logger.error("Error","Something bad happened.");
+    })
+  }
+
+
+  editPage(id: number): void{
+    this.router.navigate(['suggestion/edit/page/'+id]);
+  }
+
+  deletePage(id: number): void{
+    this.pageService.deletePage(id).subscribe(res=>{
+      this.logger.info("Info","Page was deleted succesfully.");
+      this.getMyPages();
+    },
+    err=>{
+      this.logger.error("Error","Something bad happened.")
     })
   }
 }

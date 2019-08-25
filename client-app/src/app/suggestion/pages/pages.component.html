@@ -13,20 +13,8 @@
     <div>{{ page.bio }}</div>
     <hr />
     <p-footer>
-      <button
-        pButton
-        type="button"
-        label="Save"
-        icon="pi pi-check"
-        style="margin-right: .25em"
-      ></button>
-      <button
-        pButton
-        type="button"
-        label="Cancel"
-        icon="pi pi-times"
-        class="ui-button-secondary"
-      ></button>
+      <button pButton type="button" icon="fa fa-pencil-square-o" label="Edit" (click)="editPage(page.id)"></button>
+      <button pButton type="button" icon="fa fa-trash" label="Delete" class="ui-button-danger" (click)="deletePage(page.id)"></button>
     </p-footer>
   </p-card>
 </div>
