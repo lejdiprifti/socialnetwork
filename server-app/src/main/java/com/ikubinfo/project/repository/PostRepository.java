@@ -46,7 +46,7 @@ public class PostRepository {
 		em.getTransaction().begin();
 		Post mergedPost=em.merge(post);
 		em.getTransaction().commit();
-		em.close();
+		
 		return mergedPost;
 	}
 	
@@ -83,6 +83,13 @@ public class PostRepository {
 	public List<Post> getMyLikes(User user){
 		TypedQuery<Post> query=em.createQuery("Select p.post from PostLiked p where p.user=?1 and p.flag=?2 ORDER BY p.post.date DESC",Post.class);
 		query.setParameter(1, user);
+		query.setParameter(2, true);
+		return query.getResultList();
+	}
+	
+	public List<Post> getPostsOfPage(final long id){
+		TypedQuery<Post> query = em.createQuery("Select p from Post p where p.page.id=?1 and p.flag=?2",Post.class);
+		query.setParameter(1, id);
 		query.setParameter(2, true);
 		return query.getResultList();
 	}

@@ -11,9 +11,11 @@ import com.ikubinfo.project.converter.UserConverter;
 import com.ikubinfo.project.entity.Page;
 import com.ikubinfo.project.entity.PageLiked;
 import com.ikubinfo.project.entity.PageLikedId;
+import com.ikubinfo.project.entity.Post;
 import com.ikubinfo.project.entity.User;
 import com.ikubinfo.project.model.PageModel;
 import com.ikubinfo.project.repository.PageRepository;
+import com.ikubinfo.project.repository.PostRepository;
 import com.ikubinfo.project.repository.UserRepository;
 
 public class PageService {
@@ -22,12 +24,13 @@ public class PageService {
 	private UserRepository userRepository;
 	private UserConverter userConverter;
 	private PageConverter pageConverter;
-
+	private PostRepository postRepository;
 	public PageService() {
 		this.pageRepository = new PageRepository();
 		this.userRepository = new UserRepository();
 		this.userConverter = new UserConverter();
 		this.pageConverter = new PageConverter();
+		this.postRepository = new PostRepository();
 	}
 	
 	public List<PageModel> getAllPages(){
@@ -107,6 +110,11 @@ public class PageService {
 		Page page = pageRepository.getPageById(id);
 		page.setFlag(false); 
 		pageRepository.editPage(page);
+		List<Post> list=postRepository.getPostsOfPage(id);
+		for (Post post: list) {
+			post.setFlag(false);
+			postRepository.update(post);
+		}
 	}
 	
 

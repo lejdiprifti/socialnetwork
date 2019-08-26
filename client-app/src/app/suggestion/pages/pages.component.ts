@@ -12,6 +12,8 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
 })
 export class PagesComponent implements OnInit {
   pages: Array<Page>;
+  followers: number;
+  posts: number;
   constructor(private confirmationService: ConfirmationService,
     private pageService: PageService,private logger: LoggerService,private router: Router) { }
 
@@ -54,4 +56,27 @@ export class PagesComponent implements OnInit {
   createPage(): void{
     this.router.navigate(['suggestion/create/page']);
   }
+
+  countFollowers(page: Page): number{
+    this.followers=0;
+    for (let i=0;i<page.followers.length;i++){
+      if(page.followers[i].flag==true){
+        this.followers++;
+      }
+    }
+    return this.followers;
+  }
+
+  countPosts(page: Page): number{
+    this.posts=0;
+    if(page.posts != null){
+    for (let i=0; i<page.posts.length;i++){
+      if (page.posts[i].flag == true){
+        this.posts++;
+      }
+    }
+  }
+  return this.posts;
+  }
 }
+

@@ -14,7 +14,7 @@ export const menuItems: Array<MenuItem> = [{
 
 },{
     url:'/suggestion/discover',
-    icon: 'fa fa-address-book',
+    icon: 'fa fa-hashtag',
     label: 'Discover',
     allowedRoles: [RoleEnum.USER]
 },{
