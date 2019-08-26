@@ -28,4 +28,16 @@ export class PageService {
   public deletePage(id: number): Observable<void>{
     return this.apiService.delete(this.url+"/"+id);
   }
+
+  public getAllPages(): Observable<Array<Page>>{
+    return this.apiService.get(this.url+"/all");
+  }
+
+  public likePage(id: number): Observable<void>{
+    return this.apiService.put(this.url+"/"+id+"/like");
+  }
+
+  public unlikePage(id: number): Observable<void>{
+    return this.apiService.put(this.url+"/"+id+"/unlike");
+  }
 }

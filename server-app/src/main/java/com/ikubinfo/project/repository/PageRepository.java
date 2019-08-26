@@ -16,8 +16,11 @@ public class PageRepository {
 	public PageRepository() {
 		this.em = PersistenceSingleton.INSTANCE.getEntityManagerFactory().createEntityManager();
 	}
-
-	@Transactional
+	
+	public List<Page> getAllPages(){
+		return em.createNamedQuery("Page.getAllPages",Page.class).setParameter(1, true).getResultList();
+	}
+ 	@Transactional
 	public Page createPage(Page page) {
 		em.getTransaction().begin();
 		em.persist(page);

@@ -29,7 +29,10 @@ public class PageService {
 		this.userConverter = new UserConverter();
 		this.pageConverter = new PageConverter();
 	}
-
+	
+	public List<PageModel> getAllPages(){
+		return pageConverter.toModel(pageRepository.getAllPages());
+	}
 	public List<PageModel> getMyPages(String email) {
 		return pageConverter.toModel(pageRepository.getMyPages(email));
 	}

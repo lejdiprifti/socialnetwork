@@ -8,3 +8,10 @@
     cursor: pointer;
     text-decoration-line: underline;
 }
+
+.cards{
+    display: inline-flex;
+    margin-right: 4%;
+    margin-bottom: 4%;
+}
+

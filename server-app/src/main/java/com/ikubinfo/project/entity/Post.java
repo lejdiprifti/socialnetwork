@@ -57,7 +57,7 @@ public class Post {
 	@OrderBy("date ASC")
 	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<PostLiked> likes = new ArrayList<>();
-
+	
 	@Column(name = "flag")
 	private boolean flag;
 

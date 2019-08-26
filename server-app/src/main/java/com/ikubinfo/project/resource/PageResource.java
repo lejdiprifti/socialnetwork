@@ -24,6 +24,12 @@ public class PageResource extends BaseResource {
 	}
 	
 	@GET
+	@Path("/all")
+	public Response getAllPages() {
+		return ok(pageService.getAllPages());
+	}
+	
+	@GET
 	public Response getMyPages() {
 		return ok(pageService.getMyPages(getEmailFromToken()));
 	}

@@ -57,3 +57,24 @@
     </ikubinfo-panel>
   </div>
 </div>
+<!--Pages-->
+<div class="cards" *ngFor="let page of pages">
+  <p-card
+    header="{{ page.name }}"
+    subheader="{{ page.followers.length }} Followers  {{
+      page.posts.length
+    }} Posts"
+    [style]="{ width: '360px' }"
+    styleClass="ui-card-shadow"
+  >
+    <p-header>
+      <img src="Card" src="assets/images/children.jpg" />
+    </p-header>
+    <div>{{ page.bio }}</div>
+    <hr />
+    <p-footer>
+      <button *ngIf="!isLiked(page)" pButton type="button" icon="fa fa-thumbs-up" label="Like" (click)="likePage(page.id)"></button>
+      <button *ngIf="isLiked(page)" pButton type="button" icon="fa fa-thumbs-down" label="Unlike" class="ui-button-danger unlike" (click)="unlikePage(page.id)"></button>
+    </p-footer>
+  </p-card>
+</div>

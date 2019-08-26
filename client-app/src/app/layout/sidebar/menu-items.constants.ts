@@ -13,9 +13,9 @@ export const menuItems: Array<MenuItem> = [{
     allowedRoles: [RoleEnum.ADMIN]
 
 },{
-    url:'/suggestion/people',
+    url:'/suggestion/discover',
     icon: 'fa fa-address-book',
-    label: 'People',
+    label: 'Discover',
     allowedRoles: [RoleEnum.USER]
 },{
     url:'/suggestion/requests',

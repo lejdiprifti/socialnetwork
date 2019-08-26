@@ -21,7 +21,8 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "pages", schema = "socialnetwork")
 @NamedQueries({ @NamedQuery(name = "Page.getMyPages", query = "Select p from Page p where p.user.email=?1 and p.flag=?2"),
-		@NamedQuery(name = "Page.getPageById", query = "Select p from Page p where p.id=?1 and p.flag=?2")
+		@NamedQuery(name = "Page.getPageById", query = "Select p from Page p where p.id=?1 and p.flag=?2"),
+@NamedQuery(name="Page.getAllPages", query="Select p from Page p where p.flag=?1")
 
 })
 public class Page {
