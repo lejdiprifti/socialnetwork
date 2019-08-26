@@ -7,6 +7,7 @@ import { AuthService } from '@ikubinfo/core/services/auth.service';
 import { Router } from '@angular/router';
 import { PageService } from '@ikubinfo/core/services/page.service';
 import { Page } from '@ikubinfo/core/models/page';
+import { MenuItem } from 'primeng/components/common/menuitem';
 
 @Component({
   selector: 'ikubinfo-friends',
@@ -22,12 +23,23 @@ export class FriendsComponent implements OnInit {
   requests: Array<any>;
   user: User;
   pages: Array<Page>;
+  items: MenuItem[];
+  showReq: boolean = true;
+  showPages: boolean= true;
+  showPeople: boolean= true;
   ngOnInit() {
     this.loadUsers();
     this.loadRequests();
     this.user=this.authService.loggedUser;
     this.pages=[];
     this.getAllPages();
+    this.items = [ 
+            {label: 'All', icon: 'fa fa-fw fa-bar-chart' , command: ()=>{this.displayAll()}},
+            {label: 'People', icon: 'fa fa-handshake-o', command: () => {this.displayPeople()}},
+            {label: 'Pages', icon: 'fa fa-fw fa-book', command: () =>{this.displayPages()}},
+            {label: 'Sent Requests', icon: 'fa fa-mail-forward' , command: () =>{this.displayReq()}}
+        ];
+    
   }
 
   loadUsers() : void{
@@ -112,5 +124,29 @@ export class FriendsComponent implements OnInit {
     err=>{
       this.logger.error("Error","Something bad happened.");
     })
+  }
+
+  displayPeople(): void{
+    this.showPeople = true;
+    this.showPages= false;
+    this.showReq = false;
+  }
+
+  displayPages() : void{
+    this.showPages=true;
+    this.showPeople= false;
+    this.showReq= false;
+  }
+
+  displayReq() : void{
+    this.showPages= false;
+    this.showPeople=false;
+    this.showReq = true;
+  }
+
+  displayAll(): void{
+    this.showPages=true;
+    this.showPeople=true;
+    this.showReq= true;
   }
 }
