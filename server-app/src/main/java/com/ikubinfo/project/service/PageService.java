@@ -60,12 +60,8 @@ public class PageService {
 		pageLiked.setUser(user);
 		pageLiked.setDate(new Date());
 		pageLiked.setFlag(true);
-		try {
-			pageRepository.isLiked(page, user);
-			pageRepository.update(pageLiked);
-		} catch (NoResultException e) {
-			pageRepository.likePage(pageLiked);
-		}
+		pageRepository.update(pageLiked);
+		
 	}
 
 	public Page createPage(PageModel page, String email) {
