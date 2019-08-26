@@ -65,8 +65,8 @@
   <div class="cards" *ngFor="let page of pages">
   <p-card
     header="{{ page.name }}"
-    subheader="{{ page.followers.length }} Followers  {{
-      page.posts.length
+    subheader="{{ countFollowers(page) }} Followers  {{
+      countPosts(page)
     }} Posts"
     [style]="{ width: '360px' }"
     styleClass="ui-card-shadow"

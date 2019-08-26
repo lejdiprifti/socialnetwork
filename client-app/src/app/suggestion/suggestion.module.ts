@@ -21,10 +21,11 @@ import {CardModule} from 'primeng/card';
 import { EditPageComponent } from './edit-page/edit-page.component';
 import {SplitButtonModule} from 'primeng/splitbutton';
 import {TabMenuModule} from 'primeng/tabmenu';
+import { PageComponent } from './page/page.component';
 @NgModule({
     imports: [TabMenuModule,SplitButtonModule,CardModule,CommonsModule, SuggestionRoutingModule, LayoutModule, FormsModule],
     exports: [],
-    declarations: [DateAgoPipe,DashboardComponent, PostComponent, PostsComponent, FriendsComponent, RequestsComponent, MessagesComponent, ChatComponent, ProfileComponent, EditUserComponent, PagesComponent, EditPageComponent],
+    declarations: [DateAgoPipe,DashboardComponent, PostComponent, PostsComponent, FriendsComponent, RequestsComponent, MessagesComponent, ChatComponent, ProfileComponent, EditUserComponent, PagesComponent, EditPageComponent, PageComponent],
     providers: [DatePipe]
 })
 export class SuggestionModule { }

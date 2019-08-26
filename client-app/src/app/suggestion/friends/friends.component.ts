@@ -27,6 +27,8 @@ export class FriendsComponent implements OnInit {
   showReq: boolean = true;
   showPages: boolean= true;
   showPeople: boolean= true;
+  followers: number;
+  posts: number;
   ngOnInit() {
     this.loadUsers();
     this.loadRequests();
@@ -148,5 +150,27 @@ export class FriendsComponent implements OnInit {
     this.showPages=true;
     this.showPeople=true;
     this.showReq= true;
+  }
+
+  countFollowers(page: Page): number{
+    this.followers=0;
+    for (let i=0;i<page.followers.length;i++){
+      if(page.followers[i].flag==true){
+        this.followers++;
+      }
+    }
+    return this.followers;
+  }
+
+  countPosts(page: Page): number{
+    this.posts=0;
+    if(page.posts != null){
+    for (let i=0; i<page.posts.length;i++){
+      if (page.posts[i].flag == true){
+        this.posts++;
+      }
+    }
+  }
+  return this.posts;
   }
 }
