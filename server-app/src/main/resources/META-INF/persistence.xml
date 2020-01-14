@@ -4,11 +4,17 @@
              version="2.0">
     <persistence-unit name="akademia" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>com.ikubinfo.project.entity.Chat</class>
         <class>com.ikubinfo.project.entity.Friends</class>
+        <class>com.ikubinfo.project.entity.FriendsId</class>
+        <class>com.ikubinfo.project.entity.Page</class>
+        <class>com.ikubinfo.project.entity.PageLiked</class>
+        <class>com.ikubinfo.project.entity.PageLikedId</class>
         <class>com.ikubinfo.project.entity.Post</class>
         <class>com.ikubinfo.project.entity.PostLiked</class>
         <class>com.ikubinfo.project.entity.PostLikedId</class>
         <class>com.ikubinfo.project.entity.RoleEntity</class>
+        <class>com.ikubinfo.project.entity.SocialLinks</class>
         <class>com.ikubinfo.project.entity.User</class>
         <properties>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
